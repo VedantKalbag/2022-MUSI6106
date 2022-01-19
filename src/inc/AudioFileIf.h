@@ -48,16 +48,21 @@ public:
     \return Error_t
     */
     static Error_t create (CAudioFileIf*& pCInstance);
+    
+    
     /*! destroys and audio file IO instance
     \param pCInstance
     \return Error_t
     */
     static Error_t destroy (CAudioFileIf*& pCInstance);
+    
+    
     /*! reset instance to initial state
     \param  bFreeMemory: also free the internal memory if true
     \return Error_t
     */
     virtual Error_t reset (bool bFreeMemory = false);
+    
 
     /*! open a file for reading or writing
     \param cAudioFileName
@@ -66,17 +71,21 @@ public:
     \return Error_t
     */
     virtual Error_t openFile (std::string cAudioFileName, FileIoType_t eIoType, FileSpec_t const *psFileSpec = 0) = 0;
+    
+    
     /*! close the current file
     \return Error_t
     */
     virtual Error_t closeFile () = 0;
+    
 
     /*! read data from file and increments read position
     \param ppfAudioData: [channels][iNumFrames]
     \param iNumFrames: number of frames to read (per channel), is updated to the number of frames actually read
     \return Error_t
     */
-    virtual Error_t readData (float **ppfAudioData, long long int &iNumFrames);
+    virtual Error_t readData (float **ppfAudioData, long long int &iNumFrames); //Data will be written into the location pointed to by ppfAudioData
+    
     
     /*! write data to file and increments write position
     \param ppfAudioData: [channels][iNumFrames]
@@ -84,63 +93,82 @@ public:
     \return Error_t
     */
     virtual Error_t writeData (float **ppfAudioData, long long int iNumFrames);
+    
 
     /*! retrieve file specifications
     \param sFileSpec
     \return Error_t
     */
     Error_t getFileSpec (FileSpec_t &sFileSpec);
+    
 
     /*! jump to new position in file
     \param iFrame: frame to jump to
     \return Error_t
     */
     virtual Error_t setPosition (long long iFrame = 0);
+    
+    
     /*! jump to new position in file
     \param dTimeInS: time to jump to
     \return Error_t
     */
     Error_t setPosition (double dTimeInS = .0);
+    
 
     /*! enable clipping to avoid wrap-arounds
     \param bIsEnabled
     \return Error_t
     */
     Error_t setClippingEnabled (bool bIsEnabled = true);
+    
+    
     /*! check if clipping is enabled
     \return bool
     */
     bool isClippingEnabled () {return m_bWithClipping;};
+    
 
     /*! get current position in file
     \param iFrame: current frame
     \return Error_t
     */
     Error_t getPosition (long long &iFrame);
+    
+    
     /*! get current position in file
     \param dTimeInS: current time in seconds
     \return Error_t
     */
     Error_t getPosition (double &dTimeInS);
+    
+    
     /*! get length of file
     \param iLengthInFrames: file length in frames
     \return Error_t
     */
     Error_t getLength (long long &iLengthInFrames) ;
+    
+    
     /*! get length of file
     \param dLengthInSeconds: file length in seconds
     \return Error_t
     */
     Error_t getLength (double &dLengthInSeconds) ;
+    
 
     /*! check if EOF is true
     \return bool
     */
     virtual bool isEof () = 0;
+    
+    
     /*! check if a file is opened
     \return bool
     */
     virtual bool isOpen () = 0;
+    
+    
     /*! check is the instance is initialized
     \return bool
     */
