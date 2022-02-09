@@ -1,0 +1,652 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						4
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						4
+					]
+				},
+				{
+					"build" : "MUSI6106Exec",
+					"jsonFile" : "directory-MUSI6106Exec-Debug-05f61c4cde991075f0dc.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/MUSI6106Exec",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "AudioFileIO",
+					"childIndexes" : 
+					[
+						3
+					],
+					"jsonFile" : "directory-AudioFileIO-Debug-8ee650ddb77e2e15d0b2.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/AudioFileIO",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "AudioFileIO/sndlib",
+					"jsonFile" : "directory-AudioFileIO.sndlib-Debug-e7b76e5c99dd9c130f30.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 0,
+					"source" : "3rdparty/sndlib",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "CombFilter",
+					"jsonFile" : "directory-CombFilter-Debug-08a4305720bef0fd8a24.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/CombFilter",
+					"targetIndexes" : 
+					[
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					],
+					"name" : "MUSI6106",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-Debug-4c00b628e80e9dabf61e.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "AudioFileIO::@14733eaaa109906c281b",
+					"jsonFile" : "target-AudioFileIO-Debug-111752a412d8c4105870.json",
+					"name" : "AudioFileIO",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "CombFilter::@7656a2d9f153a0096c6a",
+					"jsonFile" : "target-CombFilter-Debug-827a35e520e7c392d1e9.json",
+					"name" : "CombFilter",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "MUSI6106Exec::@1ca4e22c5ff24413807f",
+					"jsonFile" : "target-MUSI6106Exec-Debug-f7f4c7e5217812c20f10.json",
+					"name" : "MUSI6106Exec",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-Debug-2ecf526921f87ed9ef26.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "sndlib::@bef705fde8a82da36e5a",
+					"jsonFile" : "target-sndlib-Debug-d519c5e3741ea3441977.json",
+					"name" : "sndlib",
+					"projectIndex" : 0
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						4
+					],
+					"jsonFile" : "directory-.-Release-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						4
+					]
+				},
+				{
+					"build" : "MUSI6106Exec",
+					"jsonFile" : "directory-MUSI6106Exec-Release-05f61c4cde991075f0dc.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/MUSI6106Exec",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "AudioFileIO",
+					"childIndexes" : 
+					[
+						3
+					],
+					"jsonFile" : "directory-AudioFileIO-Release-8ee650ddb77e2e15d0b2.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/AudioFileIO",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "AudioFileIO/sndlib",
+					"jsonFile" : "directory-AudioFileIO.sndlib-Release-e7b76e5c99dd9c130f30.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 0,
+					"source" : "3rdparty/sndlib",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "CombFilter",
+					"jsonFile" : "directory-CombFilter-Release-08a4305720bef0fd8a24.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/CombFilter",
+					"targetIndexes" : 
+					[
+						2
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					],
+					"name" : "MUSI6106",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-Release-4c00b628e80e9dabf61e.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "AudioFileIO::@14733eaaa109906c281b",
+					"jsonFile" : "target-AudioFileIO-Release-7432da87442ebb70f891.json",
+					"name" : "AudioFileIO",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "CombFilter::@7656a2d9f153a0096c6a",
+					"jsonFile" : "target-CombFilter-Release-a6676191838568c2c4ca.json",
+					"name" : "CombFilter",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "MUSI6106Exec::@1ca4e22c5ff24413807f",
+					"jsonFile" : "target-MUSI6106Exec-Release-2a2ce37f9a08816703ac.json",
+					"name" : "MUSI6106Exec",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-Release-2ecf526921f87ed9ef26.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "sndlib::@bef705fde8a82da36e5a",
+					"jsonFile" : "target-sndlib-Release-e1a0ba2ac6cbdde78ca7.json",
+					"name" : "sndlib",
+					"projectIndex" : 0
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						4
+					],
+					"jsonFile" : "directory-.-MinSizeRel-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						4
+					]
+				},
+				{
+					"build" : "MUSI6106Exec",
+					"jsonFile" : "directory-MUSI6106Exec-MinSizeRel-05f61c4cde991075f0dc.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/MUSI6106Exec",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "AudioFileIO",
+					"childIndexes" : 
+					[
+						3
+					],
+					"jsonFile" : "directory-AudioFileIO-MinSizeRel-8ee650ddb77e2e15d0b2.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/AudioFileIO",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "AudioFileIO/sndlib",
+					"jsonFile" : "directory-AudioFileIO.sndlib-MinSizeRel-e7b76e5c99dd9c130f30.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 0,
+					"source" : "3rdparty/sndlib",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "CombFilter",
+					"jsonFile" : "directory-CombFilter-MinSizeRel-08a4305720bef0fd8a24.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/CombFilter",
+					"targetIndexes" : 
+					[
+						2
+					]
+				}
+			],
+			"name" : "MinSizeRel",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					],
+					"name" : "MUSI6106",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-4c00b628e80e9dabf61e.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "AudioFileIO::@14733eaaa109906c281b",
+					"jsonFile" : "target-AudioFileIO-MinSizeRel-8b6e61f556ab1482103b.json",
+					"name" : "AudioFileIO",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "CombFilter::@7656a2d9f153a0096c6a",
+					"jsonFile" : "target-CombFilter-MinSizeRel-e3c29bbffcc1a7b2a1cc.json",
+					"name" : "CombFilter",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "MUSI6106Exec::@1ca4e22c5ff24413807f",
+					"jsonFile" : "target-MUSI6106Exec-MinSizeRel-85db730f9e462e603ea8.json",
+					"name" : "MUSI6106Exec",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-MinSizeRel-2ecf526921f87ed9ef26.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "sndlib::@bef705fde8a82da36e5a",
+					"jsonFile" : "target-sndlib-MinSizeRel-c4644f8a943b7fd8c8b3.json",
+					"name" : "sndlib",
+					"projectIndex" : 0
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						4
+					],
+					"jsonFile" : "directory-.-RelWithDebInfo-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						4
+					]
+				},
+				{
+					"build" : "MUSI6106Exec",
+					"jsonFile" : "directory-MUSI6106Exec-RelWithDebInfo-05f61c4cde991075f0dc.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/MUSI6106Exec",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "AudioFileIO",
+					"childIndexes" : 
+					[
+						3
+					],
+					"jsonFile" : "directory-AudioFileIO-RelWithDebInfo-8ee650ddb77e2e15d0b2.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/AudioFileIO",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "AudioFileIO/sndlib",
+					"jsonFile" : "directory-AudioFileIO.sndlib-RelWithDebInfo-e7b76e5c99dd9c130f30.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 0,
+					"source" : "3rdparty/sndlib",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "CombFilter",
+					"jsonFile" : "directory-CombFilter-RelWithDebInfo-08a4305720bef0fd8a24.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/CombFilter",
+					"targetIndexes" : 
+					[
+						2
+					]
+				}
+			],
+			"name" : "RelWithDebInfo",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					],
+					"name" : "MUSI6106",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-4c00b628e80e9dabf61e.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "AudioFileIO::@14733eaaa109906c281b",
+					"jsonFile" : "target-AudioFileIO-RelWithDebInfo-caf49111c1cab3cd975d.json",
+					"name" : "AudioFileIO",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "CombFilter::@7656a2d9f153a0096c6a",
+					"jsonFile" : "target-CombFilter-RelWithDebInfo-5e28cbaac0338891e281.json",
+					"name" : "CombFilter",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "MUSI6106Exec::@1ca4e22c5ff24413807f",
+					"jsonFile" : "target-MUSI6106Exec-RelWithDebInfo-0016958d4ae2f034ac9d.json",
+					"name" : "MUSI6106Exec",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-RelWithDebInfo-2ecf526921f87ed9ef26.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "sndlib::@bef705fde8a82da36e5a",
+					"jsonFile" : "target-sndlib-RelWithDebInfo-31036bdde5fbedcb11dc.json",
+					"name" : "sndlib",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/vedant/Desktop/Programming/2022-MUSI6106",
+		"source" : "/Users/vedant/Desktop/Programming/2022-MUSI6106"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
