@@ -10,8 +10,15 @@
 
 // =====================================================================================================
 // CCombFilterBase method definitions
+
 CCombFilterBase::CCombFilterBase()
 {
+    m_RingBuffer = new CRingBuffer<float>* [m_iNumChannels];
+    for (int i=0;i<m_iNumChannels;i++)
+    {
+        m_RingBuffer[i] = new CRingBuffer<float>(m_iDelayValue);
+        m_RingBuffer[i]->reset();
+    }
     
 }
 
@@ -27,16 +34,16 @@ float CCombFilterBase::getGain()
     return m_fGainValue;
 }
 
-Error_t CCombFilterBase::setDelay(float fDelayValue)
+Error_t CCombFilterBase::setDelay(int iDelayValue)
 {
     //Set delayValue to fDelayValue
-    m_fDelayValue = fDelayValue;
+    m_iDelayValue = iDelayValue;
     return Error_t::kNoError;
 }
 
-float CCombFilterBase::getDelay()
+int CCombFilterBase::getDelay()
 {
-    return m_fDelayValue;
+    return m_iDelayValue;
 }
 
 // =====================================================================================================
@@ -44,17 +51,17 @@ float CCombFilterBase::getDelay()
 class CCombIIRFilter : public CCombFilterBase
 {
 public:
-    CCombIIRFilter(int delayLength, int iNumChannels, float gain);
+//    CCombIIRFilter(int delayLength, int iNumChannels, float gain);
 protected:
-    
+    int m_iNumChannels = 0;
     Error_t process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames) override;
 };
 // =====================================================================================================
 // CCombFIRFilter method definition
-CCombIIRFilter::CCombIIRFilter(int delayLength, int iNumChannels, float gain=0.5): CCombFilterBase(delayLength, gain, iNumChannels)
-{
-    
-}
+//CCombIIRFilter::CCombIIRFilter(int delayLength, int iNumChannels, float gain=0.5): CCombFilterBase(delayLength, gain, iNumChannels)
+//{
+//
+//}
 Error_t CCombIIRFilter::process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames)
 {
     return Error_t::kNoError;
@@ -66,16 +73,17 @@ class CCombFIRFilter : public CCombFilterBase
 {
     
 public:
-    CCombFIRFilter(int delayLength, int iNumChannels, float gain);
+//    CCombFIRFilter(int delayLength, int iNumChannels, float gain);
 protected:
+    int m_iNumChannels = 0;
     Error_t process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames) override;
 };
 
 // =====================================================================================================
 // CCombIIRFilter method definition
 
-CCombFIRFilter::CCombFIRFilter(int delayLength, int iNumChannels, float gain=0.5): CCombFilterBase(delayLength, iNumChannels, gain)
-{
-    
-}
+//CCombFIRFilter::CCombFIRFilter(int delayLength, int iNumChannels, float gain=0.5): CCombFilterBase(delayLength, iNumChannels, gain)
+//{
+//
+//}
 

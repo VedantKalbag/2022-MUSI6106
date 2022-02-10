@@ -16,7 +16,7 @@
 class CCombFilterBase
 {
 public:
-    CCombFilterBase(int delayLength, int iNumChannels, float gain=0.5);
+//    CCombFilterBase(int delayLength, int iNumChannels, float gain=0.5);
     CCombFilterBase();
     ~CCombFilterBase();
     
@@ -25,13 +25,15 @@ public:
     Error_t setGain(float fGainValue);
     float getGain();
     
-    Error_t setDelay(float fDelayValue);
-    float getDelay();
+    Error_t setDelay(int iDelayValue);
+    int getDelay();
     
     
 protected:
+    CRingBuffer<float> **m_RingBuffer;
     float m_fGainValue = 0.5;
-    float m_fDelayValue = 0;
+    int m_iDelayValue = 0;
+    int m_iNumChannels = 0;
     virtual Error_t process(float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames);
 };
 
