@@ -8,6 +8,7 @@
 #include "Util.h"
 
 #include "CombFilterIf.h"
+#include "CombFilter.cpp"
 
 static const char*  kCMyProjectBuildDate = __DATE__;
 
@@ -66,6 +67,20 @@ Error_t CCombFilterIf::destroy (CCombFilterIf*& pCCombFilter)
 
 Error_t CCombFilterIf::init (CombFilterType_t eFilterType, float fMaxDelayLengthInS, float fSampleRateInHz, int iNumChannels)
 {
+
+    m_fSampleRate = fSampleRateInHz;
+    int delayLength = static_cast<int>(fMaxDelayLengthInS*fSampleRateInHz);
+    if (eFilterType == kCombFIR)
+    {
+        m_pCCombFilter = new CCombFIRFilter(delayLength,iNumChannels);
+    }
+    else if (eFilterType == kCombIIR)
+    {
+        m_pCCombFilter = new CCombIIRFilter(delayLength,iNumChannels);
+    }
+    
+    
+    
     return Error_t::kNoError;
 }
 
@@ -81,10 +96,32 @@ Error_t CCombFilterIf::process (float **ppfInputBuffer, float **ppfOutputBuffer,
 
 Error_t CCombFilterIf::setParam (FilterParam_t eParam, float fParamValue)
 {
+    if (eParam == kParamGain)
+    {
+        m_pCCombFilter->setGain(fParamValue);
+    }
+    else if (eParam == kParamDelay)
+    {
+        m_pCCombFilter->setDelay(fParamValue);
+    }
+    
+    
+    
     return Error_t::kNoError;
 }
 
 float CCombFilterIf::getParam (FilterParam_t eParam) const
 {
-    return 0;
+    if(eParam == kParamGain)
+    {
+        return m_pCCombFilter->getGain();
+    }
+    else if(eParam == kParamDelay)
+    {
+        return m_pCCombFilter->getDelay();
+    }
+    else
+    {
+        return 0;
+    }
 }
