@@ -114,9 +114,7 @@ Error_t CCombFilterIf::setParam (FilterParam_t eParam, float fParamValue)
     {
         m_pCCombFilter->setDelay(fParamValue * m_fSampleRate);
     }
-    
-    
-    
+
     return Error_t::kNoError;
 }
 
@@ -128,7 +126,7 @@ float CCombFilterIf::getParam (FilterParam_t eParam) const
     }
     else if(eParam == kParamDelay)
     {
-        return m_pCCombFilter->getDelay();
+        return static_cast<float>(m_pCCombFilter->getDelay());
     }
     else
     {

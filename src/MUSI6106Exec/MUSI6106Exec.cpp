@@ -99,7 +99,7 @@ int main(int argc, char* argv[])
         phAudioFile->readData(ppfAudioData, iNumFrames);
 
         cout << "\r" << "reading and writing";
-
+        //TODO: Implement filtering in main
         // write
         for (int i = 0; i < iNumFrames; i++)
         {

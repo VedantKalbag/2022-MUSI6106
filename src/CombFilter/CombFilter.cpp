@@ -46,6 +46,7 @@ int CCombFilterBase::getDelay()
     return m_iDelayValue;
 }
 
+
 // =====================================================================================================
 // CCombIIRFilter definition
 class CCombIIRFilter : public CCombFilterBase
@@ -64,6 +65,19 @@ protected:
 //}
 Error_t CCombIIRFilter::process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames)
 {
+    // Implement process method for IIR Filter
+    // IIR LOGIC
+    // 1. Read ring buffer at get pointer (and increment)
+    // 2. Process signal => output = input + gain * read value
+    // 3. Put current output into ring buffer and increment write pointer
+    for(int channel=0;channel < m_iNumChannels;channel++)
+    {
+        for(int i=0;i<iNumberOfFrames;i++)
+        {
+            ppfOutputBuffer[channel][i] = ppfInputBuffer[channel][i] + m_fGainValue * m_RingBuffer[channel]->getPostInc();
+            m_RingBuffer[channel]->putPostInc(ppfOutputBuffer[channel][i]);
+        }
+    }
     return Error_t::kNoError;
 }
 
@@ -86,4 +100,20 @@ protected:
 //{
 //
 //}
-
+Error_t CCombFIRFilter::process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames)
+{
+    // Implement process method for FIR Filter
+    // FIR LOGIC
+    // 1. Read ring buffer at get pointer (and increment)
+    // 2. Process signal => output = input + gain * read value
+    // 3. Put current input into ring buffer and increment write pointer
+    for(int channel=0;channel < m_iNumChannels;channel++)
+    {
+        for(int i=0;i<iNumberOfFrames;i++)
+        {
+            ppfOutputBuffer[channel][i] = ppfInputBuffer[channel][i] + m_fGainValue * m_RingBuffer[channel]->getPostInc();
+            m_RingBuffer[channel]->putPostInc(ppfInputBuffer[channel][i]);
+        }
+    }
+    return Error_t::kNoError;
+}
