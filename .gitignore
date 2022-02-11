@@ -57,3 +57,6 @@ bld
 *.xcbuild
 /XCBuildData
 /CMakeFiles
+/cmake-build-debug
+.cmake
+/.cmake

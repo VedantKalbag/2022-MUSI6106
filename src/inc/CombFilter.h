@@ -20,7 +20,7 @@ public:
     CCombFilterBase();
     ~CCombFilterBase();
     
-    Error_t resetFilter();
+    Error_t reset();
     
     Error_t setGain(float fGainValue);
     float getGain();

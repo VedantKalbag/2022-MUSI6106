@@ -46,6 +46,10 @@ int CCombFilterBase::getDelay()
     return m_iDelayValue;
 }
 
+Error_t CCombFilterBase::reset()
+{
+    // TODO reset values
+}
 
 // =====================================================================================================
 // CCombIIRFilter definition
