@@ -29,7 +29,7 @@ public:
 
         kNumFilterTypes
     };
-
+    CCombFilterIf (CombFilterType_t eFilterType, float fMaxDelayLengthInS, float fSampleRateInHz, int iNumChannels);
     /*! list of parameters for the comb filters */
     enum FilterParam_t
     {
@@ -94,7 +94,7 @@ public:
     \param iNumberOfFrames buffer length (per channel)
     \return Error_t
     */
-    Error_t process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames);
+    Error_t process (float **ppfInputBuffer, float **ppfOutputBuffer, long long iNumberOfFrames);
 
 protected:
     CCombFilterIf ();

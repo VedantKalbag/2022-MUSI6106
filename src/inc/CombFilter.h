@@ -21,20 +21,22 @@ public:
     ~CCombFilterBase();
     
     Error_t reset();
+    Error_t init();
     
     Error_t setGain(float fGainValue);
     float getGain();
     
-    Error_t setDelay(int iDelayValue);
+    Error_t setDelay(int iDelayValueSamples);
     int getDelay();
-    
-    
+
+
+    virtual Error_t process(float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames) = 0;
+
 protected:
     CRingBuffer<float> **m_RingBuffer;
     float m_fGainValue = 0.5;
-    int m_iDelayValue = 0;
+    int m_iDelayValueSamples = 0;
     int m_iNumChannels = 0;
-    virtual Error_t process(float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames);
 };
 
 class CCombFIRFilter;

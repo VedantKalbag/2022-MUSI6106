@@ -13,13 +13,21 @@
 
 CCombFilterBase::CCombFilterBase()
 {
+    init();
+}
+CCombFilterBase::~CCombFilterBase()
+{
+    reset();
+}
+
+Error_t CCombFilterBase::init()
+{
     m_RingBuffer = new CRingBuffer<float>* [m_iNumChannels];
     for (int i=0;i<m_iNumChannels;i++)
     {
-        m_RingBuffer[i] = new CRingBuffer<float>(m_iDelayValue);
+        m_RingBuffer[i] = new CRingBuffer<float>(m_iDelayValueSamples);
         m_RingBuffer[i]->reset();
     }
-    
 }
 
 Error_t CCombFilterBase::setGain(float fGainValue)
@@ -34,21 +42,24 @@ float CCombFilterBase::getGain()
     return m_fGainValue;
 }
 
-Error_t CCombFilterBase::setDelay(int iDelayValue)
+Error_t CCombFilterBase::setDelay(int iDelayValueSamples)
 {
-    //Set delayValue to fDelayValue
-    m_iDelayValue = iDelayValue;
+    //Set delayValue to iDelayValue
+    m_iDelayValueSamples = iDelayValueSamples;
     return Error_t::kNoError;
 }
 
 int CCombFilterBase::getDelay()
 {
-    return m_iDelayValue;
+    return m_iDelayValueSamples;
 }
 
 Error_t CCombFilterBase::reset()
 {
-    // TODO reset values
+    // reset values
+    m_iDelayValueSamples = 0;
+    m_fGainValue = 0.5f;
+
 }
 
 // =====================================================================================================

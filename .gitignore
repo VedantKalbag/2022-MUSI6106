@@ -58,5 +58,8 @@ bld
 /XCBuildData
 /CMakeFiles
 /cmake-build-debug
+/cmake-build-release
 .cmake
 /.cmake
+/MUSI6106.build
+/MUSI6106.xcodeproj
