@@ -17,11 +17,11 @@ class CCombFilterBase
 {
 public:
 //    CCombFilterBase(int delayLength, int iNumChannels, float gain=0.5);
-    CCombFilterBase();
+    CCombFilterBase(int delayLength, int iNumChannels, float gainValue=0.5);
     ~CCombFilterBase();
     
     Error_t reset();
-    Error_t init();
+//    Error_t init(int iNumChannels, float delayValue, float gainValue);
     
     Error_t setGain(float fGainValue);
     float getGain();
@@ -34,9 +34,9 @@ public:
 
 protected:
     CRingBuffer<float> **m_RingBuffer;
-    float m_fGainValue = 0.5;
-    int m_iDelayValueSamples = 0;
-    int m_iNumChannels = 0;
+    float m_fGainValue;
+    int m_iDelayValueSamples;
+    int m_iNumChannels;
 };
 
 class CCombFIRFilter;

@@ -78,8 +78,9 @@ int main(int argc, char* argv[])
             filterType = CCombFilterIf::kCombFIR;
         }
 //        filterType = static_cast<CCombFilterIf::CombFilterType_t>(argv[2]);
-        gain = static_cast<float>(*argv[3]);
-        delayInSeconds = static_cast<float>(*argv[4]);
+        //FIXME: Not parseing arguments correctly
+        gain = 0.5;//static_cast<float>(*argv[3]);
+        delayInSeconds = 0.01;//static_cast<float>(*argv[4]);
 
         sOutputFilePath = sInputFilePath + "_filtered.wav";
 
@@ -92,8 +93,10 @@ int main(int argc, char* argv[])
     //////////////////////////////////////////////////////////////////////////////
     // open the input wave file
     CAudioFileIf::create(phAudioFile);
-    CAudioFileIf::create(phAudioFileOut);
     phAudioFile->openFile(sInputFilePath, CAudioFileIf::kFileRead);
+    phAudioFile->getFileSpec(stFileSpec);
+
+    CAudioFileIf::create(phAudioFileOut);
     phAudioFileOut->openFile(sOutputFilePath,CAudioFileIf::FileIoType_t::kFileWrite,&stFileSpec);
     if (!phAudioFile->isOpen())
     {
@@ -101,7 +104,7 @@ int main(int argc, char* argv[])
         CAudioFileIf::destroy(phAudioFile);
         return -1;
     }
-    phAudioFile->getFileSpec(stFileSpec);
+
     //////////////////////////////////////////////////////////////////////////////
     // open the output wav file
 //    hOutputFile.open(sOutputFilePath.c_str(), std::ios::out);
@@ -159,27 +162,18 @@ int main(int argc, char* argv[])
     // get audio data and write it to the output text file (one column per channel)
     while (!phAudioFile->isEof())
     {
-        // set block length variable
-        long long iNumFrames = kBlockSize;
+        long long int iNumFrames = kBlockSize;
 
         // read data (iNumOfFrames might be updated!)
         phAudioFile->readData(ppfInputBuffer, iNumFrames);
+        filter->process(ppfInputBuffer,ppfOutputBuffer,iNumFrames);
 
+        phAudioFileOut->writeData(ppfOutputBuffer,iNumFrames);
         cout << "\r" << "reading and writing";
         //TODO: process data and write to audiofile
         //FIXME: Find why file is not being written
         //Process data
-        // write
-        for (int i = 0; i < iNumFrames; i++)
-        {
-            for (int c = 0; c < stFileSpec.iNumChannels; c++)
-            {
-                filter[c].process(ppfInputBuffer,ppfOutputBuffer,1);
-//                hOutputFile << ppfOutputBuffer[c][i] << "\t";
-                phAudioFileOut->writeData(ppfInputBuffer,1);
-            }
-//            hOutputFile << endl;
-        }
+
     }
 
     cout << "\nreading/writing done in: \t" << (clock() - time) * 1.F / CLOCKS_PER_SEC << " seconds." << endl;
