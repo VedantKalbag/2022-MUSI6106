@@ -5,7 +5,7 @@
 #include "tests.h"
 
 #include "MUSI6106Config.h"
-
+#include "run_filtering.h"
 #include "AudioFileIf.h"
 #include "CombFilterIf.h"
 
@@ -14,7 +14,6 @@ using std::endl;
 
 // local function declarations
 void    showClInfo ();
-
 /////////////////////////////////////////////////////////////////////////////////
 // main function
 int main(int argc, char* argv[]) {

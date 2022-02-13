@@ -14,77 +14,10 @@
 #include "CombFilterIf.h"
 #include "AudioFileIf.h"
 #include "ErrorDef.h"
+#include "run_filtering.h"
+#include <cassert>
 using std::cout;
 using std::endl;
-
-Error_t run_filtering(std::string sInputFilePath, std::string sOutputFilePath, CCombFilterIf::CombFilterType_t filterType, float gain, float delayInSeconds, int blockSize)
-{
-//    cout << "Running test run_filtering"<< endl;
-    static const int kBlockSize = blockSize;
-    CCombFilterIf *filter = nullptr;
-    CAudioFileIf *phAudioFile = nullptr;
-    CAudioFileIf *phAudioFileOut = nullptr;
-    float **ppfInputBuffer = nullptr;
-    float **ppfOutputBuffer = nullptr;
-    CAudioFileIf::FileSpec_t stFileSpec;
-    //create
-    CCombFilterIf::create(filter);
-    CAudioFileIf::create(phAudioFile);
-    phAudioFile->openFile(sInputFilePath, CAudioFileIf::kFileRead);
-    phAudioFile->getFileSpec(stFileSpec);
-    CAudioFileIf::create(phAudioFileOut);
-    phAudioFileOut->openFile(sOutputFilePath,CAudioFileIf::FileIoType_t::kFileWrite,&stFileSpec);
-    //allocate memory
-    filter->init(filterType,delayInSeconds,stFileSpec.fSampleRateInHz,stFileSpec.iNumChannels);
-    ppfInputBuffer = new float*[stFileSpec.iNumChannels];
-    for (int i = 0; i < stFileSpec.iNumChannels; i++)
-    {
-        ppfInputBuffer[i] = new float[kBlockSize];
-    }
-    if (ppfInputBuffer == nullptr)
-    {
-        CAudioFileIf::destroy(phAudioFile);
-        return Error_t::kFileOpenError;
-    }
-    if (ppfInputBuffer[0] == nullptr)
-    {
-        CAudioFileIf::destroy(phAudioFile);
-        return Error_t::kFileOpenError;
-    }
-    ppfOutputBuffer = new float*[stFileSpec.iNumChannels];
-    for (int i = 0; i < stFileSpec.iNumChannels; i++)
-    {
-        ppfOutputBuffer[i] = new float[kBlockSize];
-    }
-    //Process audio
-    while (!phAudioFile->isEof())
-    {
-        long long int iNumFrames = kBlockSize;
-        // read data (iNumOfFrames might be updated!)
-        phAudioFile->readData(ppfInputBuffer, iNumFrames);
-        filter->process(ppfInputBuffer,ppfOutputBuffer,iNumFrames);
-        phAudioFileOut->writeData(ppfOutputBuffer,iNumFrames);
-    }
-    //destroy and delete to free up memory and avoid memory leaks
-    CAudioFileIf::destroy(phAudioFile);
-    CAudioFileIf::destroy(phAudioFileOut);
-    CCombFilterIf::destroy(filter);
-
-    for (int i = 0; i < stFileSpec.iNumChannels; i++)
-    {
-        delete[] ppfInputBuffer[i];
-        delete[] ppfOutputBuffer[i];
-    }
-
-    delete[] ppfInputBuffer;
-    delete[] ppfOutputBuffer;
-    ppfInputBuffer = nullptr;
-    ppfOutputBuffer = nullptr;
-
-    cout << "Processing done, file written" << endl;
-    return Error_t::kNoError;
-}
-
 
 
 Error_t test3(int blockSize, CCombFilterIf::CombFilterType_t filterType)
@@ -107,6 +40,7 @@ Error_t test3(int blockSize, CCombFilterIf::CombFilterType_t filterType)
     Error_t test3error = run_filtering(sInputFilePath,sOutputFilePath,filterType,gain,delay,blockSize);
     cout << "Test with blocksize: " << blockSize << " and filter type: " << filterName << " successful!" << endl;
 //    cout << "Test with blocksize: " << blockSize << " successful!" << endl;
+    assert (test3error == Error_t::kNoError);
     return test3error;
 }
 
@@ -157,7 +91,7 @@ Error_t test4(CCombFilterIf::CombFilterType_t filterType)
         }
     }
     //Process
-    filter->process(ppfInputBuffer,ppfOutputBuffer,iNumFrames);
+    Error_t test4 = filter->process(ppfInputBuffer,ppfOutputBuffer,iNumFrames);
     //Clear memory
     CCombFilterIf::destroy(filter);
     for (int i = 0; i < iNumChannels; i++)
@@ -169,21 +103,44 @@ Error_t test4(CCombFilterIf::CombFilterType_t filterType)
     delete[] ppfOutputBuffer;
     ppfInputBuffer = nullptr;
     ppfOutputBuffer = nullptr;
+    assert (test4 == Error_t::kNoError);
     cout << "Test with silence successful!" << endl;
-    return Error_t::kNoError;
+    return test4;
 }
 
-
-
-
-
-
-
-
+Error_t test5(CCombFilterIf::CombFilterType_t filterType)
+{
+    std::string sInputFilePath = "/Users/vedant/Desktop/Programming/2022-MUSI6106/audio_files/6.wav";
+    std::string sOutputFilePath = "/Users/vedant/Desktop/Programming/2022-MUSI6106/audio_files/output/6_filtered.wav";
+    std::string filterName;
+    if (filterType == CCombFilterIf::kCombIIR)
+    {
+        filterName = "IIR";
+    }
+    else if (filterType == CCombFilterIf::kCombFIR)
+    {
+        filterName = "FIR";
+    }
+    int blockSize = 1024;
+    float gain = -0.25f;
+    float delay = -0.125f;
+    Error_t test5error = run_filtering(sInputFilePath,sOutputFilePath,filterType,gain,delay,blockSize);
+    assert ((test5error==Error_t::kNoError) || (test5error==Error_t::kFunctionInvalidArgsError));
+    cout << "Negative values for gain and delay were caught and raised" << endl;
+    return Error_t::kNoError;
+}
 
 Error_t runAllTests()
 {
     cout << "Running tests now!" << endl;
+    cout << "--------------------------------------------------------------------------------" << endl;
+    cout << "Running test 1 - FIR output for input = feed forward" << endl;
+
+
+    cout << "--------------------------------------------------------------------------------" << endl;
+    cout << "Running test 2 - IIR magnitude change" << endl;
+
+
     cout << "--------------------------------------------------------------------------------" << endl;
     cout << "Running test 3 - variable block size" << endl;
     test3(512, CCombFilterIf::kCombIIR);
@@ -193,5 +150,12 @@ Error_t runAllTests()
     cout << "Running test 4 - silence (all zeros)" << endl;
     test4(CCombFilterIf::kCombIIR);
     test4(CCombFilterIf::kCombFIR);
+
+    cout << "--------------------------------------------------------------------------------" << endl;
+    cout << "Running test 5 - negative gain and delay time" << endl;
+    test5(CCombFilterIf::kCombIIR);
+    test5(CCombFilterIf::kCombFIR);
+
+    cout << "--------------------------------------------------------------------------------" << endl;
 }
 #endif //MUSI6106_TESTS_H
