@@ -99,8 +99,7 @@ Error_t CCombFilterIf::reset ()
 
 Error_t CCombFilterIf::process (float **ppfInputBuffer, float **ppfOutputBuffer, long long iNumberOfFrames)
 {
-    m_pCCombFilter->process(ppfInputBuffer,ppfOutputBuffer,iNumberOfFrames);
-    return Error_t::kNoError;
+    return m_pCCombFilter->process(ppfInputBuffer,ppfOutputBuffer,iNumberOfFrames);
 }
 
 Error_t CCombFilterIf::setParam (FilterParam_t eParam, float fParamValue)

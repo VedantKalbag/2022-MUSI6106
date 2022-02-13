@@ -22,10 +22,9 @@ CCombFilterBase::CCombFilterBase(int delayLength, int iNumChannels, float gainVa
         m_RingBuffer[i]->reset();
     }
 }
-CCombFilterBase::~CCombFilterBase()
-{
-    reset();
-}
+//CCombFilterBase::~CCombFilterBase()
+//{
+//}
 
 //Error_t CCombFilterBase::init(int iNumChannels, float delayValue, float gainValue)
 //{
@@ -59,8 +58,8 @@ int CCombFilterBase::getDelay()
 Error_t CCombFilterBase::reset()
 {
     // reset values
-    m_iDelayValueSamples = 0;
-    m_fGainValue = 0.5f;
+//    m_iDelayValueSamples = 0;
+//    m_fGainValue = 0.5f;
 
 }
 
