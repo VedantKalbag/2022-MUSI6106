@@ -61,5 +61,8 @@ bld
 /cmake-build-release
 .cmake
 /.cmake
-/MUSI6106.build
-/MUSI6106.xcodeproj
+*/MUSI6106.build
+*/MUSI6106.xcodeproj
+/CMakeScripts
+/Testing
+/CombFilter/MUSI6106.build
