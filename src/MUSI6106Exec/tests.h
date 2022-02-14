@@ -43,7 +43,6 @@ Error_t test3(int blockSize, CCombFilterIf::CombFilterType_t filterType)
 {
     cout << "Test 3 in progress with blocksize: " << blockSize << endl;
     std::string sInputFilePath = "/Users/vedant/Desktop/Programming/2022-MUSI6106/audio_files/6.wav";
-    std::string sOutputFilePath = "/Users/vedant/Desktop/Programming/2022-MUSI6106/audio_files/output/6_filtered.wav";
     std::string filterName;
     if (filterType == CCombFilterIf::kCombIIR)
     {
@@ -53,6 +52,7 @@ Error_t test3(int blockSize, CCombFilterIf::CombFilterType_t filterType)
     {
         filterName = "FIR";
     }
+    std::string sOutputFilePath = "/Users/vedant/Desktop/Programming/2022-MUSI6106/audio_files/output/6_"+filterName+"filtered.wav";
     float gain = 0.5;
     float delay = 0.01;
 //    CCombFilterIf::CombFilterType_t filterType = CCombFilterIf::kCombIIR;
@@ -145,7 +145,7 @@ Error_t test5(CCombFilterIf::CombFilterType_t filterType)
     float delay = -0.125f;
     Error_t test5error = run_filtering(sInputFilePath,sOutputFilePath,filterType,gain,delay,blockSize);
     assert ((test5error==Error_t::kNoError) || (test5error==Error_t::kFunctionInvalidArgsError));
-    cout << "Negative values for gain and delay were caught and raised" << endl;
+    cout << "Negative values for delay were caught and raised" << endl;
     return Error_t::kNoError;
 }
 
