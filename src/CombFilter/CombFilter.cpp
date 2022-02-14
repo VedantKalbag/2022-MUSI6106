@@ -76,7 +76,7 @@ protected:
 };
 // =====================================================================================================
 // CCombFIRFilter method definition
-CCombIIRFilter::CCombIIRFilter(int delayLength, int iNumChannels, float gainValue=0.5): CCombFilterBase(delayLength, iNumChannels, gainValue)
+CCombIIRFilter::CCombIIRFilter(int delayLength, int iNumChannels, float gainValue): CCombFilterBase(delayLength, iNumChannels, gainValue)
 {
 }
 Error_t CCombIIRFilter::process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames)
@@ -118,7 +118,7 @@ protected:
 // =====================================================================================================
 // CCombIIRFilter method definition
 
-CCombFIRFilter::CCombFIRFilter(int delayLength, int iNumChannels, float gainValue=0.5): CCombFilterBase(delayLength, iNumChannels, gainValue)
+CCombFIRFilter::CCombFIRFilter(int delayLength, int iNumChannels, float gainValue): CCombFilterBase(delayLength, iNumChannels, gainValue)
 {
 
 }

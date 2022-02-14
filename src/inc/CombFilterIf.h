@@ -68,7 +68,7 @@ public:
     \param iNumChannels number of audio channels
     \return Error_t
     */
-    Error_t init (CombFilterType_t eFilterType, float fMaxDelayLengthInS, float fSampleRateInHz, int iNumChannels);
+    Error_t init (CombFilterType_t eFilterType, float fMaxDelayLengthInS, float fSampleRateInHz, int iNumChannels, float gainValue);
     
     /*! resets the internal variables (requires new call of init)
     \return Error_t

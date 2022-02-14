@@ -12,8 +12,8 @@ Error_t run_filtering(std::string sInputFilePath, std::string sOutputFilePath, C
 
     if (delayInSeconds < 0)
         return Error_t::kFunctionInvalidArgsError;
-    if (gain < 0)
-        return Error_t::kFunctionInvalidArgsError;
+//    if (gain < 0)
+//        return Error_t::kFunctionInvalidArgsError;
 
     static const int kBlockSize = blockSize;
     CCombFilterIf *filter = nullptr;
@@ -34,7 +34,7 @@ Error_t run_filtering(std::string sInputFilePath, std::string sOutputFilePath, C
     CAudioFileIf::create(phAudioFileOut);
     phAudioFileOut->openFile(sOutputFilePath,CAudioFileIf::FileIoType_t::kFileWrite,&stFileSpec);
     //allocate memory
-    filter->init(filterType,delayInSeconds,stFileSpec.fSampleRateInHz,stFileSpec.iNumChannels);
+    filter->init(filterType,delayInSeconds,stFileSpec.fSampleRateInHz,stFileSpec.iNumChannels, gain);
     ppfInputBuffer = new float*[stFileSpec.iNumChannels];
     for (int i = 0; i < stFileSpec.iNumChannels; i++)
     {

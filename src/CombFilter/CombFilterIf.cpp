@@ -68,18 +68,18 @@ Error_t CCombFilterIf::destroy (CCombFilterIf*& pCCombFilter)
     return Error_t::kNoError;
 }
 
-Error_t CCombFilterIf::init (CombFilterType_t eFilterType, float fMaxDelayLengthInS, float fSampleRateInHz, int iNumChannels)
+Error_t CCombFilterIf::init (CombFilterType_t eFilterType, float fMaxDelayLengthInS, float fSampleRateInHz, int iNumChannels, float gainValue)
 {
     
     m_fSampleRate = fSampleRateInHz;
     int delayLength = static_cast<int>(fMaxDelayLengthInS*fSampleRateInHz);
     if (eFilterType == kCombFIR)
     {
-        m_pCCombFilter = new CCombFIRFilter(delayLength, iNumChannels);
+        m_pCCombFilter = new CCombFIRFilter(delayLength, iNumChannels, gainValue);
     }
     else if (eFilterType == kCombIIR)
     {
-        m_pCCombFilter = new CCombIIRFilter(delayLength, iNumChannels);
+        m_pCCombFilter = new CCombIIRFilter(delayLength, iNumChannels, gainValue);
     }
     m_pCCombFilter->reset();
     

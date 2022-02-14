@@ -19,6 +19,25 @@
 using std::cout;
 using std::endl;
 
+Error_t test1(float gainValue, float delayValue)
+{
+    int blockSize = 1024;
+    std::string sInputFilePath = "/Users/vedant/Desktop/Programming/2022-MUSI6106/audio_files/sine100hz.wav";
+    std::string sOutputFilePath = "/Users/vedant/Desktop/Programming/2022-MUSI6106/audio_files/output/sine100hz_fir_filtered.wav";
+
+    Error_t test1error = run_filtering(sInputFilePath,sOutputFilePath,CCombFilterIf::kCombFIR,gainValue,delayValue,blockSize);
+    return test1error;
+}
+
+Error_t test2(float gainValue, float delayValue)
+{
+    int blockSize = 1024;
+    std::string sInputFilePath = "/Users/vedant/Desktop/Programming/2022-MUSI6106/audio_files/sine100hz.wav";
+    std::string sOutputFilePath = "/Users/vedant/Desktop/Programming/2022-MUSI6106/audio_files/output/sine100hz_iir_filtered.wav";
+
+    Error_t test2error = run_filtering(sInputFilePath,sOutputFilePath,CCombFilterIf::kCombIIR,gainValue,delayValue,blockSize);
+    return test2error;
+}
 
 Error_t test3(int blockSize, CCombFilterIf::CombFilterType_t filterType)
 {
@@ -70,7 +89,7 @@ Error_t test4(CCombFilterIf::CombFilterType_t filterType)
 
     CCombFilterIf *filter = nullptr;
     CCombFilterIf::create(filter);
-    filter->init(filterType,0.01,44100,iNumChannels);
+    filter->init(filterType,0.01,44100,iNumChannels, 0.5);
     ppfInputBuffer = new float*[iNumChannels];
     for (int i = 0; i < iNumChannels; i++)
     {
@@ -135,11 +154,11 @@ Error_t runAllTests()
     cout << "Running tests now!" << endl;
     cout << "--------------------------------------------------------------------------------" << endl;
     cout << "Running test 1 - FIR output for input = feed forward" << endl;
-
+    test1(-1.0f,0.01f);
 
     cout << "--------------------------------------------------------------------------------" << endl;
     cout << "Running test 2 - IIR magnitude change" << endl;
-
+    test2(1.0f,0.01f);
 
     cout << "--------------------------------------------------------------------------------" << endl;
     cout << "Running test 3 - variable block size" << endl;
