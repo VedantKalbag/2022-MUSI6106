@@ -51,8 +51,10 @@ int main(int argc, char* argv[]) {
         delayInSeconds = atof(argv[4]);
         sOutputFilePath = sInputFilePath + "_filtered.wav";
     }
+
 //    run_filtering(sInputFilePath,sOutputFilePath,filterType, gain, delayInSeconds, kBlockSize);
     run_filtering(sInputFilePath, sOutputFilePath, filterType, gain, 0.01, kBlockSize);
+
     return 0;
 }
 
