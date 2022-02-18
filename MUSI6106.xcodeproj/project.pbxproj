@@ -1,0 +1,1500 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		FB9D7220D5C7437AB0D0FE60 /* ALL_BUILD */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = E7F12FAF7E31416B8B0399A1 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildPhases = (
+				2F9A29DA5C0F317CA2A40B23 /* Generate CMakeFiles/ALL_BUILD */,
+			);
+			dependencies = (
+				73CD0F496FF8434186F7DB0A /* PBXTargetDependency */,
+				38EF17DF809641E796768961 /* PBXTargetDependency */,
+				B3C2E00AB5F04510915A5FB7 /* PBXTargetDependency */,
+				761D41ECA16044BDBBE76ACD /* PBXTargetDependency */,
+				290814368A1746B69800D0A7 /* PBXTargetDependency */,
+			);
+			name = ALL_BUILD;
+			productName = ALL_BUILD;
+		};
+		FE771A37B1F447D2B4E28A01 /* ZERO_CHECK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A6C3E7368F5949EBA5C26C42 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildPhases = (
+				E2DA618BB623D69AAF38B428 /* Generate CMakeFiles/ZERO_CHECK */,
+			);
+			dependencies = (
+			);
+			name = ZERO_CHECK;
+			productName = ZERO_CHECK;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		0A72AF75165D45FEAD01E31B /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/AudioFileIf.h */ = {isa = PBXBuildFile; fileRef = B7A27F85D8D24F4C95050E88 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/AudioFileIf.h */; };
+		102E02344D2044928C9785E9 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/AudioFileIO/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = B0172ABB4B824CF18772FB9C /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/AudioFileIO/CMakeLists.txt */; };
+		1194385F276244F5A0813F07 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/xen.c */ = {isa = PBXBuildFile; fileRef = 231B7129DA904685844EEB50 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/xen.c */; };
+		1C5F76A0DBFC4E1D98F11D49 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/Vector.h */ = {isa = PBXBuildFile; fileRef = FAFB940F2A3F4D6FAF00BC62 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/Vector.h */; };
+		22B10084AC43440C8A8C28DA /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/vct.h */ = {isa = PBXBuildFile; fileRef = 134972B86E7A4675845B832C /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/vct.h */; };
+		2BB7992FA02A4F6CBF833434 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/mus-config.h */ = {isa = PBXBuildFile; fileRef = 69B538F8F3544E78B30AE36D /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/mus-config.h */; };
+		2CFD30AFECB74A7181E86E44 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/vct.c */ = {isa = PBXBuildFile; fileRef = 6E929611147A43B18052D069 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/vct.c */; };
+		2E8FC04E351D428A98051988 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/Util.h */ = {isa = PBXBuildFile; fileRef = 15DC2878D8F84F819A0F6EEB /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/Util.h */; };
+		30643E9FA2CD469BB1D6BDB3 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/CombFilter/CombFilter.cpp */ = {isa = PBXBuildFile; fileRef = 7FF8904B2B884624B586CC92 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/CombFilter/CombFilter.cpp */; };
+		3226EC968EF84DE39ADDD1CD /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/io.c */ = {isa = PBXBuildFile; fileRef = B5E28256D4AB471DA139FBD5 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/io.c */; };
+		3683099FF4034A999A4BEE76 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/CombFilterIf.h */ = {isa = PBXBuildFile; fileRef = 0C57F9832D4F4CCBB1A5A047 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/CombFilterIf.h */; };
+		3E00692637034E6DB33F3BBB /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/CombFilter/CombFilterIf.cpp */ = {isa = PBXBuildFile; fileRef = C1E90B2A198644A9B4C96263 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/CombFilter/CombFilterIf.cpp */; };
+		4018ECE9B7EC4EF5BE256879 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/RingBuffer.h */ = {isa = PBXBuildFile; fileRef = 3F61428F77BB49EF91F06AA1 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/RingBuffer.h */; };
+		4896115B309F411BA7675E98 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/_sndlib.h */ = {isa = PBXBuildFile; fileRef = 30B46ECE028A4A4F873C4C94 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/_sndlib.h */; };
+		4AEE36FD1DBD4596AC5112E4 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/audio.c */ = {isa = PBXBuildFile; fileRef = D86DEAF6FE634BB7BEE81B24 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/audio.c */; };
+		56D68D82724D40FDAC25772B /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sound.c */ = {isa = PBXBuildFile; fileRef = 4CF914089A07418AADEE4710 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sound.c */; };
+		5A06FB7C450548699746C47A /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.h */ = {isa = PBXBuildFile; fileRef = EED7EE48227242CFBB04ED0D /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.h */; };
+		63CAA7ECDE864907AC1BD932 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/AudioFileIO/AudioFile.h */ = {isa = PBXBuildFile; fileRef = 243F54537D2F4ECDAF944799 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/AudioFileIO/AudioFile.h */; };
+		829526F3F02B45EC8C09E035 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/xen.h */ = {isa = PBXBuildFile; fileRef = ED5F73D8620248078A35D7B8 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/xen.h */; };
+		8BD0C7C660424F0C97C3A63E /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/CombFilter.h */ = {isa = PBXBuildFile; fileRef = 9A4E3E93B0504AB0983F0AC0 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/CombFilter.h */; };
+		8E0705063D134A4DACE54DEB /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm.h */ = {isa = PBXBuildFile; fileRef = A682CB06AD4A494AAC83234F /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm.h */; };
+		93B722BB419E40C3B94FC2AE /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/unix-config.h */ = {isa = PBXBuildFile; fileRef = 1DF07F2ABB774626B3348AFA /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/unix-config.h */; };
+		9CC473C5C4BD44DFAD3ABAF5 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/CombFilter/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = B1C02D4BEDEE4C3D9BEED1F5 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/CombFilter/CMakeLists.txt */; };
+		A36A683A48654C238B82D86C /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/AudioFileIf.h */ = {isa = PBXBuildFile; fileRef = CF79EE9DBF6A4EE9973C7C32 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/AudioFileIf.h */; };
+		A3C2D7A465A04D34A0BFDE25 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/AudioFileIO/AudioFile.cpp */ = {isa = PBXBuildFile; fileRef = 164C29A34DA74ADBAA2F1C05 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/AudioFileIO/AudioFile.cpp */; };
+		A6DA2BF2AF2546AD88F2C769 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sndlib-strings.h */ = {isa = PBXBuildFile; fileRef = 92BC19A2913140D3BD46612D /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sndlib-strings.h */; };
+		A7582C8F768C4DC2B7A7BF15 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sndlib.h */ = {isa = PBXBuildFile; fileRef = 816DF3F6E09E4A658090E6C1 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sndlib.h */; };
+		A8A00B5119EB443FAFE3EAE2 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/headers.c */ = {isa = PBXBuildFile; fileRef = EC1DAD82EF2C48FBAE8EDD49 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/headers.c */; };
+		A90488208FC542FF849118AA /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/AudioFileIO/AudioFileIf.cpp */ = {isa = PBXBuildFile; fileRef = 2F6B7A97B44145DC8D5B1484 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/AudioFileIO/AudioFileIf.cpp */; };
+		BBA72FFD839F41B59DCB5D6E /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/CombFilterIf.h */ = {isa = PBXBuildFile; fileRef = DD4F892B8A594D92A9D7C7AD /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/CombFilterIf.h */; };
+		C56395017AF441A2B6D2482D /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/s7.h */ = {isa = PBXBuildFile; fileRef = C59D939FD4554671932CF9AF /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/s7.h */; };
+		CA9F880CAF3B41DCA62240DB /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/MUSI6106Exec/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 3E1A1FAA61A34A30A53FD05A /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/MUSI6106Exec/CMakeLists.txt */; };
+		D593473312554D2B8585D4E3 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/RingBuffer.h */ = {isa = PBXBuildFile; fileRef = 7EBE441B639A4E7A913CAB84 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/RingBuffer.h */; };
+		D8ECB3967DAC4A038A06AF0A /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm.c */ = {isa = PBXBuildFile; fileRef = 83A9AAEA1FD04504B750E0FF /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm.c */; };
+		D9F614C344ED49A3A22767B3 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/Util.h */ = {isa = PBXBuildFile; fileRef = EDF63CF54247436B83BBCE6A /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/Util.h */; };
+		DA7316CF71D7443E814B0E9D /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.c */ = {isa = PBXBuildFile; fileRef = 2A8BE0C773FE45A5961F0479 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.c */; };
+		E88AC40C1A1048F0B97D53BE /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm2xen.h */ = {isa = PBXBuildFile; fileRef = EDD0C4D4056148C6BE80DAA5 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm2xen.h */; };
+		E9141CFD96E845FA958B8413 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 1B6FA733FF8A4543A479D3BE /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/CMakeLists.txt */; };
+		ED9B916801E041FE8E34BA1D /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/MUSI6106Exec/MUSI6106Exec.cpp */ = {isa = PBXBuildFile; fileRef = ADB7C781EDD34C7C945234F5 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/MUSI6106Exec/MUSI6106Exec.cpp */; };
+		F2231CC3E1BE4B1C9CF7A4CA /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/CombFilter.h */ = {isa = PBXBuildFile; fileRef = 0A888236E5DB4481A248E09E /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/CombFilter.h */; };
+		F5494526CF9542C098C529B5 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm2xen.c */ = {isa = PBXBuildFile; fileRef = 9F2213ADFCB64E0E89E0A01D /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm2xen.c */; };
+		F8C3546ECAFE49F19EFE14CF /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/Vector.h */ = {isa = PBXBuildFile; fileRef = D9E306204E9C4B2A8882163D /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/Vector.h */; };
+		FD4130141D144925A8769A4E /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm-strings.h */ = {isa = PBXBuildFile; fileRef = 98ECEDD5722043A78F9FB294 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm-strings.h */; };
+		FF9FEA4C627145F288342A59 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/s7.c */ = {isa = PBXBuildFile; fileRef = A091924DF1434B039C0618DA /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/s7.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		6BE7314304764B51A262E395 /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
+		778B29B6E5F04EC19A3034D2 /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		933B167AF8B049B89FE6EC36 /* MinSizeRel */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = MinSizeRel;
+		};
+		CFABFB1CBF9E464E832BBE73 /* RelWithDebInfo */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = RelWithDebInfo;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		01CB7F9902E74CAEAFBE9466 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B56786906A9448FA9F023982 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 74E151975A834E1480870471;
+			remoteInfo = AudioFileIO;
+		};
+		242C1B74E85547359699C549 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B56786906A9448FA9F023982 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 516EC2FE870446599387C6AE;
+			remoteInfo = CombFilter;
+		};
+		32E97DE3037148BD8686B984 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B56786906A9448FA9F023982 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE771A37B1F447D2B4E28A01;
+			remoteInfo = ZERO_CHECK;
+		};
+		35DB93E2A2DA4B5A8CB188C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B56786906A9448FA9F023982 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB8004542FCB463B857D62AB;
+			remoteInfo = sndlib;
+		};
+		5AA164E151CE427A8E6C681F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B56786906A9448FA9F023982 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE771A37B1F447D2B4E28A01;
+			remoteInfo = ZERO_CHECK;
+		};
+		7A759466BF3F4BDCB78562ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B56786906A9448FA9F023982 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 516EC2FE870446599387C6AE;
+			remoteInfo = CombFilter;
+		};
+		8DE92C383E18410E86DF1972 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B56786906A9448FA9F023982 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB8004542FCB463B857D62AB;
+			remoteInfo = sndlib;
+		};
+		9C76DBD059BA47B09A85C9ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B56786906A9448FA9F023982 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE771A37B1F447D2B4E28A01;
+			remoteInfo = ZERO_CHECK;
+		};
+		B02A9FEA010D4D2A83D53747 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B56786906A9448FA9F023982 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DFD040CF1A6C4F68BF705B0F;
+			remoteInfo = MUSI6106Exec;
+		};
+		B11DD6DC00414685A0B2FA56 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B56786906A9448FA9F023982 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 74E151975A834E1480870471;
+			remoteInfo = AudioFileIO;
+		};
+		B4CFCD1BEC904E51952A6FE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B56786906A9448FA9F023982 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE771A37B1F447D2B4E28A01;
+			remoteInfo = ZERO_CHECK;
+		};
+		B9EE4D9235E1403BA4CC9A41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B56786906A9448FA9F023982 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB8004542FCB463B857D62AB;
+			remoteInfo = sndlib;
+		};
+		D162D77B75E7498EAC6B66ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B56786906A9448FA9F023982 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE771A37B1F447D2B4E28A01;
+			remoteInfo = ZERO_CHECK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0A888236E5DB4481A248E09E /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/CombFilter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = CombFilter.h; path = src/inc/CombFilter.h; sourceTree = SOURCE_ROOT; };
+		0C57F9832D4F4CCBB1A5A047 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/CombFilterIf.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = CombFilterIf.h; path = src/inc/CombFilterIf.h; sourceTree = SOURCE_ROOT; };
+		134972B86E7A4675845B832C /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/vct.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = vct.h; path = 3rdparty/sndlib/vct.h; sourceTree = SOURCE_ROOT; };
+		15DC2878D8F84F819A0F6EEB /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/Util.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Util.h; path = src/inc/Util.h; sourceTree = SOURCE_ROOT; };
+		164C29A34DA74ADBAA2F1C05 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/AudioFileIO/AudioFile.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = AudioFile.cpp; path = src/AudioFileIO/AudioFile.cpp; sourceTree = SOURCE_ROOT; };
+		1B6FA733FF8A4543A479D3BE /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = 3rdparty/sndlib/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		1DF07F2ABB774626B3348AFA /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/unix-config.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "unix-config.h"; path = "3rdparty/sndlib/unix-config.h"; sourceTree = SOURCE_ROOT; };
+		231B7129DA904685844EEB50 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/xen.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = xen.c; path = 3rdparty/sndlib/xen.c; sourceTree = SOURCE_ROOT; };
+		243F54537D2F4ECDAF944799 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/AudioFileIO/AudioFile.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = AudioFile.h; path = src/AudioFileIO/AudioFile.h; sourceTree = SOURCE_ROOT; };
+		2A8BE0C773FE45A5961F0479 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = sndlib2xen.c; path = 3rdparty/sndlib/sndlib2xen.c; sourceTree = SOURCE_ROOT; };
+		2F6B7A97B44145DC8D5B1484 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/AudioFileIO/AudioFileIf.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = AudioFileIf.cpp; path = src/AudioFileIO/AudioFileIf.cpp; sourceTree = SOURCE_ROOT; };
+		30B46ECE028A4A4F873C4C94 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/_sndlib.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = _sndlib.h; path = 3rdparty/sndlib/_sndlib.h; sourceTree = SOURCE_ROOT; };
+		3E1A1FAA61A34A30A53FD05A /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/MUSI6106Exec/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = src/MUSI6106Exec/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		3F61428F77BB49EF91F06AA1 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/RingBuffer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = RingBuffer.h; path = src/inc/RingBuffer.h; sourceTree = SOURCE_ROOT; };
+		4CF914089A07418AADEE4710 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sound.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = sound.c; path = 3rdparty/sndlib/sound.c; sourceTree = SOURCE_ROOT; };
+		5D9B9323E61246FB89465869 /* AudioFileIO */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAudioFileIO.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		69B538F8F3544E78B30AE36D /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/mus-config.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "mus-config.h"; path = "3rdparty/sndlib/mus-config.h"; sourceTree = SOURCE_ROOT; };
+		6E929611147A43B18052D069 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/vct.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = vct.c; path = 3rdparty/sndlib/vct.c; sourceTree = SOURCE_ROOT; };
+		711FD5E7DB094109882CF0D3 /* sndlib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libsndlib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EBE441B639A4E7A913CAB84 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/RingBuffer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = RingBuffer.h; path = src/inc/RingBuffer.h; sourceTree = SOURCE_ROOT; };
+		7FF8904B2B884624B586CC92 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/CombFilter/CombFilter.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CombFilter.cpp; path = src/CombFilter/CombFilter.cpp; sourceTree = SOURCE_ROOT; };
+		816DF3F6E09E4A658090E6C1 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sndlib.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = sndlib.h; path = 3rdparty/sndlib/sndlib.h; sourceTree = SOURCE_ROOT; };
+		83A9AAEA1FD04504B750E0FF /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = clm.c; path = 3rdparty/sndlib/clm.c; sourceTree = SOURCE_ROOT; };
+		8BF7911394D94A8285477FA0 /* MUSI6106Exec */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = MUSI6106Exec; sourceTree = BUILT_PRODUCTS_DIR; };
+		92BC19A2913140D3BD46612D /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sndlib-strings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "sndlib-strings.h"; path = "3rdparty/sndlib/sndlib-strings.h"; sourceTree = SOURCE_ROOT; };
+		98ECEDD5722043A78F9FB294 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm-strings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "clm-strings.h"; path = "3rdparty/sndlib/clm-strings.h"; sourceTree = SOURCE_ROOT; };
+		9A4E3E93B0504AB0983F0AC0 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/CombFilter.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = CombFilter.h; path = src/inc/CombFilter.h; sourceTree = SOURCE_ROOT; };
+		9F2213ADFCB64E0E89E0A01D /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm2xen.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = clm2xen.c; path = 3rdparty/sndlib/clm2xen.c; sourceTree = SOURCE_ROOT; };
+		A091924DF1434B039C0618DA /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/s7.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = s7.c; path = 3rdparty/sndlib/s7.c; sourceTree = SOURCE_ROOT; };
+		A18DDFBFC44E4BBF9817AA98 /* CombFilter */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCombFilter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A682CB06AD4A494AAC83234F /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = clm.h; path = 3rdparty/sndlib/clm.h; sourceTree = SOURCE_ROOT; };
+		ADB7C781EDD34C7C945234F5 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/MUSI6106Exec/MUSI6106Exec.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = MUSI6106Exec.cpp; path = src/MUSI6106Exec/MUSI6106Exec.cpp; sourceTree = SOURCE_ROOT; };
+		B0172ABB4B824CF18772FB9C /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/AudioFileIO/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = src/AudioFileIO/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		B1C02D4BEDEE4C3D9BEED1F5 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/CombFilter/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = src/CombFilter/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		B5E28256D4AB471DA139FBD5 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/io.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = io.c; path = 3rdparty/sndlib/io.c; sourceTree = SOURCE_ROOT; };
+		B7A27F85D8D24F4C95050E88 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/AudioFileIf.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = AudioFileIf.h; path = src/inc/AudioFileIf.h; sourceTree = SOURCE_ROOT; };
+		C1E90B2A198644A9B4C96263 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/CombFilter/CombFilterIf.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CombFilterIf.cpp; path = src/CombFilter/CombFilterIf.cpp; sourceTree = SOURCE_ROOT; };
+		C59D939FD4554671932CF9AF /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/s7.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = s7.h; path = 3rdparty/sndlib/s7.h; sourceTree = SOURCE_ROOT; };
+		C70DEA7822154EECB2565411 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		CF79EE9DBF6A4EE9973C7C32 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/AudioFileIf.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = AudioFileIf.h; path = src/inc/AudioFileIf.h; sourceTree = SOURCE_ROOT; };
+		D86DEAF6FE634BB7BEE81B24 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/audio.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = audio.c; path = 3rdparty/sndlib/audio.c; sourceTree = SOURCE_ROOT; };
+		D9E306204E9C4B2A8882163D /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/Vector.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Vector.h; path = src/inc/Vector.h; sourceTree = SOURCE_ROOT; };
+		DD4F892B8A594D92A9D7C7AD /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/CombFilterIf.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = CombFilterIf.h; path = src/inc/CombFilterIf.h; sourceTree = SOURCE_ROOT; };
+		EC1DAD82EF2C48FBAE8EDD49 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/headers.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = headers.c; path = 3rdparty/sndlib/headers.c; sourceTree = SOURCE_ROOT; };
+		ED5F73D8620248078A35D7B8 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/xen.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = xen.h; path = 3rdparty/sndlib/xen.h; sourceTree = SOURCE_ROOT; };
+		EDD0C4D4056148C6BE80DAA5 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm2xen.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = clm2xen.h; path = 3rdparty/sndlib/clm2xen.h; sourceTree = SOURCE_ROOT; };
+		EDF63CF54247436B83BBCE6A /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/Util.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Util.h; path = src/inc/Util.h; sourceTree = SOURCE_ROOT; };
+		EED7EE48227242CFBB04ED0D /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = sndlib2xen.h; path = 3rdparty/sndlib/sndlib2xen.h; sourceTree = SOURCE_ROOT; };
+		FAFB940F2A3F4D6FAF00BC62 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/Vector.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = Vector.h; path = src/inc/Vector.h; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		28A80F98952241FA989796D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50510C400EBF45C683EAEAB7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9DD5FB98F9149ADA0DA2A8D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA099AA18B774E22AF5504DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		025ED1FFFE954EBE867EF3F7 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				ADB7C781EDD34C7C945234F5 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/MUSI6106Exec/MUSI6106Exec.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		06D437B373E342DBBEDBF0A3 = {
+			isa = PBXGroup;
+			children = (
+				94E28CE1A3E64FA198489C79 /* ALL_BUILD */,
+				A0E1249CBC8444F48DF74644 /* MUSI6106Exec */,
+				850D2C2103894EDFAE2849CB /* AudioFileIO */,
+				E842FAD1454D4DDBB0BB5F3E /* sndlib */,
+				C9D44B99828F45C096818281 /* CombFilter */,
+				B19E7D2788D649DFB24AC877 /* Products */,
+				F243AFD70D724C11BDDC0C74 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1A54549620B9406CAE5C9448 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				164C29A34DA74ADBAA2F1C05 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/AudioFileIO/AudioFile.cpp */,
+				2F6B7A97B44145DC8D5B1484 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/AudioFileIO/AudioFileIf.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		1B3507E89B5E4773B0D1540D /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				30B46ECE028A4A4F873C4C94 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/_sndlib.h */,
+				98ECEDD5722043A78F9FB294 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm-strings.h */,
+				A682CB06AD4A494AAC83234F /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm.h */,
+				EDD0C4D4056148C6BE80DAA5 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm2xen.h */,
+				69B538F8F3544E78B30AE36D /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/mus-config.h */,
+				C59D939FD4554671932CF9AF /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/s7.h */,
+				92BC19A2913140D3BD46612D /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sndlib-strings.h */,
+				816DF3F6E09E4A658090E6C1 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sndlib.h */,
+				EED7EE48227242CFBB04ED0D /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.h */,
+				1DF07F2ABB774626B3348AFA /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/unix-config.h */,
+				134972B86E7A4675845B832C /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/vct.h */,
+				ED5F73D8620248078A35D7B8 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/xen.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		31D6B81FAAD849AD8955F73C /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				CF79EE9DBF6A4EE9973C7C32 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/AudioFileIf.h */,
+				0A888236E5DB4481A248E09E /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/CombFilter.h */,
+				DD4F892B8A594D92A9D7C7AD /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/CombFilterIf.h */,
+				7EBE441B639A4E7A913CAB84 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/RingBuffer.h */,
+				EDF63CF54247436B83BBCE6A /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/Util.h */,
+				D9E306204E9C4B2A8882163D /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/Vector.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		541A915A04BE460EB63CDEE8 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				D86DEAF6FE634BB7BEE81B24 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/audio.c */,
+				83A9AAEA1FD04504B750E0FF /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm.c */,
+				9F2213ADFCB64E0E89E0A01D /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm2xen.c */,
+				EC1DAD82EF2C48FBAE8EDD49 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/headers.c */,
+				B5E28256D4AB471DA139FBD5 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/io.c */,
+				A091924DF1434B039C0618DA /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/s7.c */,
+				2A8BE0C773FE45A5961F0479 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.c */,
+				4CF914089A07418AADEE4710 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sound.c */,
+				6E929611147A43B18052D069 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/vct.c */,
+				231B7129DA904685844EEB50 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/xen.c */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		7A2AB5EE3FE64F4FA3D7600F /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				7FF8904B2B884624B586CC92 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/CombFilter/CombFilter.cpp */,
+				C1E90B2A198644A9B4C96263 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/CombFilter/CombFilterIf.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		850D2C2103894EDFAE2849CB /* AudioFileIO */ = {
+			isa = PBXGroup;
+			children = (
+				1A54549620B9406CAE5C9448 /* Source Files */,
+				F2DF78D0B9CC411DA1AAE3D4 /* Header Files */,
+				B0172ABB4B824CF18772FB9C /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/AudioFileIO/CMakeLists.txt */,
+			);
+			name = AudioFileIO;
+			sourceTree = "<group>";
+		};
+		94E28CE1A3E64FA198489C79 /* ALL_BUILD */ = {
+			isa = PBXGroup;
+			children = (
+				98934E1B83A648E7A133FC31 /* CMake Rules */,
+				C70DEA7822154EECB2565411 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+		98934E1B83A648E7A133FC31 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		A0E1249CBC8444F48DF74644 /* MUSI6106Exec */ = {
+			isa = PBXGroup;
+			children = (
+				025ED1FFFE954EBE867EF3F7 /* Source Files */,
+				31D6B81FAAD849AD8955F73C /* Header Files */,
+				3E1A1FAA61A34A30A53FD05A /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/MUSI6106Exec/CMakeLists.txt */,
+			);
+			name = MUSI6106Exec;
+			sourceTree = "<group>";
+		};
+		B19E7D2788D649DFB24AC877 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5D9B9323E61246FB89465869 /* AudioFileIO */,
+				A18DDFBFC44E4BBF9817AA98 /* CombFilter */,
+				8BF7911394D94A8285477FA0 /* MUSI6106Exec */,
+				711FD5E7DB094109882CF0D3 /* sndlib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C9D44B99828F45C096818281 /* CombFilter */ = {
+			isa = PBXGroup;
+			children = (
+				7A2AB5EE3FE64F4FA3D7600F /* Source Files */,
+				F9ACFC5DF23747D49E646785 /* Header Files */,
+				B1C02D4BEDEE4C3D9BEED1F5 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/CombFilter/CMakeLists.txt */,
+			);
+			name = CombFilter;
+			sourceTree = "<group>";
+		};
+		E842FAD1454D4DDBB0BB5F3E /* sndlib */ = {
+			isa = PBXGroup;
+			children = (
+				541A915A04BE460EB63CDEE8 /* Source Files */,
+				1B3507E89B5E4773B0D1540D /* Header Files */,
+				1B6FA733FF8A4543A479D3BE /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/CMakeLists.txt */,
+			);
+			name = sndlib;
+			sourceTree = "<group>";
+		};
+		F243AFD70D724C11BDDC0C74 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F2DF78D0B9CC411DA1AAE3D4 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				243F54537D2F4ECDAF944799 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/AudioFileIO/AudioFile.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		F9ACFC5DF23747D49E646785 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				B7A27F85D8D24F4C95050E88 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/AudioFileIf.h */,
+				9A4E3E93B0504AB0983F0AC0 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/CombFilter.h */,
+				0C57F9832D4F4CCBB1A5A047 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/CombFilterIf.h */,
+				3F61428F77BB49EF91F06AA1 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/RingBuffer.h */,
+				15DC2878D8F84F819A0F6EEB /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/Util.h */,
+				FAFB940F2A3F4D6FAF00BC62 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc/Vector.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		516EC2FE870446599387C6AE /* CombFilter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 307E3C70D38E4E8CBC62F942 /* Build configuration list for PBXNativeTarget "CombFilter" */;
+			buildPhases = (
+				B516DA4DF4964A5BA076DB4A /* Sources */,
+				EA099AA18B774E22AF5504DD /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7530C1BD02E2476D8C83838B /* PBXTargetDependency */,
+			);
+			name = CombFilter;
+			productName = CombFilter;
+			productReference = A18DDFBFC44E4BBF9817AA98 /* CombFilter */;
+			productType = "com.apple.product-type.library.static";
+		};
+		74E151975A834E1480870471 /* AudioFileIO */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 71B5BB404C794A8B95454DE7 /* Build configuration list for PBXNativeTarget "AudioFileIO" */;
+			buildPhases = (
+				866CDF7381274EC28B54F1F9 /* Sources */,
+				28A80F98952241FA989796D7 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				520D3A74F82E4E7B883F57AA /* PBXTargetDependency */,
+				FD6FF9CD546D45C7B665D925 /* PBXTargetDependency */,
+			);
+			name = AudioFileIO;
+			productName = AudioFileIO;
+			productReference = 5D9B9323E61246FB89465869 /* AudioFileIO */;
+			productType = "com.apple.product-type.library.static";
+		};
+		DFD040CF1A6C4F68BF705B0F /* MUSI6106Exec */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8DC601807A1647A99B62571E /* Build configuration list for PBXNativeTarget "MUSI6106Exec" */;
+			buildPhases = (
+				FCA528DFB6564EB09214FAFE /* Sources */,
+				50510C400EBF45C683EAEAB7 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B1FBFA8A1DD44D80A53A1AFE /* PBXTargetDependency */,
+				E15067D78BD54D129A048232 /* PBXTargetDependency */,
+				A2DE554CC1EB4396920B4C8D /* PBXTargetDependency */,
+				4C6C46B04B224317BB40C3DD /* PBXTargetDependency */,
+			);
+			name = MUSI6106Exec;
+			productName = MUSI6106Exec;
+			productReference = 8BF7911394D94A8285477FA0 /* MUSI6106Exec */;
+			productType = "com.apple.product-type.tool";
+		};
+		EB8004542FCB463B857D62AB /* sndlib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A4469C1932CD4965BD08DA03 /* Build configuration list for PBXNativeTarget "sndlib" */;
+			buildPhases = (
+				DE1DA74F1534403CA762C6F3 /* Sources */,
+				C9DD5FB98F9149ADA0DA2A8D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				67F45C5DC18642EAB393DE61 /* PBXTargetDependency */,
+			);
+			name = sndlib;
+			productName = sndlib;
+			productReference = 711FD5E7DB094109882CF0D3 /* sndlib */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B56786906A9448FA9F023982 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1240;
+			};
+			buildConfigurationList = 95B086167F884BE6A1DA2568 /* Build configuration list for PBXProject "MUSI6106" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				778B29B6E5F04EC19A3034D2 /* Debug */,
+				6BE7314304764B51A262E395 /* Release */,
+				933B167AF8B049B89FE6EC36 /* MinSizeRel */,
+				CFABFB1CBF9E464E832BBE73 /* RelWithDebInfo */,
+			);
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			mainGroup = 06D437B373E342DBBEDBF0A3;
+			projectDirPath = .;
+			projectRoot = "";
+			targets = (
+				FB9D7220D5C7437AB0D0FE60 /* ALL_BUILD */,
+				74E151975A834E1480870471 /* AudioFileIO */,
+				516EC2FE870446599387C6AE /* CombFilter */,
+				DFD040CF1A6C4F68BF705B0F /* MUSI6106Exec */,
+				FE771A37B1F447D2B4E28A01 /* ZERO_CHECK */,
+				EB8004542FCB463B857D62AB /* sndlib */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2F9A29DA5C0F317CA2A40B23 /* Generate CMakeFiles/ALL_BUILD */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate CMakeFiles/ALL_BUILD";
+			outputPaths = (
+"/Users/vedant/Desktop/Programming/2022-MUSI6106/CMakeFiles/ALL_BUILD"			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e
+if test \"$CONFIGURATION\" = \"Debug\"; then :
+  cd /Users/vedant/Desktop/Programming/2022-MUSI6106
+  echo Build\\ all\\ projects
+fi
+if test \"$CONFIGURATION\" = \"Release\"; then :
+  cd /Users/vedant/Desktop/Programming/2022-MUSI6106
+  echo Build\\ all\\ projects
+fi
+if test \"$CONFIGURATION\" = \"MinSizeRel\"; then :
+  cd /Users/vedant/Desktop/Programming/2022-MUSI6106
+  echo Build\\ all\\ projects
+fi
+if test \"$CONFIGURATION\" = \"RelWithDebInfo\"; then :
+  cd /Users/vedant/Desktop/Programming/2022-MUSI6106
+  echo Build\\ all\\ projects
+fi
+";
+			showEnvVarsInLog = 0;
+		};
+		3C0110FC8322DE7E50886E21 = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		9B50530E35CC49C82C2FACCF = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		E2DA618BB623D69AAF38B428 /* Generate CMakeFiles/ZERO_CHECK */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate CMakeFiles/ZERO_CHECK";
+			outputPaths = (
+"/Users/vedant/Desktop/Programming/2022-MUSI6106/CMakeFiles/ZERO_CHECK"			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e
+if test \"$CONFIGURATION\" = \"Debug\"; then :
+  cd /Users/vedant/Desktop/Programming/2022-MUSI6106
+  make -f /Users/vedant/Desktop/Programming/2022-MUSI6106/CMakeScripts/ReRunCMake.make
+fi
+if test \"$CONFIGURATION\" = \"Release\"; then :
+  cd /Users/vedant/Desktop/Programming/2022-MUSI6106
+  make -f /Users/vedant/Desktop/Programming/2022-MUSI6106/CMakeScripts/ReRunCMake.make
+fi
+if test \"$CONFIGURATION\" = \"MinSizeRel\"; then :
+  cd /Users/vedant/Desktop/Programming/2022-MUSI6106
+  make -f /Users/vedant/Desktop/Programming/2022-MUSI6106/CMakeScripts/ReRunCMake.make
+fi
+if test \"$CONFIGURATION\" = \"RelWithDebInfo\"; then :
+  cd /Users/vedant/Desktop/Programming/2022-MUSI6106
+  make -f /Users/vedant/Desktop/Programming/2022-MUSI6106/CMakeScripts/ReRunCMake.make
+fi
+";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		866CDF7381274EC28B54F1F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3C2D7A465A04D34A0BFDE25 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/AudioFileIO/AudioFile.cpp */,
+				A90488208FC542FF849118AA /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/AudioFileIO/AudioFileIf.cpp */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B516DA4DF4964A5BA076DB4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30643E9FA2CD469BB1D6BDB3 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/CombFilter/CombFilter.cpp */,
+				3E00692637034E6DB33F3BBB /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/CombFilter/CombFilterIf.cpp */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE1DA74F1534403CA762C6F3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4AEE36FD1DBD4596AC5112E4 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/audio.c */,
+				D8ECB3967DAC4A038A06AF0A /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm.c */,
+				F5494526CF9542C098C529B5 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/clm2xen.c */,
+				A8A00B5119EB443FAFE3EAE2 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/headers.c */,
+				3226EC968EF84DE39ADDD1CD /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/io.c */,
+				FF9FEA4C627145F288342A59 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/s7.c */,
+				DA7316CF71D7443E814B0E9D /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sndlib2xen.c */,
+				56D68D82724D40FDAC25772B /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/sound.c */,
+				2CFD30AFECB74A7181E86E44 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/vct.c */,
+				1194385F276244F5A0813F07 /* /Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib/xen.c */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCA528DFB6564EB09214FAFE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED9B916801E041FE8E34BA1D /* /Users/vedant/Desktop/Programming/2022-MUSI6106/src/MUSI6106Exec/MUSI6106Exec.cpp */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		290814368A1746B69800D0A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB8004542FCB463B857D62AB /* sndlib */;
+			targetProxy = B9EE4D9235E1403BA4CC9A41 /* PBXContainerItemProxy */;
+		};
+		38EF17DF809641E796768961 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DFD040CF1A6C4F68BF705B0F /* MUSI6106Exec */;
+			targetProxy = B02A9FEA010D4D2A83D53747 /* PBXContainerItemProxy */;
+		};
+		4C6C46B04B224317BB40C3DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB8004542FCB463B857D62AB /* sndlib */;
+			targetProxy = 8DE92C383E18410E86DF1972 /* PBXContainerItemProxy */;
+		};
+		520D3A74F82E4E7B883F57AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE771A37B1F447D2B4E28A01 /* ZERO_CHECK */;
+			targetProxy = D162D77B75E7498EAC6B66ED /* PBXContainerItemProxy */;
+		};
+		67F45C5DC18642EAB393DE61 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE771A37B1F447D2B4E28A01 /* ZERO_CHECK */;
+			targetProxy = 9C76DBD059BA47B09A85C9ED /* PBXContainerItemProxy */;
+		};
+		73CD0F496FF8434186F7DB0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE771A37B1F447D2B4E28A01 /* ZERO_CHECK */;
+			targetProxy = B4CFCD1BEC904E51952A6FE4 /* PBXContainerItemProxy */;
+		};
+		7530C1BD02E2476D8C83838B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE771A37B1F447D2B4E28A01 /* ZERO_CHECK */;
+			targetProxy = 32E97DE3037148BD8686B984 /* PBXContainerItemProxy */;
+		};
+		761D41ECA16044BDBBE76ACD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 516EC2FE870446599387C6AE /* CombFilter */;
+			targetProxy = 7A759466BF3F4BDCB78562ED /* PBXContainerItemProxy */;
+		};
+		A2DE554CC1EB4396920B4C8D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 516EC2FE870446599387C6AE /* CombFilter */;
+			targetProxy = 242C1B74E85547359699C549 /* PBXContainerItemProxy */;
+		};
+		B1FBFA8A1DD44D80A53A1AFE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE771A37B1F447D2B4E28A01 /* ZERO_CHECK */;
+			targetProxy = 5AA164E151CE427A8E6C681F /* PBXContainerItemProxy */;
+		};
+		B3C2E00AB5F04510915A5FB7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 74E151975A834E1480870471 /* AudioFileIO */;
+			targetProxy = 01CB7F9902E74CAEAFBE9466 /* PBXContainerItemProxy */;
+		};
+		E15067D78BD54D129A048232 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 74E151975A834E1480870471 /* AudioFileIO */;
+			targetProxy = B11DD6DC00414685A0B2FA56 /* PBXContainerItemProxy */;
+		};
+		FD6FF9CD546D45C7B665D925 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB8004542FCB463B857D62AB /* sndlib */;
+			targetProxy = 35DB93E2A2DA4B5A8CB188C0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		04FF8D7697BD46F3BE8AFA99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/Debug";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/vedant/Desktop/Programming/2022-MUSI6106/inc","/Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc","/Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CPLUSPLUSFLAGS = "   ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = AudioFileIO;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106/AudioFileIO";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		0878BBDF89974ACF8F7EBB25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/Release";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CFLAGS = ("    -DNDEBUG -w ","$(inherited)");
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = sndlib;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106/AudioFileIO/sndlib";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		0C7C780C92D743B5B527C2EC /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/vedant/Desktop/Programming/2022-MUSI6106/bin/MinSizeRel";
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/vedant/Desktop/Programming/2022-MUSI6106/inc","/Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc","$(inherited)");
+				INSTALL_PATH = "";
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG ";
+				OTHER_LDFLAGS = (" -Wl,-search_paths_first -Wl,-headerpad_max_install_names","/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/MinSizeRel/libAudioFileIO.a","/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/MinSizeRel/libCombFilter.a","/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/MinSizeRel/libsndlib.a","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = MUSI6106Exec;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106/MUSI6106Exec";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		0E08EE3BC85C452B9EC7E8C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/Release";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/vedant/Desktop/Programming/2022-MUSI6106/inc","/Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = CombFilter;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106/CombFilter";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		1F4A98DE33444FA8BC899B3C /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/relwithdebinfo";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/vedant/Desktop/Programming/2022-MUSI6106/inc","/Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc","/Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = AudioFileIO;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106/AudioFileIO";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		2226E29614384B388BFABECE /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk;
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106/build";
+			};
+			name = RelWithDebInfo;
+		};
+		3310D022A2D14140A1F6FB3A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		404180BA8EE7467CA829C670 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/MinSizeRel";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/vedant/Desktop/Programming/2022-MUSI6106/inc","/Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc","/Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = AudioFileIO;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106/AudioFileIO";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		490DA4D5E0424FF694EC00BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/Debug";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/vedant/Desktop/Programming/2022-MUSI6106/inc","/Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CPLUSPLUSFLAGS = "   ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = CombFilter;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106/CombFilter";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		4CBF3292F0324292BB7406AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		586198E80D3C41D7A5779B4C /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk;
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106/build";
+			};
+			name = MinSizeRel;
+		};
+		64A783E1C5C243F795A3759D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk;
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106/build";
+			};
+			name = Debug;
+		};
+		6997DB0F0F05497BB2F707EA /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/MinSizeRel";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/vedant/Desktop/Programming/2022-MUSI6106/inc","/Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = CombFilter;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106/CombFilter";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		7CF6E25D942343349E3C97DA /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/relwithdebinfo";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/vedant/Desktop/Programming/2022-MUSI6106/inc","/Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = CombFilter;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106/CombFilter";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		7D808F7FC1034AF28FDC31BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		7E37EF2FBF2B41BF977691E1 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/relwithdebinfo";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CFLAGS = ("       -DNDEBUG -w ","$(inherited)");
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = sndlib;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106/AudioFileIO/sndlib";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		84BBF5E518ED4605AC2522CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk;
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106/build";
+			};
+			name = Release;
+		};
+		8F43F2B113FD480382896BFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		924D640BA9CC4BD7B2A6C7AD /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		9B7575BA291A4E4B8E658798 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		9FC4A11127B347BE8DC448DA /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		ACB4F032DD2442B8937AD259 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/MinSizeRel";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CFLAGS = ("    -DNDEBUG -w ","$(inherited)");
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = sndlib;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106/AudioFileIO/sndlib";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		D2FB5006086E43CD8C45D4CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/vedant/Desktop/Programming/2022-MUSI6106/bin/Release";
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/vedant/Desktop/Programming/2022-MUSI6106/inc","/Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc","$(inherited)");
+				INSTALL_PATH = "";
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG ";
+				OTHER_LDFLAGS = (" -Wl,-search_paths_first -Wl,-headerpad_max_install_names","/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/Release/libAudioFileIO.a","/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/Release/libCombFilter.a","/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/Release/libsndlib.a","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = MUSI6106Exec;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106/MUSI6106Exec";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		D70DDB408D234E3B9464E912 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/Debug";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CFLAGS = ("   -w ","$(inherited)");
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = sndlib;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106/AudioFileIO/sndlib";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		D97AF61B8DBE481EAAEE2CF7 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		DAD2230B93FD41639CF37AD2 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/vedant/Desktop/Programming/2022-MUSI6106/bin/relwithdebinfo";
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/vedant/Desktop/Programming/2022-MUSI6106/inc","/Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc","$(inherited)");
+				INSTALL_PATH = "";
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG ";
+				OTHER_LDFLAGS = (" -Wl,-search_paths_first -Wl,-headerpad_max_install_names","/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/relwithdebinfo/libAudioFileIO.a","/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/relwithdebinfo/libCombFilter.a","/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/relwithdebinfo/libsndlib.a","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = MUSI6106Exec;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106/MUSI6106Exec";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		E952F16EB82F49ADA6274AC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/vedant/Desktop/Programming/2022-MUSI6106/bin/Debug";
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/vedant/Desktop/Programming/2022-MUSI6106/inc","/Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc","$(inherited)");
+				INSTALL_PATH = "";
+				OTHER_CPLUSPLUSFLAGS = "   ";
+				OTHER_LDFLAGS = (" -Wl,-search_paths_first -Wl,-headerpad_max_install_names","/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/Debug/libAudioFileIO.a","/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/Debug/libCombFilter.a","/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/Debug/libsndlib.a","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = MUSI6106Exec;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106/MUSI6106Exec";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		F7BC31A8519B4D80A21E2CFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/vedant/Desktop/Programming/2022-MUSI6106/lib/Release";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/vedant/Desktop/Programming/2022-MUSI6106/inc","/Users/vedant/Desktop/Programming/2022-MUSI6106/src/inc","/Users/vedant/Desktop/Programming/2022-MUSI6106/3rdparty/sndlib","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = AudioFileIO;
+				SECTORDER_FLAGS = "";
+				SYMROOT = "/Users/vedant/Desktop/Programming/2022-MUSI6106/AudioFileIO";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		307E3C70D38E4E8CBC62F942 /* Build configuration list for PBXNativeTarget "CombFilter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				490DA4D5E0424FF694EC00BC /* Debug */,
+				0E08EE3BC85C452B9EC7E8C3 /* Release */,
+				6997DB0F0F05497BB2F707EA /* MinSizeRel */,
+				7CF6E25D942343349E3C97DA /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		71B5BB404C794A8B95454DE7 /* Build configuration list for PBXNativeTarget "AudioFileIO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04FF8D7697BD46F3BE8AFA99 /* Debug */,
+				F7BC31A8519B4D80A21E2CFA /* Release */,
+				404180BA8EE7467CA829C670 /* MinSizeRel */,
+				1F4A98DE33444FA8BC899B3C /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8DC601807A1647A99B62571E /* Build configuration list for PBXNativeTarget "MUSI6106Exec" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E952F16EB82F49ADA6274AC6 /* Debug */,
+				D2FB5006086E43CD8C45D4CC /* Release */,
+				0C7C780C92D743B5B527C2EC /* MinSizeRel */,
+				DAD2230B93FD41639CF37AD2 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		95B086167F884BE6A1DA2568 /* Build configuration list for PBXProject "MUSI6106" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64A783E1C5C243F795A3759D /* Debug */,
+				84BBF5E518ED4605AC2522CC /* Release */,
+				586198E80D3C41D7A5779B4C /* MinSizeRel */,
+				2226E29614384B388BFABECE /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A4469C1932CD4965BD08DA03 /* Build configuration list for PBXNativeTarget "sndlib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D70DDB408D234E3B9464E912 /* Debug */,
+				0878BBDF89974ACF8F7EBB25 /* Release */,
+				ACB4F032DD2442B8937AD259 /* MinSizeRel */,
+				7E37EF2FBF2B41BF977691E1 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A6C3E7368F5949EBA5C26C42 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3310D022A2D14140A1F6FB3A /* Debug */,
+				7D808F7FC1034AF28FDC31BD /* Release */,
+				924D640BA9CC4BD7B2A6C7AD /* MinSizeRel */,
+				9B7575BA291A4E4B8E658798 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E7F12FAF7E31416B8B0399A1 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CBF3292F0324292BB7406AF /* Debug */,
+				8F43F2B113FD480382896BFC /* Release */,
+				9FC4A11127B347BE8DC448DA /* MinSizeRel */,
+				D97AF61B8DBE481EAAEE2CF7 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B56786906A9448FA9F023982 /* Project object */;
+}
