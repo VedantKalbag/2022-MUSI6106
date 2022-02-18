@@ -12,24 +12,37 @@
 // CCombFilterBase method definitions
 CCombFilterBase::CCombFilterBase(int delayLength, int iNumChannels, float gainValue)
 {
+    this->init(delayLength,iNumChannels,gainValue);
+//    setDelay(delayLength);
+//    setGain(gainValue);
+//    m_iNumChannels = iNumChannels;
+//    for (int i=0;i<m_iNumChannels;++i)
+//    {
+//        m_RingBuffer[i] = new CRingBuffer<float>(m_iDelayValueSamples);
+//        m_RingBuffer[i]->reset();
+//    }
+}
+CCombFilterBase::~CCombFilterBase()
+{
+    for (int i = 0; i < m_iNumChannels; i++)
+    {
+        delete[] m_RingBuffer[i];
+    }
+    delete m_RingBuffer;
+}
+
+Error_t CCombFilterBase::init(int delayLength, int iNumChannels, float gainValue)
+{
+    setDelay(delayLength);
+    setGain(gainValue);
     m_iNumChannels = iNumChannels;
-    m_fGainValue = gainValue;
-    m_iDelayValueSamples = delayLength;
-    m_RingBuffer = new CRingBuffer<float>* [m_iNumChannels];
+    m_RingBuffer = new CRingBuffer<float>*[m_iNumChannels];
     for (int i=0;i<m_iNumChannels;i++)
     {
         m_RingBuffer[i] = new CRingBuffer<float>(m_iDelayValueSamples);
-        m_RingBuffer[i]->reset();
+//        m_RingBuffer[i]->reset();
     }
 }
-//CCombFilterBase::~CCombFilterBase()
-//{
-//}
-
-//Error_t CCombFilterBase::init(int iNumChannels, float delayValue, float gainValue)
-//{
-//
-//}
 
 Error_t CCombFilterBase::setGain(float fGainValue)
 {
@@ -46,8 +59,13 @@ float CCombFilterBase::getGain()
 Error_t CCombFilterBase::setDelay(int iDelayValueSamples)
 {
     //Set delayValue to iDelayValue
-    m_iDelayValueSamples = iDelayValueSamples;
-    return Error_t::kNoError;
+    if(iDelayValueSamples > 0)
+    {
+        m_iDelayValueSamples = iDelayValueSamples;
+        return Error_t::kNoError;
+    }
+    else
+        return Error_t::kFunctionInvalidArgsError;
 }
 
 int CCombFilterBase::getDelay()
@@ -58,8 +76,8 @@ int CCombFilterBase::getDelay()
 Error_t CCombFilterBase::reset()
 {
     // reset values
-//    m_iDelayValueSamples = 0;
-//    m_fGainValue = 0.5f;
+    m_iDelayValueSamples = 0;
+    m_fGainValue = 0.f;
 
 }
 
@@ -78,6 +96,7 @@ protected:
 // CCombFIRFilter method definition
 CCombIIRFilter::CCombIIRFilter(int delayLength, int iNumChannels, float gainValue): CCombFilterBase(delayLength, iNumChannels, gainValue)
 {
+    init(delayLength,iNumChannels,gainValue);
 }
 Error_t CCombIIRFilter::process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames)
 {
@@ -120,7 +139,7 @@ protected:
 
 CCombFIRFilter::CCombFIRFilter(int delayLength, int iNumChannels, float gainValue): CCombFilterBase(delayLength, iNumChannels, gainValue)
 {
-
+    init(delayLength,iNumChannels,gainValue);
 }
 Error_t CCombFIRFilter::process (float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames)
 {

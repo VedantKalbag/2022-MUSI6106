@@ -144,7 +144,7 @@ Error_t test5(CCombFilterIf::CombFilterType_t filterType)
     float gain = -0.25f;
     float delay = -0.125f;
     Error_t test5error = run_filtering(sInputFilePath,sOutputFilePath,filterType,gain,delay,blockSize);
-    assert ((test5error==Error_t::kNoError) || (test5error==Error_t::kFunctionInvalidArgsError));
+    assert (test5error==Error_t::kFunctionInvalidArgsError);
     cout << "Negative values for delay were caught and raised" << endl;
     return Error_t::kNoError;
 }

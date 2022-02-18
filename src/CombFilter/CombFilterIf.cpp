@@ -70,27 +70,29 @@ Error_t CCombFilterIf::destroy (CCombFilterIf*& pCCombFilter)
 
 Error_t CCombFilterIf::init (CombFilterType_t eFilterType, float fMaxDelayLengthInS, float fSampleRateInHz, int iNumChannels, float gainValue)
 {
-    
-    m_fSampleRate = fSampleRateInHz;
-    int delayLength = static_cast<int>(fMaxDelayLengthInS*fSampleRateInHz);
-    if (eFilterType == kCombFIR)
+    if(!m_bIsInitialized)
     {
-        m_pCCombFilter = new CCombFIRFilter(delayLength, iNumChannels, gainValue);
+        m_fSampleRate = fSampleRateInHz;
+        int delayLength = static_cast<int>(fMaxDelayLengthInS*fSampleRateInHz);
+        if (eFilterType == kCombFIR)
+        {
+            m_pCCombFilter = new CCombFIRFilter(delayLength, iNumChannels, gainValue);
+        }
+        else if (eFilterType == kCombIIR)
+        {
+            m_pCCombFilter = new CCombIIRFilter(delayLength, iNumChannels, gainValue);
+        }
+//        m_pCCombFilter->reset();
+
+        m_bIsInitialized = true;
+        return Error_t::kNoError;
     }
-    else if (eFilterType == kCombIIR)
-    {
-        m_pCCombFilter = new CCombIIRFilter(delayLength, iNumChannels, gainValue);
-    }
-    m_pCCombFilter->reset();
-    
-    m_bIsInitialized = true;
-    return Error_t::kNoError;
 }
 
 Error_t CCombFilterIf::reset ()
 {
+    m_pCCombFilter = nullptr;
     delete m_pCCombFilter;
-    m_pCCombFilter = 0;
     m_fSampleRate = 0;
     m_bIsInitialized = false;
     
@@ -99,35 +101,39 @@ Error_t CCombFilterIf::reset ()
 
 Error_t CCombFilterIf::process (float **ppfInputBuffer, float **ppfOutputBuffer, long long iNumberOfFrames)
 {
-    return m_pCCombFilter->process(ppfInputBuffer,ppfOutputBuffer,iNumberOfFrames);
+    if(m_bIsInitialized)
+        return m_pCCombFilter->process(ppfInputBuffer,ppfOutputBuffer,iNumberOfFrames);
+    else
+        return Error_t::kNotInitializedError;
 }
 
 Error_t CCombFilterIf::setParam (FilterParam_t eParam, float fParamValue)
 {
-    if (eParam == kParamGain)
+    Error_t error;
+    if(m_bIsInitialized)
     {
-        m_pCCombFilter->setGain(fParamValue);
+        if (eParam == kParamGain) {
+            error = m_pCCombFilter->setGain(fParamValue);
+        } else if (eParam == kParamDelay) {
+            error = m_pCCombFilter->setDelay(static_cast<int>(fParamValue * m_fSampleRate));
+        }
+        return error;
     }
-    else if (eParam == kParamDelay)
-    {
-        m_pCCombFilter->setDelay(fParamValue * m_fSampleRate);
-    }
-
-    return Error_t::kNoError;
+    else
+        return Error_t::kNotInitializedError;
 }
 
 float CCombFilterIf::getParam (FilterParam_t eParam) const
 {
-    if(eParam == kParamGain)
-    {
-        return m_pCCombFilter->getGain();
-    }
-    else if(eParam == kParamDelay)
-    {
-        return static_cast<float>(m_pCCombFilter->getDelay());
+    if(m_bIsInitialized) {
+        if (eParam == kParamGain) {
+            return m_pCCombFilter->getGain();
+        } else if (eParam == kParamDelay) {
+            return static_cast<float>(m_pCCombFilter->getDelay());
+        } else {
+            return 0;
+        }
     }
     else
-    {
         return 0;
-    }
 }

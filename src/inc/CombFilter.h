@@ -17,11 +17,11 @@ class CCombFilterBase
 {
 public:
 //    CCombFilterBase(int delayLength, int iNumChannels, float gain=0.5);
-    CCombFilterBase(int delayLength, int iNumChannels, float gainValue=0.5);
-//    ~CCombFilterBase();
+    CCombFilterBase(int delayLength, int iNumChannels, float gainValue);
+    ~CCombFilterBase();
     
     Error_t reset();
-//    Error_t init(int iNumChannels, float delayValue, float gainValue);
+    Error_t init(int delayLength, int iNumChannels, float gainValue);
     
     Error_t setGain(float fGainValue);
     float getGain();
