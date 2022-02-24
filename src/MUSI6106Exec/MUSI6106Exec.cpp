@@ -70,6 +70,7 @@ int main(int argc, char* argv[])
         return -1;
     }
     phAudioFile->getFileSpec(stFileSpec);
+    // FIXME: does ringBuffer need to be block+hop, or is just block enough?
     ringBuffer = new CRingBuffer<float>(fftBlockSize+fftHopSize);
     //////////////////////////////////////////////////////////////////////////////
     // open the output text file
