@@ -63,10 +63,12 @@ public:
     \param fOffset: read at offset from read index
     \return float the value from the read index
     */
-    T get(float fOffset = 0) const
+    T get(float fOffset = 0.f) const
     {
-        assert(0); // TODO: implement offset
-        return m_ptBuff[m_iReadIdx];
+        int readIdx = (m_iReadIdx + float(fOffset));
+        float offset = fmod(fOffset,1.f);
+        float returnValue = (m_ptBuff[readIdx] * offset) + (m_ptBuff[readIdx+1] * (1-offset));
+        return returnValue;//m_ptBuff[m_iReadIdx];
     }
 
     /*! set buffer content and indices to 0
