@@ -118,6 +118,11 @@ int main(int argc, char* argv[])
 
     time = clock();
 
+    pfSpectrum = new float[kBlockSize];
+    pfMagnitude = new float[(kBlockSize/2)+1];
+    pfPhase = new float[(kBlockSize/2)+1];
+    time = clock();
+//    hOutputFile << "TEST TEST TEST";
     //////////////////////////////////////////////////////////////////////////////
     // get audio data and write it to the output text file (one column per channel)
     while (!phAudioFile->isEof())
