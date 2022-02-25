@@ -54,13 +54,15 @@ int main(int argc, char* argv[])
         sInputFilePath = argv[1];
         fftBlockSize = std::stoi(argv[2]);
         fftHopSize = std::stoi(argv[3]);
-        sOutputFilePath = sInputFilePath + ".txt";
+        sOutputFilePath = sInputFilePath.substr(0,sInputFilePath.size()-4) + ".txt";
     }
 
     //////////////////////////////////////////////////////////////////////////////
     // open the input wave file
     CAudioFileIf::create(phAudioFile);
     CFft::createInstance(cFFT);
+    // INIT FFT
+    cFFT->initInstance(fftBlockSize,1,CFft::kWindowHann);
 
     phAudioFile->openFile(sInputFilePath, CAudioFileIf::kFileRead);
     if (!phAudioFile->isOpen())
@@ -101,11 +103,13 @@ int main(int argc, char* argv[])
         hOutputFile.close();
         return -1;
     }
-    //TODO: ALLOCATE MEMORY FOR pfSpectrum, pfMagnitude, pfPhase
     ppfInputBuffer = new float[kBlockSize];
-//    ppfMagnitudeBuffer = new float[kBlockSize];
-    time = clock();
 
+    pfSpectrum = new float[kBlockSize];
+    pfMagnitude = new float[(kBlockSize/2)+1];
+    pfPhase = new float[(kBlockSize/2)+1];
+    time = clock();
+//    hOutputFile << "TEST TEST TEST";
     //////////////////////////////////////////////////////////////////////////////
     // get audio data and write it to the output text file (one column per channel)
     while (!phAudioFile->isEof())
@@ -124,13 +128,13 @@ int main(int argc, char* argv[])
             for (int c = 0; c < stFileSpec.iNumChannels; c++)
             {
                 ringBuffer->putPostInc(ppfAudioData[c][i]);
-
-                if (ringBuffer->getNumValuesInBuffer() == fftBlockSize)
+                //FIXME: After the first iteration, the number of values in buffer will always be fftBlockSize, find a way to fix this and move ahead by hopSize
+                if (ringBuffer->getNumValuesInBuffer() >= fftBlockSize)
                 {
                     // Copy data from ringBuffer to ppfInputBuffer (getpostinc?)
-                    for(i=0;i<fftBlockSize;i++)
+                    for(int j=0;j<fftBlockSize;j++)
                     {
-                        ppfInputBuffer[i] = ringBuffer->getPostInc();
+                        ppfInputBuffer[j] = ringBuffer->getPostInc();
                     }
                     // Run fft
                     cFFT->doFft(pfSpectrum,ppfInputBuffer);
@@ -138,6 +142,12 @@ int main(int argc, char* argv[])
                     cFFT->getPhase(pfPhase,pfSpectrum);
 
                     // TODO: Write magnitude and phase to hOutputFile
+                    //std::cout<<"FFT Block done"<<std::endl;
+                    for(int k=0;k<((fftBlockSize/2)+1);k++)
+                        hOutputFile << pfMagnitude[k] << "," << pfPhase[k] << "\n";
+
+//                    for(int l=0;l<fftHopSize;l++)
+//                        ringBuffer->getPostInc();
                 }
                 //hOutputFile << ppfAudioData[c][i] << "\t";
             }
