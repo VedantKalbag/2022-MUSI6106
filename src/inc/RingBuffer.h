@@ -65,7 +65,7 @@ public:
     */
     T get(float fOffset = 0.f) const
     {
-        int readIdx = (m_iReadIdx + float(fOffset));
+        int readIdx = (m_iReadIdx + floor(fOffset));
         float offset = fmod(fOffset,1.f);
         float returnValue = (m_ptBuff[readIdx] * offset) + (m_ptBuff[readIdx+1] * (1-offset));
         return returnValue;//m_ptBuff[m_iReadIdx];
