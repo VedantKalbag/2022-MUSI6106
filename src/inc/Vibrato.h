@@ -10,27 +10,36 @@
 class CVibrato
 {
 public:
-
+    enum CVibratoParam
+    {
+        kWidth,
+        kDelay,
+        kNumFilterTypes
+    };
     static Error_t create (CVibrato*& pCInstance, float fDelayInSec, float fDepthInSec, float fSampleRateInHz );
     static Error_t destroy (CVibrato*& pCInstance);
-    Error_t setDelay(float fDelayInSec);
-    int getDelay() const;
-    Error_t setDepth(float fDepthInSec);
-    int getDepth() const;
-    Error_t process();
+    Error_t setParam(CVibratoParam paramName, float paramValue);
+    int getParam(CVibratoParam paramName);
+    Error_t process(float **ppfInputBuffer, float **ppfOutputBuffer);
 protected:
-    CVibrato(float fDelayInSec, float fDepthInSec, float fSampleRateInHz );
-    ~CVibrato();
-    Error_t reset();
-    Error_t init(float fDelayInSec, float fDepthInSec, float fSampleRateInHz );
 private:
-    // set up pointer to lfo and ring buffer classes
+    // Private member variables
     LFO *lfo;
     CRingBuffer<float> *ringBuffer;
     float m_fSampleRateInHz;
     bool m_isInitialised = false;
 //    float m_fDepthInSec, m_fDelayInSec = 0.f;
-    int m_iDepthInSamples, m_iDelayInSamples;
+    int m_iWidthInSamples, m_iDelayInSamples;
+
+    // Private methods
+    CVibrato(float fDelayInSec, float fWidthInSec, float fSampleRateInHz );
+    ~CVibrato();
+    Error_t reset();
+    Error_t init(float fDelayInSec, float fWidthInSec, float fSampleRateInHz );
+    Error_t setDelay(float fDelayInSec);
+    int getDelay() const;
+    Error_t setWidth(float fDepthInSec);
+    int getWidth() const;
 };
 
 //parameters - kdelayinsec, kdepth - similar to combfilter enum
