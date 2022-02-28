@@ -14,19 +14,19 @@ using std::endl;
 #ifndef MUSI6106_LFO_H
 #define MUSI6106_LFO_H
 
-enum Wavetable
-{
-    Sine,
-    Saw,
-    Rect,
-    Dc,
-    Noise
-};
+
 
 class LFO
 {
 public:
-
+    enum Wavetable
+    {
+        Sine,
+        Saw,
+        Rect,
+        Dc,
+        Noise
+    };
     LFO(float SampleRate, Wavetable WaveType) :
         m_SampleRateInHz(SampleRate),
         m_WidthInSamples(0),
@@ -76,6 +76,8 @@ public:
         }
     }
 
+    float m_SampleRateInHz;
+    float m_FreqInHz;
 
 
 
@@ -86,8 +88,9 @@ private:
     double m_phasor;                      // phase accumulator
     double m_phaseInc;                    // phase increment
     int m_WidthInSamples;
-    float m_SampleRateInHz;
-    float m_FreqInHz;
+//    int m_WidthInSamples;
+//    float m_SampleRateInHz;
+//    float m_FreqInHz;
 
     float* pfBuffer;
     bool m_isInitialised;

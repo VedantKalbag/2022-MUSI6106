@@ -43,8 +43,10 @@ Error_t CVibrato::init(float fDelayInSec, float fWidthInSec, float fSampleRateIn
         }
         //TODO: change as required based on the LFO class
         // ALLOCATE MEMORY FOR LFO
-        lfo = new LFO;
+        lfo = new LFO(m_fSampleRateInHz, LFO::Wavetable::Sine);
 
+        lfo->m_SampleRateInHz = m_fSampleRateInHz;
+        lfo->m_FreqInHz = ;
         m_isInitialised = true;
     }
 }
@@ -112,7 +114,7 @@ Error_t CVibrato::process(float **ppfInputBuffer, float **ppfOutputBuffer, int i
             for (int i = 0; i < iNumFrames; i++)
             {
                 float lfoOffset = 0.f; //TODO: ADD LFO FUNCTIONALITY
-                float fOffset = 1.f + float(m_iDelayInSamples) + lfoOffset;
+                float fOffset = 0.f; // BLAH
                 ringBuffer[c]->putPostInc(ppfInputBuffer[c][i]);
                 ppfOutputBuffer[c][i] = ringBuffer[c]->get(fOffset);
                 //ringBuffer[c]->getPostInc();
