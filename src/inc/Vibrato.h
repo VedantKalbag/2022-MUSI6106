@@ -17,26 +17,26 @@ public:
         kFrequency,
         kNumFilterTypes
     };
-    static Error_t create (CVibrato*& pCInstance, float fDelayInSec, float fDepthInSec, float fSampleRateInHz, int numChannels );
+    static Error_t create (CVibrato*& pCInstance, float fDelayInSec, float fDepthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels );
     static Error_t destroy (CVibrato*& pCInstance);
     Error_t setParam(CVibratoParam paramName, float paramValue);
-    int getParam(CVibratoParam paramName);
+    float getParam(CVibratoParam paramName);
     Error_t process(float **ppfInputBuffer, float **ppfOutputBuffer, int iNumFrames) const;
 protected:
 private:
     // Private member variables
-    LFO *lfo;
-    CRingBuffer<float> **ringBuffer;
-    float m_fSampleRateInHz, m_fFreqInHz;
+    LFO *lfo = nullptr;
+    CRingBuffer<float> **ringBuffer = nullptr;
+    float m_fSampleRateInHz = 0.f, m_fFreqInHz = 0.f;
     bool m_isInitialised = false;
 //    float m_fDepthInSec, m_fDelayInSec = 0.f;
-    int m_iWidthInSamples, m_iDelayInSamples, m_iNumChannels;
+    int m_iWidthInSamples = 0, m_iDelayInSamples = 0, m_iNumChannels = 0;
 
     // Private methods
-    CVibrato(float fDelayInSec, float fWidthInSec, float fSampleRateInHz, int numChannels );
+    CVibrato(float fDelayInSec, float fWidthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels );
     ~CVibrato();
     Error_t reset();
-    Error_t init(float fDelayInSec, float fWidthInSec, float fSampleRateInHz, int numChannels );
+    Error_t init(float fDelayInSec, float fWidthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels );
     Error_t setDelay(float fDelayInSec);
     int getDelay() const;
     Error_t setWidth(float fDepthInSec);

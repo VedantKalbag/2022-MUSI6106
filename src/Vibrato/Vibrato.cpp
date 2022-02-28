@@ -1,8 +1,8 @@
 #include "Vibrato.h"
 
-CVibrato::CVibrato(float fDelayInSec, float fWidthInSec, float fSampleRateInHz, int numChannels)
+CVibrato::CVibrato(float fDelayInSec, float fWidthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels)
 {
-    init(fDelayInSec, fWidthInSec, fSampleRateInHz, numChannels);
+    init(fDelayInSec, fWidthInSec, fSampleRateInHz, fFrequencyInHz, numChannels);
 }
 
 CVibrato::~CVibrato()
@@ -10,9 +10,9 @@ CVibrato::~CVibrato()
     reset();
 }
 
-Error_t CVibrato::create (CVibrato*& pCInstance, float fDelayInSec, float fWidthInSec, float fSampleRateInHz, int numChannels )
+Error_t CVibrato::create (CVibrato*& pCInstance, float fDelayInSec, float fWidthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels )
 {
-    pCInstance = new CVibrato(fDelayInSec, fWidthInSec, fSampleRateInHz, numChannels );
+    pCInstance = new CVibrato(fDelayInSec, fWidthInSec, fSampleRateInHz, fFrequencyInHz, numChannels );
     return Error_t::kNoError;
 }
 
@@ -44,10 +44,10 @@ Error_t CVibrato::init(float fDelayInSec, float fWidthInSec, float fSampleRateIn
         }
         //TODO: change as required based on the LFO class
         // ALLOCATE MEMORY FOR LFO
-        lfo = new LFO(m_fSampleRateInHz, LFO::Wavetable::Sine);
+        lfo = new LFO(m_fSampleRateInHz, LFO::Wavetable::Sine, fFrequencyInHz, static_cast<float>(m_iWidthInSamples));
 
         lfo->m_SampleRateInHz = m_fSampleRateInHz;
-        lfo->setFreq();
+        lfo->setFreq(fFrequencyInHz);
         m_isInitialised = true;
     }
 }
@@ -72,14 +72,14 @@ Error_t CVibrato::setParam(CVibratoParam paramName, float paramValue)
     }
 }
 
-int CVibrato::getParam(CVibratoParam paramName)
+float CVibrato::getParam(CVibratoParam paramName)
 {
     switch (paramName)
     {
         case kDelay:
-            return getDelay();
+            return static_cast<float>(getDelay());
         case kWidth:
-            return getWidth();
+            return static_cast<float>(getWidth());
         case kFrequency:
             return getFreq();
         case  kNumFilterTypes:
@@ -123,8 +123,6 @@ Error_t CVibrato::process(float **ppfInputBuffer, float **ppfOutputBuffer, int i
     if (m_isInitialised)
     {
         // process
-        //TODO: write process logic
-
         for (int c = 0; c < m_iNumChannels; c++)
         {
             for (int i = 0; i < iNumFrames; i++)

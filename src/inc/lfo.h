@@ -76,11 +76,6 @@ public:
         }
     }
 
-    float m_SampleRateInHz;
-    float m_FreqInHz;
-
-
-
 protected:
 private:
     // Private member variables
