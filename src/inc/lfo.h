@@ -1,6 +1,6 @@
 //
 // Created by Vedant Kalbag on 27/02/22.
-// Modified by Thiago Roque on 27/02/22.
+// Modified by Thiago Roque on 28/02/22.
 //
 #include <iostream>
 #include <math.h>
@@ -27,15 +27,15 @@ public:
         Dc,
         Noise
     };
-    LFO(float SampleRate, Wavetable WaveType) :
+    LFO(float SampleRate, Wavetable WaveType, float freq, float width) :
         m_SampleRateInHz(SampleRate),
-        m_WidthInSamples(0),
+        m_wavetableLength(0),
         m_isInitialised(false),
         m_phasor(0),
         m_phaseInc(0),
         m_Wave(Sine)
     {
-        init(m_SampleRateInHz, m_Wave);
+        init(SampleRate, WaveType, freq, width);
     }
 
     float readSample()
@@ -50,7 +50,7 @@ public:
             PhasorDecimal = modf(m_phasor, &PhasorInteger);
             Sample = interpol(static_cast<int>(PhasorInteger), PhasorDecimal);
 
-            m_phasor = static_cast<int>(PhasorInteger)%m_WidthInSamples + PhasorDecimal;
+            m_phasor = static_cast<int>(PhasorInteger)% m_wavetableLength + PhasorDecimal;
             return Sample;
         }
     }
@@ -72,7 +72,7 @@ public:
         else
         {
             m_FreqInHz = freq;
-            m_phaseInc = freq / (m_WidthInSamples / m_SampleRateInHz);
+            m_phaseInc = freq / (m_wavetableLength / m_SampleRateInHz);
         }
     }
 
@@ -87,10 +87,10 @@ private:
     CRingBuffer<float>** ringBuffer;
     double m_phasor;                      // phase accumulator
     double m_phaseInc;                    // phase increment
-    int m_WidthInSamples;
-//    int m_WidthInSamples;
-//    float m_SampleRateInHz;
-//    float m_FreqInHz;
+    int m_wavetableLength;
+    int m_Width;
+    float m_SampleRateInHz;
+    float m_FreqInHz;
 
     float* pfBuffer;
     bool m_isInitialised;
@@ -98,31 +98,33 @@ private:
 
 
     // Private methods
-    Error_t init(float fSampleRateInHz, Wavetable waveType)
+    Error_t init(float fSampleRateInHz, Wavetable waveType, float freq, float width)
     {
         float MaxFreq = 10;
-        m_WidthInSamples = fSampleRateInHz / MaxFreq;
+        m_wavetableLength = fSampleRateInHz / MaxFreq;
+        m_SampleRateInHz = fSampleRateInHz;
+        m_Width = width;
 
         switch (waveType)
         {
         case Sine:
-            CSynthesis::generateSine(pfBuffer, MaxFreq, m_SampleRateInHz, m_WidthInSamples);
+            CSynthesis::generateSine(pfBuffer, MaxFreq, m_SampleRateInHz, m_wavetableLength, m_Width);
             break;
         case Saw:
-            CSynthesis::generateSaw(pfBuffer, MaxFreq, m_SampleRateInHz, m_WidthInSamples);
+            CSynthesis::generateSaw(pfBuffer, MaxFreq, m_SampleRateInHz, m_wavetableLength, m_Width);
             break;
         case Rect:
-            CSynthesis::generateRect(pfBuffer, MaxFreq, m_SampleRateInHz, m_WidthInSamples);
+            CSynthesis::generateRect(pfBuffer, MaxFreq, m_SampleRateInHz, m_wavetableLength, m_Width);
             break;
         case Dc:
-            CSynthesis::generateDc(pfBuffer, m_WidthInSamples);
+            CSynthesis::generateDc(pfBuffer, m_wavetableLength, m_Width);
             break;
         case Noise:
-            CSynthesis::generateNoise(pfBuffer, m_WidthInSamples);
+            CSynthesis::generateNoise(pfBuffer, m_wavetableLength, m_Width);
             break;
         }
 
-        m_phaseInc = 
+        m_phaseInc = freq / (m_wavetableLength / m_SampleRateInHz);
 
         m_isInitialised = true;
     }
