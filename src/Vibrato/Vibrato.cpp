@@ -23,7 +23,7 @@ Error_t CVibrato::destroy (CVibrato*& pCInstance)
     return Error_t::kNoError;
 }
 
-Error_t CVibrato::init(float fDelayInSec, float fWidthInSec, float fSampleRateInHz, int numChannels )
+Error_t CVibrato::init(float fDelayInSec, float fWidthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels )
 {
     if(!m_isInitialised)
     {
@@ -32,6 +32,7 @@ Error_t CVibrato::init(float fDelayInSec, float fWidthInSec, float fSampleRateIn
 
         setParam(kDelay, fDelayInSec);
         setParam(kWidth, fWidthInSec);
+        setParam(kFrequency, fFrequencyInHz);
 
         //Initialise and set memory for the vibrato ring buffer
         int bufferSize = 2+m_iDelayInSamples+m_iWidthInSamples*2;
@@ -46,7 +47,7 @@ Error_t CVibrato::init(float fDelayInSec, float fWidthInSec, float fSampleRateIn
         lfo = new LFO(m_fSampleRateInHz, LFO::Wavetable::Sine);
 
         lfo->m_SampleRateInHz = m_fSampleRateInHz;
-        lfo->m_FreqInHz = ;
+        lfo->setFreq();
         m_isInitialised = true;
     }
 }
@@ -64,6 +65,8 @@ Error_t CVibrato::setParam(CVibratoParam paramName, float paramValue)
             return setDelay(paramValue);
         case kWidth:
             return setWidth(paramValue);
+        case kFrequency:
+            return setFreq(paramValue);
         case  kNumFilterTypes:
             return Error_t::kFunctionInvalidArgsError;
     }
@@ -77,6 +80,8 @@ int CVibrato::getParam(CVibratoParam paramName)
             return getDelay();
         case kWidth:
             return getWidth();
+        case kFrequency:
+            return getFreq();
         case  kNumFilterTypes:
             return 0;
     }
@@ -91,15 +96,26 @@ int CVibrato::getDelay() const
 {
     return m_iDelayInSamples;
 }
+
 Error_t CVibrato::setWidth(float fDepthInSec)
 {
      m_iWidthInSamples = static_cast<int>(fDepthInSec * m_fSampleRateInHz) ;
     return Error_t::kNoError;
 }
-
 int CVibrato::getWidth() const
 {
     return m_iWidthInSamples;
+}
+
+Error_t CVibrato::setFreq(float fFreqInHz)
+{
+    //m_fFreqInHz = fFreqInHz;
+    lfo->setFreq(fFreqInHz);
+    return Error_t::kNoError;
+}
+float CVibrato::getFreq() const
+{
+    return m_fFreqInHz;
 }
 
 Error_t CVibrato::process(float **ppfInputBuffer, float **ppfOutputBuffer, int iNumFrames) const
@@ -113,11 +129,10 @@ Error_t CVibrato::process(float **ppfInputBuffer, float **ppfOutputBuffer, int i
         {
             for (int i = 0; i < iNumFrames; i++)
             {
-                float lfoOffset = 0.f; //TODO: ADD LFO FUNCTIONALITY
-                float fOffset = 0.f; // BLAH
+                float lfoOffset = lfo->readSample();
+                float fOffset = 1.f + static_cast<float>(m_iDelayInSamples) + lfoOffset;
                 ringBuffer[c]->putPostInc(ppfInputBuffer[c][i]);
-                ppfOutputBuffer[c][i] = ringBuffer[c]->get(fOffset);
-                //ringBuffer[c]->getPostInc();
+                ppfOutputBuffer[c][i] = ringBuffer[c]->getPostInc(fOffset);
             }
         }
     }
