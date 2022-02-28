@@ -58,6 +58,12 @@ public:
         incIdx(m_iReadIdx);
         return tValue;
     }
+    T getPostInc(float fOffset = 0.f) const
+    {
+        T tValue = get(fOffset);
+        incIdx(m_iReadIdx);
+        return tValue;
+    }
 
     /*! return the value at the current read index
     \param fOffset: read at offset from read index
