@@ -73,7 +73,7 @@ public:
     {
         int readIdx = (m_iReadIdx + floor(fOffset));
         float offset = fmod(fOffset,1.f);
-        float returnValue = (m_ptBuff[readIdx] * offset) + (m_ptBuff[readIdx+1] * (1-offset));
+        T returnValue = (m_ptBuff[readIdx+1] * offset) + (m_ptBuff[readIdx] * (1-offset));
         return returnValue;//m_ptBuff[m_iReadIdx];
     }
 
