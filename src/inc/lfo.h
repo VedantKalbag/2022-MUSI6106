@@ -38,6 +38,12 @@ public:
         init(SampleRate, WaveType, freq, width);
     }
 
+    ~LFO()
+    {
+        delete[] pfBuffer;
+        pfBuffer = 0;
+    }
+
     float readSample()
     {
         if (!m_isInitialised)
