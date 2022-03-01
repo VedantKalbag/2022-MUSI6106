@@ -23,7 +23,12 @@ namespace vibrato_lfo_test {
         // be empty.
 
         VibratoTest() {
-            // You can do set-up work for each test here.
+            // You can do set-up work for each test here
+            fDelayInSec = 0.1f;
+            fDepthInSec = 0.05f;
+            fSampleRateInHz = 44100.f;
+            fFrequencyInHz = 1.5f;
+            iNumChannels = 1;
         }
 
         ~VibratoTest() override {
@@ -36,18 +41,37 @@ namespace vibrato_lfo_test {
         void SetUp() override {
             // Code here will be called immediately after the constructor (right
             // before each test).
-
+            CVibrato::create(vibrato, fDelayInSec, fDepthInSec, fSampleRateInHz, fFrequencyInHz, iNumChannels);
         }
 
         void TearDown() override {
             // Code here will be called immediately after each test (right
             // before the destructor).
-
+            CVibrato::destroy(vibrato);
         }
 
         // Class members declared here can be used by all tests in the test suite
-
+        CVibrato *vibrato;
+        float fDelayInSec;
+        float fDepthInSec;
+        float fSampleRateInHz;
+        float fFrequencyInHz;
+        int iNumChannels;
     };
+
+    TEST_F(VibratoTest, SetParamTest)
+    {
+        EXPECT_EQ(vibrato->setParam(CVibrato::kFrequency, -1.5f), Error_t::kFunctionInvalidArgsError);
+        EXPECT_EQ(vibrato->setParam(CVibrato::kDelay, -0.1f), Error_t::kFunctionInvalidArgsError);
+        EXPECT_EQ(vibrato->setParam(CVibrato::kWidth, -0.1f), Error_t::kFunctionInvalidArgsError);
+
+    }
+    TEST_F(VibratoTest, SetWidthGreaterThanDelay)
+    {
+        vibrato->setParam(CVibrato::kDelay, 0.1);
+        EXPECT_EQ(vibrato->setParam(CVibrato::kWidth, 0.2), Error_t::kFunctionInvalidArgsError);
+    }
+
     class LFOTest : public ::testing::Test{
     protected:
         // You can remove any or all of the following functions if their bodies would
