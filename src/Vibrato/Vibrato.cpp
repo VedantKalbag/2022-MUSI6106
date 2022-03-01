@@ -51,8 +51,14 @@ Error_t CVibrato::init(float fDelayInSec, float fWidthInSec, float fSampleRateIn
 
 Error_t CVibrato::reset()
 {
-    setWidth(0.1);
-    setDelay(0.1);
+    //TODO: WRITE RESET
+    for(int i=0;i<m_iNumChannels;i++)
+    {
+        delete ringBuffer[i];
+    }
+    delete[] ringBuffer;
+    delete lfo;
+    lfo = nullptr;
 }
 Error_t CVibrato::setParam(CVibratoParam paramName, float paramValue)
 {

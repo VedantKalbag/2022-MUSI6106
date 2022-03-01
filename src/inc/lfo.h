@@ -105,7 +105,7 @@ private:
         m_wavetableLength = fSampleRateInHz / MaxFreq;
         m_SampleRateInHz = fSampleRateInHz;
         m_Width = width;
-
+        pfBuffer = new float[m_wavetableLength];
         switch (waveType)
         {
         case Sine:
