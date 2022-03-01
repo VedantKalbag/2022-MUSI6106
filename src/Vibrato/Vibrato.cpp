@@ -55,6 +55,7 @@ Error_t CVibrato::reset()
     {
         delete ringBuffer[i];
     }
+    ringBuffer = nullptr;
     delete lfo;
     lfo = nullptr;
 }
