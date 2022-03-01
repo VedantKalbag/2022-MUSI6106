@@ -32,7 +32,7 @@ Error_t CVibrato::init(float fDelayInSec, float fWidthInSec, float fSampleRateIn
 
         setParam(kDelay, fDelayInSec);
         setParam(kWidth, fWidthInSec);
-        setParam(kFrequency, fFrequencyInHz);
+
 
         //Initialise and set memory for the vibrato ring buffer
         int bufferSize = 2+m_iDelayInSamples+m_iWidthInSamples*2;
@@ -40,14 +40,11 @@ Error_t CVibrato::init(float fDelayInSec, float fWidthInSec, float fSampleRateIn
         for (int i=0;i<m_iNumChannels;i++)
         {
             ringBuffer[i] = new CRingBuffer<float>(bufferSize);
-//        m_RingBuffer[i]->reset();
         }
-        //TODO: change as required based on the LFO class
-        // ALLOCATE MEMORY FOR LFO
         lfo = new LFO(m_fSampleRateInHz, LFO::Wavetable::Sine, fFrequencyInHz, static_cast<float>(m_iWidthInSamples));
+        setParam(kFrequency, fFrequencyInHz);
 
-        lfo->m_SampleRateInHz = m_fSampleRateInHz;
-        lfo->setFreq(fFrequencyInHz);
+//        lfo->setFreq(fFrequencyInHz);
         m_isInitialised = true;
     }
 }
@@ -77,9 +74,9 @@ float CVibrato::getParam(CVibratoParam paramName)
     switch (paramName)
     {
         case kDelay:
-            return static_cast<float>(getDelay());
+            return getDelay();
         case kWidth:
-            return static_cast<float>(getWidth());
+            return getWidth();
         case kFrequency:
             return getFreq();
         case  kNumFilterTypes:
@@ -89,29 +86,60 @@ float CVibrato::getParam(CVibratoParam paramName)
 
 Error_t CVibrato::setDelay(float fDelayInSec)
 {
-    m_iDelayInSamples = static_cast<int>(fDelayInSec * m_fSampleRateInHz);
-    return Error_t::kNoError;
+    if(fDelayInSec > 0)
+    {
+        m_iDelayInSamples = static_cast<int>(fDelayInSec * m_fSampleRateInHz);
+        return Error_t::kNoError;
+    }
+    else
+        return Error_t::kFunctionInvalidArgsError;
+
 }
 int CVibrato::getDelay() const
 {
     return m_iDelayInSamples;
 }
+//float CVibrato::getDelay() const
+//{
+//    return static_cast<float>(m_iDelayInSamples) / m_fSampleRateInHz;
+//}
 
 Error_t CVibrato::setWidth(float fDepthInSec)
 {
-     m_iWidthInSamples = static_cast<int>(fDepthInSec * m_fSampleRateInHz) ;
-    return Error_t::kNoError;
+    if(fDepthInSec > 0)
+    {
+        if(fDepthInSec < (m_iDelayInSamples/m_fSampleRateInHz))
+        {
+            m_iWidthInSamples = static_cast<int>(fDepthInSec * m_fSampleRateInHz) ;
+            return Error_t::kNoError;
+        }
+        else
+            return Error_t::kFunctionInvalidArgsError;
+    }
+    else
+        return Error_t::kFunctionInvalidArgsError;
+
 }
 int CVibrato::getWidth() const
 {
     return m_iWidthInSamples;
 }
+//float CVibrato::getWidth() const
+//{
+//    return static_cast<float>(m_iWidthInSamples) / m_fSampleRateInHz;
+//}
 
 Error_t CVibrato::setFreq(float fFreqInHz)
 {
     //m_fFreqInHz = fFreqInHz;
-    lfo->setFreq(fFreqInHz);
-    return Error_t::kNoError;
+    if(fFreqInHz > 0)
+    {
+        lfo->setFreq(fFreqInHz);
+        m_fFreqInHz = fFreqInHz;
+        return Error_t::kNoError;
+    }
+    else
+        return Error_t::kFunctionInvalidArgsError;
 }
 float CVibrato::getFreq() const
 {
@@ -130,7 +158,7 @@ Error_t CVibrato::process(float **ppfInputBuffer, float **ppfOutputBuffer, int i
                 float lfoOffset = lfo->readSample();
                 float fOffset = 1.f + static_cast<float>(m_iDelayInSamples) + lfoOffset;
                 ringBuffer[c]->putPostInc(ppfInputBuffer[c][i]);
-                ppfOutputBuffer[c][i] = ringBuffer[c]->getPostInc(fOffset);
+                ppfOutputBuffer[c][i] = ringBuffer[c]->get(fOffset);
             }
         }
     }

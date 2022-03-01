@@ -27,10 +27,10 @@ private:
     // Private member variables
     LFO *lfo = nullptr;
     CRingBuffer<float> **ringBuffer = nullptr;
-    float m_fSampleRateInHz = 0.f, m_fFreqInHz = 0.f;
-    bool m_isInitialised = false;
+    float m_fSampleRateInHz, m_fFreqInHz;
+    bool m_isInitialised;
 //    float m_fDepthInSec, m_fDelayInSec = 0.f;
-    int m_iWidthInSamples = 0, m_iDelayInSamples = 0, m_iNumChannels = 0;
+    int m_iWidthInSamples, m_iDelayInSamples, m_iNumChannels;
 
     // Private methods
     CVibrato(float fDelayInSec, float fWidthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels );

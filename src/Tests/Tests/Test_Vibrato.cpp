@@ -71,17 +71,7 @@ namespace vibrato_lfo_test {
         vibrato->setParam(CVibrato::kDelay, 0.1);
         EXPECT_EQ(vibrato->setParam(CVibrato::kWidth, 0.2), Error_t::kFunctionInvalidArgsError);
     }
-//    TEST_F(VibratoTest, GetParamTest)
-//    {
-//        vibrato->setParam(CVibrato::kDelay, 0.1);
-//        vibrato->setParam(CVibrato::kWidth, 0.05);
-//        vibrato->setParam(CVibrato::kFrequency, 42.0);
-//
-//        EXPECT_EQ(vibrato->getParam(CVibrato::kDelay), 0.1);
-//        EXPECT_EQ(vibrato->getParam(CVibrato::kWidth), 0.05);
-//        EXPECT_EQ(vibrato->getParam(CVibrato::kFrequency), 42.0);
-//
-//    }
+
     class LFOTest : public ::testing::Test{
     protected:
         // You can remove any or all of the following functions if their bodies would
