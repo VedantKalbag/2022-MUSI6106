@@ -51,7 +51,7 @@ public:
             Sample = interpol(static_cast<int>(PhasorInteger), PhasorDecimal);
 
             m_phasor = static_cast<int>(PhasorInteger)% m_wavetableLength + PhasorDecimal;
-            return Sample;
+            return Sample * m_Width;
         }
     }
 
@@ -83,7 +83,7 @@ private:
     double m_phasor;                      // phase accumulator
     double m_phaseInc;                    // phase increment
     int m_wavetableLength;
-    int m_Width;
+    float m_Width;
     float m_SampleRateInHz;
     float m_FreqInHz;
 
@@ -103,13 +103,13 @@ private:
         switch (waveType)
         {
         case Sine:
-            CSynthesis::generateSine(pfBuffer, MaxFreq, m_SampleRateInHz, m_wavetableLength, m_Width);
+            CSynthesis::generateSine(pfBuffer, MaxFreq, m_SampleRateInHz, m_wavetableLength, 1);
             break;
         case Saw:
-            CSynthesis::generateSaw(pfBuffer, MaxFreq, m_SampleRateInHz, m_wavetableLength, m_Width);
+            CSynthesis::generateSaw(pfBuffer, MaxFreq, m_SampleRateInHz, m_wavetableLength, 1);
             break;
         case Rect:
-            CSynthesis::generateRect(pfBuffer, MaxFreq, m_SampleRateInHz, m_wavetableLength, m_Width);
+            CSynthesis::generateRect(pfBuffer, MaxFreq, m_SampleRateInHz, m_wavetableLength, 1);
             break;
         case Dc:
             CSynthesis::generateDc(pfBuffer, m_wavetableLength, m_Width);
