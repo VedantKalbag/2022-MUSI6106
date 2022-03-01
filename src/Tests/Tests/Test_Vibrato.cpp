@@ -80,7 +80,7 @@ namespace vibrato_lfo_test {
         vibrato->setParam(CVibrato::kWidth, 0.05f);
         EXPECT_NEAR(vibrato->getParam(CVibrato::kWidth), 0.05f, 1e-4);
 
-        vibrato->setParam(CVibrato::kFrequency, 42.f);
+        vibrato->setParam(CVibrato::kFrequency, 42.f); //FIXME: This line calls setFreq on a NULL object, the instance of LFO no longer exists here
         EXPECT_NEAR(vibrato->getParam(CVibrato::kFrequency), 42.f, 1e-4);
     }
     class LFOTest : public ::testing::Test{

@@ -41,7 +41,7 @@ Error_t CVibrato::init(float fDelayInSec, float fWidthInSec, float fSampleRateIn
         {
             ringBuffer[i] = new CRingBuffer<float>(bufferSize);
         }
-        lfo = new LFO(m_fSampleRateInHz, LFO::Wavetable::Sine, fFrequencyInHz, m_iWidthInSamples);
+        lfo = new LFO(m_fSampleRateInHz, LFO::Wavetable::Sine, fFrequencyInHz, static_cast<float>(m_iWidthInSamples));
         setParam(kFrequency, fFrequencyInHz);
 
 //        lfo->setFreq(fFrequencyInHz);

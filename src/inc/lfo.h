@@ -19,7 +19,7 @@ using std::endl;
 class LFO
 {
 public:
-    enum class Wavetable
+    enum Wavetable
     {
         Sine,
         Saw,
@@ -101,6 +101,7 @@ private:
     // Private methods
     Error_t init(float fSampleRateInHz, Wavetable waveType, float freq, int width)
     {
+        m_isInitialised = true;
         float MaxFreq = 10;
         m_wavetableLength = fSampleRateInHz / MaxFreq;
         m_SampleRateInHz = fSampleRateInHz;
@@ -128,7 +129,7 @@ private:
 
         m_phaseInc = freq / (m_wavetableLength / m_SampleRateInHz);
 
-        m_isInitialised = true;
+
     }
 
     float interpol(int IntIdx, float DecIdx)
