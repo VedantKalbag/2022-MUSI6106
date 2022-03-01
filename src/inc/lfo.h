@@ -19,7 +19,7 @@ using std::endl;
 class LFO
 {
 public:
-    enum Wavetable
+    enum class Wavetable
     {
         Sine,
         Saw,
@@ -33,7 +33,7 @@ public:
         m_isInitialised(false),
         m_phasor(0),
         m_phaseInc(0),
-        m_Wave(Sine)
+        m_Wave(Wavetable::Sine)
     {
         init(SampleRate, WaveType, freq, width);
     }
@@ -85,7 +85,7 @@ public:
 protected:
 private:
     // Private member variables
-    CRingBuffer<float>** ringBuffer;
+
     double m_phasor;                      // phase accumulator
     double m_phaseInc;                    // phase increment
     int m_wavetableLength;
@@ -106,21 +106,22 @@ private:
         m_SampleRateInHz = fSampleRateInHz;
         m_Width = width;
         pfBuffer = new float[m_wavetableLength];
+
         switch (waveType)
         {
-        case Sine:
+        case Wavetable::Sine:
             CSynthesis::generateSine(pfBuffer, MaxFreq, m_SampleRateInHz, m_wavetableLength, 1);
             break;
-        case Saw:
+        case Wavetable::Saw:
             CSynthesis::generateSaw(pfBuffer, MaxFreq, m_SampleRateInHz, m_wavetableLength, 1);
             break;
-        case Rect:
+        case Wavetable::Rect:
             CSynthesis::generateRect(pfBuffer, MaxFreq, m_SampleRateInHz, m_wavetableLength, 1);
             break;
-        case Dc:
+        case Wavetable::Dc:
             CSynthesis::generateDc(pfBuffer, m_wavetableLength, m_Width);
             break;
-        case Noise:
+        case Wavetable::Noise:
             CSynthesis::generateNoise(pfBuffer, m_wavetableLength, m_Width);
             break;
         }
