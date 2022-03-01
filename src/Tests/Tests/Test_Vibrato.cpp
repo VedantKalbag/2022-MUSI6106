@@ -114,6 +114,59 @@ namespace vibrato_lfo_test {
         // Class members declared here can be used by all tests in the test suite
 
     };
+
+    class RingBufferTest : public ::testing::Test{
+    protected:
+        // You can remove any or all of the following functions if their bodies would
+        // be empty.
+
+        RingBufferTest() {
+            // You can do set-up work for each test here.
+        }
+
+        ~RingBufferTest() override {
+            // You can do clean-up work that doesn't throw exceptions here.
+        }
+
+        // If the constructor and destructor are not enough for setting up
+        // and cleaning up each test, you can define the following methods:
+
+        void SetUp() override {
+            // Code here will be called immediately after the constructor (right
+            // before each test).
+            ringBuffer = new CRingBuffer<float>(5);
+            for(int i=0;i<ringBuffer->getLength();i++)
+            {
+                ringBuffer->putPostInc(i+1);
+            }
+            ringBuffer->setReadIdx(0);
+        }
+
+        void TearDown() override {
+            // Code here will be called immediately after each test (right
+            // before the destructor).
+            delete ringBuffer;
+        }
+
+        // Class members declared here can be used by all tests in the test suite
+        CRingBuffer<float> *ringBuffer;
+
+    };
+
+    TEST_F(RingBufferTest, InterpolationTest)
+    {
+        EXPECT_NEAR(ringBuffer->get(1.5f), 2.5f,1e-4f);
+    }
+
+    TEST_F(RingBufferTest, WrapAroundTest)
+    {
+        for(int i=0;i<ringBuffer->getLength();i++)
+        {
+            ringBuffer->getPostInc();
+        }
+        EXPECT_EQ(ringBuffer->getReadIdx(), 0);
+        EXPECT_EQ(ringBuffer->getWriteIdx(), 0);
+    }
 }
 
 
