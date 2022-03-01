@@ -78,14 +78,14 @@ public:
         else
         {
             m_FreqInHz = freq;
-            m_phaseInc = freq / (m_wavetableLength / m_SampleRateInHz);
+            m_phaseInc = freq / (static_cast<float>(m_wavetableLength) / m_SampleRateInHz);
         }
     }
 
 protected:
 private:
     // Private member variables
-
+    //TODO: Is there a reason m_phasor and m_phaseInc are double and not float?
     double m_phasor;                      // phase accumulator
     double m_phaseInc;                    // phase increment
     int m_wavetableLength;
@@ -102,8 +102,8 @@ private:
     Error_t init(float fSampleRateInHz, Wavetable waveType, float freq, int width)
     {
         m_isInitialised = true;
-        float MaxFreq = 10;
-        m_wavetableLength = fSampleRateInHz / MaxFreq;
+        float MaxFreq = 10.f;
+        m_wavetableLength = static_cast<int>(fSampleRateInHz / MaxFreq);
         m_SampleRateInHz = fSampleRateInHz;
         m_Width = width;
         pfBuffer = new float[m_wavetableLength];
@@ -120,14 +120,14 @@ private:
             CSynthesis::generateRect(pfBuffer, MaxFreq, m_SampleRateInHz, m_wavetableLength, 1);
             break;
         case Wavetable::Dc:
-            CSynthesis::generateDc(pfBuffer, m_wavetableLength, m_Width);
+            CSynthesis::generateDc(pfBuffer, m_wavetableLength, 1);
             break;
         case Wavetable::Noise:
-            CSynthesis::generateNoise(pfBuffer, m_wavetableLength, m_Width);
+            CSynthesis::generateNoise(pfBuffer, m_wavetableLength, 1);
             break;
         }
 
-        m_phaseInc = freq / (m_wavetableLength / m_SampleRateInHz);
+        m_phaseInc = freq / (static_cast<float>(m_wavetableLength) / m_SampleRateInHz);
 
 
     }
