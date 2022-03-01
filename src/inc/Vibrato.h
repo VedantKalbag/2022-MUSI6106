@@ -37,11 +37,15 @@ private:
     ~CVibrato();
     Error_t reset();
     Error_t init(float fDelayInSec, float fWidthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels );
+
     Error_t setDelay(float fDelayInSec);
-    int getDelay() const;
     Error_t setWidth(float fDepthInSec);
-    int getWidth() const;
     Error_t setFreq(float fFreqInHz);
+
+    int getDelay() const;
+    int getWidth() const;
+//    float getDelay() const;
+//    float getWidth() const;
     float getFreq() const;
 };
 

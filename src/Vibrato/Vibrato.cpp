@@ -74,9 +74,9 @@ float CVibrato::getParam(CVibratoParam paramName)
     switch (paramName)
     {
         case kDelay:
-            return getDelay();
+            return static_cast<float>(getDelay());
         case kWidth:
-            return getWidth();
+            return static_cast<float>(getWidth());
         case kFrequency:
             return getFreq();
         case  kNumFilterTypes:
@@ -97,7 +97,9 @@ Error_t CVibrato::setDelay(float fDelayInSec)
 }
 int CVibrato::getDelay() const
 {
+//    return m_iDelayInSamples;
     return m_iDelayInSamples;
+//    return (static_cast<float>(m_iDelayInSamples) / m_fSampleRateInHz);
 }
 //float CVibrato::getDelay() const
 //{
@@ -123,6 +125,7 @@ Error_t CVibrato::setWidth(float fDepthInSec)
 int CVibrato::getWidth() const
 {
     return m_iWidthInSamples;
+//    return (static_cast<float>(m_iWidthInSamples) / m_fSampleRateInHz);
 }
 //float CVibrato::getWidth() const
 //{
