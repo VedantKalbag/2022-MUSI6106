@@ -42,10 +42,10 @@ private:
     Error_t setWidth(float fDepthInSec);
     Error_t setFreq(float fFreqInHz);
 
-    int getDelay() const;
-    int getWidth() const;
-//    float getDelay() const;
-//    float getWidth() const;
+//    int getDelay() const;
+//    int getWidth() const;
+    float getDelay() const;
+    float getWidth() const;
     float getFreq() const;
 };
 

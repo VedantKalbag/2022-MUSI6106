@@ -41,7 +41,7 @@ Error_t CVibrato::init(float fDelayInSec, float fWidthInSec, float fSampleRateIn
         {
             ringBuffer[i] = new CRingBuffer<float>(bufferSize);
         }
-        lfo = new LFO(m_fSampleRateInHz, LFO::Wavetable::Sine, fFrequencyInHz, static_cast<float>(m_iWidthInSamples));
+        lfo = new LFO(m_fSampleRateInHz, LFO::Wavetable::Sine, fFrequencyInHz, m_iWidthInSamples);
         setParam(kFrequency, fFrequencyInHz);
 
 //        lfo->setFreq(fFrequencyInHz);
@@ -51,12 +51,10 @@ Error_t CVibrato::init(float fDelayInSec, float fWidthInSec, float fSampleRateIn
 
 Error_t CVibrato::reset()
 {
-    //TODO: WRITE RESET
     for(int i=0;i<m_iNumChannels;i++)
     {
         delete ringBuffer[i];
     }
-    delete[] ringBuffer;
     delete lfo;
     lfo = nullptr;
 }
@@ -101,11 +99,11 @@ Error_t CVibrato::setDelay(float fDelayInSec)
         return Error_t::kFunctionInvalidArgsError;
 
 }
-int CVibrato::getDelay() const
+float CVibrato::getDelay() const
 {
 //    return m_iDelayInSamples;
-    return m_iDelayInSamples;
-//    return (static_cast<float>(m_iDelayInSamples) / m_fSampleRateInHz);
+//    return m_iDelayInSamples;
+    return (static_cast<float>(m_iDelayInSamples) / m_fSampleRateInHz);
 }
 //float CVibrato::getDelay() const
 //{
@@ -128,10 +126,10 @@ Error_t CVibrato::setWidth(float fDepthInSec)
         return Error_t::kFunctionInvalidArgsError;
 
 }
-int CVibrato::getWidth() const
+float CVibrato::getWidth() const
 {
-    return m_iWidthInSamples;
-//    return (static_cast<float>(m_iWidthInSamples) / m_fSampleRateInHz);
+//    return m_iWidthInSamples;
+    return (static_cast<float>(m_iWidthInSamples) / m_fSampleRateInHz);
 }
 //float CVibrato::getWidth() const
 //{

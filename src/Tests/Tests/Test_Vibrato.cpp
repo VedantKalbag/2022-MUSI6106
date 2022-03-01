@@ -68,10 +68,21 @@ namespace vibrato_lfo_test {
     }
     TEST_F(VibratoTest, SetWidthGreaterThanDelay)
     {
-        vibrato->setParam(CVibrato::kDelay, 0.1);
-        EXPECT_EQ(vibrato->setParam(CVibrato::kWidth, 0.2), Error_t::kFunctionInvalidArgsError);
+        vibrato->setParam(CVibrato::kDelay, 0.1f);
+        EXPECT_EQ(vibrato->setParam(CVibrato::kWidth, 0.2f), Error_t::kFunctionInvalidArgsError);
     }
 
+    TEST_F(VibratoTest, GetEqualsSet)
+    {
+        vibrato->setParam(CVibrato::kDelay, 0.1f);
+        EXPECT_NEAR(vibrato->getParam(CVibrato::kDelay), 0.1f, 1e-4);
+
+        vibrato->setParam(CVibrato::kWidth, 0.05f);
+        EXPECT_NEAR(vibrato->getParam(CVibrato::kWidth), 0.05f, 1e-4);
+
+        vibrato->setParam(CVibrato::kFrequency, 42.f);
+        EXPECT_NEAR(vibrato->getParam(CVibrato::kFrequency), 42.f, 1e-4);
+    }
     class LFOTest : public ::testing::Test{
     protected:
         // You can remove any or all of the following functions if their bodies would

@@ -89,7 +89,7 @@ private:
     double m_phasor;                      // phase accumulator
     double m_phaseInc;                    // phase increment
     int m_wavetableLength;
-    float m_Width;
+    int m_Width;
     float m_SampleRateInHz;
     float m_FreqInHz;
 
@@ -99,7 +99,7 @@ private:
 
 
     // Private methods
-    Error_t init(float fSampleRateInHz, Wavetable waveType, float freq, float width)
+    Error_t init(float fSampleRateInHz, Wavetable waveType, float freq, int width)
     {
         float MaxFreq = 10;
         m_wavetableLength = fSampleRateInHz / MaxFreq;
