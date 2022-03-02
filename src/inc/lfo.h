@@ -47,7 +47,6 @@ public:
 
     float readSample()
     {
-        // FIXME: This returns only 0 with inputs of 8Hz, 0.01 width
         if (!m_isInitialised)
         {
             cout << "LFO uninitiallized" << endl << "Initialize before use" << endl;
@@ -132,7 +131,6 @@ public:
 protected:
 private:
     // Private member variables
-    //TODO: Is there a reason m_phasor and m_phaseInc are double and not float?
     float m_phasor;                      // phase accumulator
     float m_phaseInc;                    // phase increment
     int m_wavetableLength;

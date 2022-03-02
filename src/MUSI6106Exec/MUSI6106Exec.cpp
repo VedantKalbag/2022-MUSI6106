@@ -102,7 +102,6 @@ int main(int argc, char* argv[])
     // ============================================
     // PROCESS
     // ============================================
-    //FIXME: This does not work as intended
     while (!phAudioFile->isEof())
     {
         long long int iNumFrames = kBlockSize;
@@ -111,6 +110,12 @@ int main(int argc, char* argv[])
         process_error = vibrato->process(ppfInputBuffer,ppfOutputBuffer, iNumFrames);
         write_error = phAudioFileOut->writeData(ppfOutputBuffer,iNumFrames);
 //        write_error = phAudioFileOut->writeData(ppfInputBuffer, iNumFrames); //TEST WRITING FUNCTIONALITY TO ENSURE THAT OUTPUT = INPUT (WORKS)
+
+        if(read_error != Error_t::kNoError || process_error != Error_t::kNoError || write_error != Error_t::kNoError)
+        {
+            std::cout << "There was an error in processing the file" << std::endl;
+            break;
+        }
     }
     std::cout << "File Written" << std::endl;
     // ============================================
