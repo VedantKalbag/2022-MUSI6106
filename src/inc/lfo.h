@@ -46,6 +46,7 @@ public:
 
     float readSample()
     {
+        // FIXME: This returns only 0 with inputs of 8Hz, 0.01 width
         if (!m_isInitialised)
         {
             cout << "LFO uninitiallized" << endl << "Initialize before use" << endl;
