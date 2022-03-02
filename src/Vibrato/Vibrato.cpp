@@ -1,13 +1,13 @@
 #include "Vibrato.h"
 
-CVibrato::CVibrato(float fDelayInSec, float fWidthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels)
+CVibrato::CVibrato(float fDelayInSec, float fWidthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels): m_isInitialised(false)
 {
     init(fDelayInSec, fWidthInSec, fSampleRateInHz, fFrequencyInHz, numChannels);
 }
 
 CVibrato::~CVibrato()
 {
-    reset();
+    this->reset();
 }
 
 Error_t CVibrato::create (CVibrato*& pCInstance, float fDelayInSec, float fWidthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels )
@@ -18,6 +18,8 @@ Error_t CVibrato::create (CVibrato*& pCInstance, float fDelayInSec, float fWidth
 
 Error_t CVibrato::destroy (CVibrato*& pCInstance)
 {
+    if (!pCInstance)
+        return Error_t::kUnknownError;
     delete pCInstance;
     pCInstance = nullptr;
     return Error_t::kNoError;
@@ -25,8 +27,6 @@ Error_t CVibrato::destroy (CVibrato*& pCInstance)
 
 Error_t CVibrato::init(float fDelayInSec, float fWidthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels )
 {
-    if(!m_isInitialised)
-    {
         m_fSampleRateInHz = fSampleRateInHz;
         m_iNumChannels = numChannels;
 
@@ -46,7 +46,6 @@ Error_t CVibrato::init(float fDelayInSec, float fWidthInSec, float fSampleRateIn
 
 //        lfo->setFreq(fFrequencyInHz);
         m_isInitialised = true;
-    }
 }
 
 Error_t CVibrato::reset()
@@ -55,9 +54,11 @@ Error_t CVibrato::reset()
     {
         delete ringBuffer[i];
     }
+    delete[] ringBuffer;
     ringBuffer = nullptr;
     delete lfo;
     lfo = nullptr;
+    m_isInitialised = false;
 }
 Error_t CVibrato::setParam(CVibratoParam paramName, float paramValue)
 {

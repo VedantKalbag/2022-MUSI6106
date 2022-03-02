@@ -29,6 +29,7 @@ namespace vibrato_lfo_test {
             fSampleRateInHz = 44100.f;
             fFrequencyInHz = 1.5f;
             iNumChannels = 1;
+            vibrato = nullptr;
         }
 
         ~VibratoTest() override {
@@ -64,7 +65,6 @@ namespace vibrato_lfo_test {
         EXPECT_EQ(vibrato->setParam(CVibrato::kFrequency, -1.5f), Error_t::kFunctionInvalidArgsError);
         EXPECT_EQ(vibrato->setParam(CVibrato::kDelay, -0.1f), Error_t::kFunctionInvalidArgsError);
         EXPECT_EQ(vibrato->setParam(CVibrato::kWidth, -0.1f), Error_t::kFunctionInvalidArgsError);
-
     }
     TEST_F(VibratoTest, SetWidthGreaterThanDelay)
     {
