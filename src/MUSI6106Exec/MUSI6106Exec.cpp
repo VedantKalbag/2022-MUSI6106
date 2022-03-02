@@ -110,6 +110,7 @@ int main(int argc, char* argv[])
         read_error = phAudioFile->readData(ppfInputBuffer, iNumFrames);
         process_error = vibrato->process(ppfInputBuffer,ppfOutputBuffer, iNumFrames);
         write_error = phAudioFileOut->writeData(ppfOutputBuffer,iNumFrames);
+//        write_error = phAudioFileOut->writeData(ppfInputBuffer, iNumFrames); //TEST WRITING FUNCTIONALITY TO ENSURE THAT OUTPUT = INPUT (WORKS)
     }
     std::cout << "File Written" << std::endl;
     // ============================================
