@@ -4,6 +4,9 @@
 #include "ErrorDef.h"
 #include "lfo.h"
 
+/***
+ * TODO: ADD DESIGN CHOICES
+ */
 /*
  * use this as an interface for the user, call lfo and ringbuffer here directly
  * */
@@ -17,14 +20,59 @@ public:
         kFrequency,
         kNumFilterTypes
     };
+    /*!
+     *
+     * @param pCInstance
+     * @param fDelayInSec
+     * @param fDepthInSec
+     * @param fSampleRateInHz
+     * @param fFrequencyInHz
+     * @param numChannels
+     * @return
+     */
     static Error_t create (CVibrato*& pCInstance, float fDelayInSec, float fDepthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels );
+    /*!
+     *
+     * @param pCInstance
+     * @return
+     */
     static Error_t destroy (CVibrato*& pCInstance);
-
+    /*!
+     *
+     * @return
+     */
     Error_t reset();
+    /*!
+     *
+     * @param fDelayInSec
+     * @param fWidthInSec
+     * @param fSampleRateInHz
+     * @param fFrequencyInHz
+     * @param numChannels
+     * @return
+     */
     Error_t init(float fDelayInSec, float fWidthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels );
 
+    /*!
+     *
+     * @param paramName
+     * @param paramValue
+     * @return
+     */
     Error_t setParam(CVibratoParam paramName, float paramValue);
+    /*!
+     *
+     * @param paramName
+     * @return
+     */
     float getParam(CVibratoParam paramName);
+    /*!
+     *
+     * @param ppfInputBuffer
+     * @param ppfOutputBuffer
+     * @param iNumFrames
+     * @return
+     */
     Error_t process(float **ppfInputBuffer, float **ppfOutputBuffer, long long iNumFrames) const;
 protected:
 private:
