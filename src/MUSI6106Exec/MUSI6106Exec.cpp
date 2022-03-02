@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
         fDelayInSec = std::stof(argv[2]);
         fDepthInSec = std::stof(argv[3]);
         fFrequencyInHz = std::stof(argv[4]);
-        sOutputFilePath = sInputFilePath.substr(0,sInputFilePath.size()-4) + "_filtered.wav";
+        sOutputFilePath = sInputFilePath.substr(0,sInputFilePath.size()-4) + "_vibrato.wav";
     }
     // ============================================
     // Allocate memory
