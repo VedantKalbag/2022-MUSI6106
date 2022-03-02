@@ -57,13 +57,12 @@ public:
         incIdx(m_iReadIdx);
         return tValue;
     }
-    T getPostInc(float fOffset = 0.f) const
-    {
-        T tValue = get(fOffset);
-        incIdx(m_iReadIdx);
-        return tValue;
-    }
-
+//    T getPostInc(float fOffset = 0.f) const
+//    {
+//        T tValue = get(fOffset);
+//        incIdx(m_iReadIdx);
+//        return tValue;
+//    }
     /*! return the value at the current read index
     \param fOffset: read at offset from read index
     \return float the value from the read index
@@ -72,10 +71,17 @@ public:
     {
         int readIdx = (m_iReadIdx + floor(fOffset));
         float offset = fmod(fOffset,1.f);
-        T returnValue = (m_ptBuff[readIdx+1] * offset) + (m_ptBuff[readIdx] * (1-offset));
-        return returnValue;//m_ptBuff[m_iReadIdx];
-    }
+        T returnValue = (m_ptBuff[wrapAround(readIdx+1)] * offset) + (m_ptBuff[wrapAround(readIdx)] * (1-offset));
+        return returnValue;
 
+    }
+    int wrapAround(int iIdx) const
+    {
+        while (iIdx < 0)
+            iIdx += m_iBuffLength;
+        iIdx %= m_iBuffLength;
+        return iIdx;
+    }
     /*! set buffer content and indices to 0
     \return void
     */

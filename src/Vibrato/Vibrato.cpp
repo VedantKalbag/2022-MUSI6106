@@ -182,6 +182,7 @@ Error_t CVibrato::process(float **ppfInputBuffer, float **ppfOutputBuffer, long 
                 float fOffset = 1.f + static_cast<float>(m_iDelayInSamples) + lfoOffset;
                 ringBuffer[c]->putPostInc(ppfInputBuffer[c][i]);
                 ppfOutputBuffer[c][i] = ringBuffer[c]->get(fOffset);
+                ringBuffer[c]->getPostInc();
             }
         }
         return Error_t::kNoError;
