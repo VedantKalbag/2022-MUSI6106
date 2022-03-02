@@ -21,56 +21,60 @@ public:
         kNumFilterTypes
     };
     /*!
-     *
-     * @param pCInstance
-     * @param fDelayInSec
-     * @param fDepthInSec
-     * @param fSampleRateInHz
-     * @param fFrequencyInHz
-     * @param numChannels
+     * \brief Creates an instance of CVibrato at the location of the pointer pCInstance
+     * @param pCInstance - a pointer to an object of type CVibrato
+     * @param fDelayInSec - delay value in seconds (float)
+     * @param fWidthInSec - width value in seconds (float)
+     * @param fSampleRateInHz - sample rate in Hz (float)
+     * @param fFrequencyInHz - vibrato frequency in Hz (float)
+     * @param numChannels - number of channels to process (int)
      * @return
      */
-    static Error_t create (CVibrato*& pCInstance, float fDelayInSec, float fDepthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels );
+    static Error_t create (CVibrato*& pCInstance, float fDelayInSec, float fWidthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels );
+
     /*!
-     *
-     * @param pCInstance
+     * \brief Destroys the instance of CVibrato at the location of the pointer pCInstance
+     * @param pCInstance - a pointer to an object of type CVibrato
      * @return
      */
     static Error_t destroy (CVibrato*& pCInstance);
+
     /*!
-     *
+     * \brief Resets the CVibrato instance
      * @return
      */
     Error_t reset();
     /*!
-     *
-     * @param fDelayInSec
-     * @param fWidthInSec
-     * @param fSampleRateInHz
-     * @param fFrequencyInHz
-     * @param numChannels
+     * \brief Initializes the object of type CVibrato
+     * @param fDelayInSec - delay value in seconds (float)
+     * @param fWidthInSec - width value in seconds (float)
+     * @param fSampleRateInHz - sample rate in Hz (float)
+     * @param fFrequencyInHz - vibrato frequency in Hz (float)
+     * @param numChannels - number of channels to process (int)
      * @return
      */
     Error_t init(float fDelayInSec, float fWidthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels );
 
     /*!
-     *
-     * @param paramName
-     * @param paramValue
+     * \brief Sets the value of the specified parameter
+     * @param paramName Parameter type to be set (type CVibratoParam)
+     * @param paramValue Value of the parameter to be set (float)
      * @return
      */
     Error_t setParam(CVibratoParam paramName, float paramValue);
+
     /*!
-     *
-     * @param paramName
+     * \brief Returns the value of the specified parameter
+     * @param paramName Parameter type to be returned (type CVibratoParam)
      * @return
      */
     float getParam(CVibratoParam paramName);
+
     /*!
-     *
-     * @param ppfInputBuffer
-     * @param ppfOutputBuffer
-     * @param iNumFrames
+     * \brief Processes the data in ppfInputBuffer and writes the data to ppfOutputBuffer
+     * @param ppfInputBuffer buffer containing input data
+     * @param ppfOutputBuffer buffer for output data to be written to
+     * @param iNumFrames length of the buffers
      * @return
      */
     Error_t process(float **ppfInputBuffer, float **ppfOutputBuffer, long long iNumFrames) const;
@@ -88,22 +92,45 @@ private:
     CVibrato(float fDelayInSec, float fWidthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels );
     ~CVibrato();
 
-
+    /*!
+     * \brief Sets delay value, called by setParam
+     * @param fDelayInSec - Delay value in seconds (float)
+     * @return
+     */
     Error_t setDelay(float fDelayInSec);
+
+    /*!
+     * \brief Sets depth value, called by setParam
+     * @param fDepthInSec - depth value in seconds (float)
+     * @return
+     */
     Error_t setWidth(float fDepthInSec);
+
+    /*!
+     * \brief Sets Frequency value, called by setParam
+     * @param fFreqInHz - vibrato frequency in Hz (float)
+     * @return
+     */
     Error_t setFreq(float fFreqInHz);
 
 //    int getDelay() const;
 //    int getWidth() const;
+    /*!
+     * \brief Returns the delay value
+     * @return
+     */
     float getDelay() const;
+
+    /*!
+     * \brief Returns width value
+     * @return
+     */
     float getWidth() const;
+
+    /*!
+     * \brief Returns frequency value
+     * @return
+     */
     float getFreq() const;
 };
-
-//parameters - kdelayinsec, kdepth - similar to combfilter enum
-
-// create, destroy, init(LFO, ringbuffer init, converts params in seconds to samples),setparam, getparam,
-// process (use the lfo to get values from wavetable, and pass to ringbuffer)
-
-//set up lfo freq (mod freq), sr, width in samples, delay in samples, numChannels
 #endif // __Vibrato_hdr__
