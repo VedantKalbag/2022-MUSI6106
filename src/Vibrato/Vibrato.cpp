@@ -60,6 +60,7 @@ Error_t CVibrato::init(float fDelayInSec, float fWidthInSec, float fSampleRateIn
 
 //        lfo->setFreq(fFrequencyInHz);
         m_isInitialised = true;
+        return Error_t::kNoError;
 }
 
 Error_t CVibrato::reset()
@@ -73,6 +74,7 @@ Error_t CVibrato::reset()
     delete lfo;
     lfo = nullptr;
     m_isInitialised = false;
+    return Error_t::kNoError;
 }
 Error_t CVibrato::setParam(CVibratoParam paramName, float paramValue)
 {

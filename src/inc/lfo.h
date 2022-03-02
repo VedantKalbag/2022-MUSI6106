@@ -33,7 +33,6 @@ public:
         m_isInitialised(false),
         m_phasor(0),
         m_phaseInc(0),
-//        m_Width(width),
         m_Wave(Wavetable::Sine)
     {
         init(SampleRate, WaveType, freq, widthInSamples);
@@ -144,7 +143,7 @@ private:
 
 
     // Private methods
-    Error_t init(float fSampleRateInHz, Wavetable waveType, float freq, float widthInSamples)
+    Error_t init(float fSampleRateInHz, Wavetable waveType, float freq, int widthInSamples)
     {
         m_isInitialised = true;
         float FreqResolution = 10.f;
