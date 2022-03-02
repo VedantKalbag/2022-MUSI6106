@@ -21,7 +21,7 @@ public:
     static Error_t destroy (CVibrato*& pCInstance);
     Error_t setParam(CVibratoParam paramName, float paramValue);
     float getParam(CVibratoParam paramName);
-    Error_t process(float **ppfInputBuffer, float **ppfOutputBuffer, int iNumFrames) const;
+    Error_t process(float **ppfInputBuffer, float **ppfOutputBuffer, long long iNumFrames) const;
 protected:
 private:
     // Private member variables

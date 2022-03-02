@@ -155,7 +155,7 @@ float CVibrato::getFreq() const
     return m_fFreqInHz;
 }
 
-Error_t CVibrato::process(float **ppfInputBuffer, float **ppfOutputBuffer, int iNumFrames) const
+Error_t CVibrato::process(float **ppfInputBuffer, float **ppfOutputBuffer, long long iNumFrames) const
 {
     if (m_isInitialised)
     {
