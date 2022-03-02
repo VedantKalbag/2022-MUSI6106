@@ -50,13 +50,18 @@ public:
         if (!m_isInitialised)
         {
             cout << "LFO uninitiallized" << endl << "Initialize before use" << endl;
+            return -1;
         }
         else
         {
-            float PhasorDecimal, PhasorInteger, Sample;
-            PhasorDecimal = modf(m_phasor, &PhasorInteger);
-            Sample = interpol(static_cast<int>(PhasorInteger), PhasorDecimal);
+            float PhasorDecimal, PhasorInteger;
 
+            float Sample;
+            PhasorDecimal = modf(m_phasor, &PhasorInteger);
+
+            Sample = interpol(static_cast<int>(PhasorInteger), PhasorDecimal);
+            m_phasor = m_phasor + m_phaseInc;
+            PhasorDecimal = modf(m_phasor, &PhasorInteger);
             m_phasor = static_cast<int>(PhasorInteger)% m_wavetableLength + PhasorDecimal;
             return Sample * m_Width;
         }
@@ -70,25 +75,65 @@ public:
         m_isInitialised = false;
     }
 
-    void setFreq(float freq)
+    Error_t setFreq(float freq)
     {
         if (!m_isInitialised)
         {
             cout << "LFO uninitiallized" << endl << "Initialize before use" << endl;
+            return Error_t::kNotInitializedError;
+        }
+        else if (freq <= 0)
+        {
+            cout << "LFO frequency cannot be negative" << endl;
+            return Error_t::kFunctionInvalidArgsError;
         }
         else
         {
             m_FreqInHz = freq;
-            m_phaseInc = freq / (static_cast<float>(m_wavetableLength) / m_SampleRateInHz);
+            m_phaseInc = freq * (static_cast<float>(m_wavetableLength) / m_SampleRateInHz);
+            return Error_t::kNoError;
         }
     }
 
+    Error_t setWidth(float width)
+    {
+        if (!m_isInitialised)
+        {
+            cout << "LFO uninitiallized" << endl << "Initialize before use" << endl;
+            return Error_t::kNotInitializedError;
+        }
+        else
+        {
+            m_Width = width;
+            return Error_t::kNoError;
+        }
+    }
+
+    int getLength()
+    {
+        return m_wavetableLength;
+    }
+
+    float getPhaseInc()
+    {
+        return m_phaseInc;
+    }
+
+    float getPhasor()
+    {
+        return m_phasor;
+    }
+
+    float getAmplitude()
+    {
+        return m_Width;
+    }
 protected:
 private:
     // Private member variables
     //TODO: Is there a reason m_phasor and m_phaseInc are double and not float?
-    double m_phasor;                      // phase accumulator
-    double m_phaseInc;                    // phase increment
+    float m_phasor;                      // phase accumulator
+    float m_phaseInc;                    // phase increment
     int m_wavetableLength;
     int m_Width;
     float m_SampleRateInHz;
@@ -100,11 +145,11 @@ private:
 
 
     // Private methods
-    Error_t init(float fSampleRateInHz, Wavetable waveType, float freq, int width)
+    Error_t init(float fSampleRateInHz, Wavetable waveType, float freq, float width)
     {
         m_isInitialised = true;
-        float MaxFreq = 10.f;
-        m_wavetableLength = static_cast<int>(fSampleRateInHz / MaxFreq);
+        float FreqResolution = 10.f;
+        m_wavetableLength = static_cast<int>(fSampleRateInHz / FreqResolution);
         m_SampleRateInHz = fSampleRateInHz;
         m_Width = width;
         pfBuffer = new float[m_wavetableLength];
@@ -112,13 +157,13 @@ private:
         switch (waveType)
         {
         case Wavetable::Sine:
-            CSynthesis::generateSine(pfBuffer, MaxFreq, m_SampleRateInHz, m_wavetableLength, 1);
+            CSynthesis::generateSine(pfBuffer, FreqResolution, m_SampleRateInHz, m_wavetableLength, 1);
             break;
         case Wavetable::Saw:
-            CSynthesis::generateSaw(pfBuffer, MaxFreq, m_SampleRateInHz, m_wavetableLength, 1);
+            CSynthesis::generateSaw(pfBuffer, FreqResolution, m_SampleRateInHz, m_wavetableLength, 1);
             break;
         case Wavetable::Rect:
-            CSynthesis::generateRect(pfBuffer, MaxFreq, m_SampleRateInHz, m_wavetableLength, 1);
+            CSynthesis::generateRect(pfBuffer, FreqResolution, m_SampleRateInHz, m_wavetableLength, 1);
             break;
         case Wavetable::Dc:
             CSynthesis::generateDc(pfBuffer, m_wavetableLength, 1);
@@ -128,8 +173,9 @@ private:
             break;
         }
 
-        m_phaseInc = freq / (static_cast<float>(m_wavetableLength) / m_SampleRateInHz);
-
+        m_phaseInc = freq * (static_cast<float>(m_wavetableLength) / m_SampleRateInHz);
+        
+        return Error_t::kNoError;
 
     }
 

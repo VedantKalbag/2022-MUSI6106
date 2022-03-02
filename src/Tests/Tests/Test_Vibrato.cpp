@@ -6,7 +6,6 @@
 
 #include "gtest/gtest.h"
 
-
 namespace vibrato_lfo_test {
     void CHECK_ARRAY_CLOSE(float* buffer1, float* buffer2, int iLength, float fTolerance)
     {
@@ -129,6 +128,13 @@ namespace vibrato_lfo_test {
 
         LFOTest() {
             // You can do set-up work for each test here.
+            lfoSine = nullptr;
+            lfoDC = nullptr;
+            fSampleRate = 44100;
+            waveformSine = LFO::Sine;
+            waveformDC = LFO::Dc;
+            fFrequencyInHertz = 10;
+            fWidth = 5;
         }
 
         ~LFOTest() override {
@@ -141,18 +147,70 @@ namespace vibrato_lfo_test {
         void SetUp() override {
             // Code here will be called immediately after the constructor (right
             // before each test).
+            lfoSine = new LFO(fSampleRate, waveformSine, fFrequencyInHertz, fWidth);
+            lfoDC = new LFO(fSampleRate, waveformDC, fFrequencyInHertz, fWidth);
 
         }
 
         void TearDown() override {
             // Code here will be called immediately after each test (right
             // before the destructor).
+            delete lfoSine;
+            delete lfoDC;
 
         }
 
         // Class members declared here can be used by all tests in the test suite
+        LFO* lfoSine;
+        LFO* lfoDC;
+        float fSampleRate;
+        LFO::Wavetable waveformSine;
+        LFO::Wavetable waveformDC;
+        float fFrequencyInHertz;
+        float fWidth;
 
     };
+
+    TEST_F(LFOTest, InitTest)
+    {
+        EXPECT_TRUE(lfoSine);
+        EXPECT_TRUE(lfoDC);
+    }
+
+    TEST_F(LFOTest, WidthTest)
+    {
+        float tolerance = 0.05; 
+        float maxValue = 0;
+        float auxValue = 0;
+        int lfoArrayLength = lfoSine->getLength();
+        float* pWavetableArray_1 = new float[lfoArrayLength];
+        
+        for (int i = 0; i < lfoArrayLength; i++) {
+            auxValue = lfoSine->readSample();
+            if (auxValue > maxValue)
+                maxValue = auxValue;
+        }
+        EXPECT_NEAR(maxValue, fWidth, tolerance);
+
+        float testFreq = 5;
+        lfoSine->setFreq(testFreq);
+        int lfoArrayLengthTest2 = static_cast<int> (lfoArrayLength / (fFrequencyInHertz / testFreq));
+        float* pWavetableArray_2 = new float[lfoArrayLengthTest2];
+
+        auxValue = 0;
+        maxValue = 0;
+        for (int i = 0; i < lfoArrayLengthTest2; i++) {
+            auxValue = lfoSine->readSample();
+            if (auxValue > maxValue)
+                maxValue = auxValue;
+        }
+        EXPECT_NEAR(maxValue, fWidth, tolerance);
+        
+
+        delete[] pWavetableArray_1;
+        delete[] pWavetableArray_2;
+    }
+
 
     class RingBufferTest : public ::testing::Test{
     protected:
