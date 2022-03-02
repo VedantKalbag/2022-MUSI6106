@@ -19,6 +19,10 @@ public:
     };
     static Error_t create (CVibrato*& pCInstance, float fDelayInSec, float fDepthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels );
     static Error_t destroy (CVibrato*& pCInstance);
+
+    Error_t reset();
+    Error_t init(float fDelayInSec, float fWidthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels );
+
     Error_t setParam(CVibratoParam paramName, float paramValue);
     float getParam(CVibratoParam paramName);
     Error_t process(float **ppfInputBuffer, float **ppfOutputBuffer, long long iNumFrames) const;
@@ -35,8 +39,7 @@ private:
     // Private methods
     CVibrato(float fDelayInSec, float fWidthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels );
     ~CVibrato();
-    Error_t reset();
-    Error_t init(float fDelayInSec, float fWidthInSec, float fSampleRateInHz, float fFrequencyInHz, int numChannels );
+
 
     Error_t setDelay(float fDelayInSec);
     Error_t setWidth(float fDepthInSec);

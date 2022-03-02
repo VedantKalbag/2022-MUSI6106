@@ -33,13 +33,27 @@ Error_t CVibrato::init(float fDelayInSec, float fWidthInSec, float fSampleRateIn
         setParam(kDelay, fDelayInSec);
         setParam(kWidth, fWidthInSec);
 
-
+//        this->reset();
         //Initialise and set memory for the vibrato ring buffer
-        int bufferSize = 2+m_iDelayInSamples+m_iWidthInSamples*2;
+        if(ringBuffer != nullptr)
+        {
+            for(int i=0;i<m_iNumChannels;i++)
+            {
+                delete ringBuffer[i];
+            }
+            delete[] ringBuffer;
+            ringBuffer = nullptr;
+        }
+        int bufferSize = 2 + m_iDelayInSamples + m_iWidthInSamples * 2;
         ringBuffer = new CRingBuffer<float> *[m_iNumChannels];
-        for (int i=0;i<m_iNumChannels;i++)
+        for (int i = 0; i < m_iNumChannels; i++)
         {
             ringBuffer[i] = new CRingBuffer<float>(bufferSize);
+        }
+        if (lfo != nullptr)
+        {
+            delete lfo;
+            lfo = nullptr;
         }
         lfo = new LFO(m_fSampleRateInHz, LFO::Wavetable::Sine, fFrequencyInHz, static_cast<float>(m_iWidthInSamples));
         setParam(kFrequency, fFrequencyInHz);
@@ -170,6 +184,7 @@ Error_t CVibrato::process(float **ppfInputBuffer, float **ppfOutputBuffer, long 
                 ppfOutputBuffer[c][i] = ringBuffer[c]->get(fOffset);
             }
         }
+        return Error_t::kNoError;
     }
     else
         return Error_t::kNotInitializedError;

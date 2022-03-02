@@ -43,12 +43,28 @@ namespace vibrato_lfo_test {
             // Code here will be called immediately after the constructor (right
             // before each test).
             CVibrato::create(vibrato, fDelayInSec, fDepthInSec, fSampleRateInHz, fFrequencyInHz, iNumChannels);
+            ppfInputBuffer = new float*[iNumChannels];
+            ppfOutputBuffer = new float*[iNumChannels];
+            for (int channel = 0; channel < iNumChannels; channel++)
+            {
+                ppfInputBuffer[channel] = new float[iBufferLength];
+                ppfOutputBuffer[channel] = new float[iBufferLength];
+            }
         }
 
         void TearDown() override {
             // Code here will be called immediately after each test (right
             // before the destructor).
             CVibrato::destroy(vibrato);
+            for (int channel = 0; channel < iNumChannels; channel++)
+            {
+                delete[] ppfInputBuffer[channel];
+                delete[] ppfOutputBuffer[channel];
+            }
+            delete[] ppfInputBuffer;
+            delete[] ppfOutputBuffer;
+            ppfInputBuffer = nullptr;
+            ppfOutputBuffer = nullptr;
         }
 
         // Class members declared here can be used by all tests in the test suite
@@ -58,6 +74,9 @@ namespace vibrato_lfo_test {
         float fSampleRateInHz;
         float fFrequencyInHz;
         int iNumChannels;
+        float** ppfInputBuffer = nullptr;
+        float** ppfOutputBuffer = nullptr;
+        int iBufferLength = 1024;
     };
 
     TEST_F(VibratoTest, SetParamTest)
@@ -80,8 +99,28 @@ namespace vibrato_lfo_test {
         vibrato->setParam(CVibrato::kWidth, 0.05f);
         EXPECT_NEAR(vibrato->getParam(CVibrato::kWidth), 0.05f, 1e-4);
 
-        vibrato->setParam(CVibrato::kFrequency, 42.f); //FIXME: This line calls setFreq on a NULL object, the instance of LFO no longer exists here
+        vibrato->setParam(CVibrato::kFrequency, 42.f);
         EXPECT_NEAR(vibrato->getParam(CVibrato::kFrequency), 42.f, 1e-4);
+    }
+
+    TEST_F(VibratoTest, BlockSizeTest)
+    {
+        float** tmpOutput = new float* [iNumChannels];
+        for (int channel = 0; channel < iNumChannels; channel++)
+        {
+            tmpOutput[channel] = new float[iBufferLength];
+            CSynthesis::generateNoise(ppfInputBuffer[channel], iBufferLength);
+        }
+
+        EXPECT_EQ(vibrato->process(ppfInputBuffer, ppfOutputBuffer, iBufferLength),Error_t::kNoError);
+        EXPECT_EQ(vibrato->process(ppfInputBuffer,tmpOutput,1021),Error_t::kNoError);
+        for (int c = 0; c < iNumChannels; c++)
+        {
+            CHECK_ARRAY_CLOSE(tmpOutput[c], ppfOutputBuffer[c], iNumChannels, 1E-5);
+        }
+        for(int i=0;i<iNumChannels;i++)
+            delete[] tmpOutput[i];
+        delete[] tmpOutput;
     }
     class LFOTest : public ::testing::Test{
     protected:
