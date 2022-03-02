@@ -27,15 +27,16 @@ public:
         Dc,
         Noise
     };
-    LFO(float SampleRate, Wavetable WaveType, float freq, float width) :
+    LFO(float SampleRate, Wavetable WaveType, float freq, int widthInSamples) :
         m_SampleRateInHz(SampleRate),
         m_wavetableLength(0),
         m_isInitialised(false),
         m_phasor(0),
         m_phaseInc(0),
+//        m_Width(width),
         m_Wave(Wavetable::Sine)
     {
-        init(SampleRate, WaveType, freq, width);
+        init(SampleRate, WaveType, freq, widthInSamples);
     }
 
     ~LFO()
@@ -95,7 +96,7 @@ public:
         }
     }
 
-    Error_t setWidth(float width)
+    Error_t setWidth(int width)
     {
         if (!m_isInitialised)
         {
@@ -124,7 +125,7 @@ public:
         return m_phasor;
     }
 
-    float getAmplitude()
+    int getAmplitude()
     {
         return m_Width;
     }
@@ -145,13 +146,14 @@ private:
 
 
     // Private methods
-    Error_t init(float fSampleRateInHz, Wavetable waveType, float freq, float width)
+    Error_t init(float fSampleRateInHz, Wavetable waveType, float freq, float widthInSamples)
     {
         m_isInitialised = true;
         float FreqResolution = 10.f;
         m_wavetableLength = static_cast<int>(fSampleRateInHz / FreqResolution);
         m_SampleRateInHz = fSampleRateInHz;
-        m_Width = width;
+//        m_Width = width;
+        setWidth(widthInSamples);
         pfBuffer = new float[m_wavetableLength];
 
         switch (waveType)
@@ -172,7 +174,7 @@ private:
             CSynthesis::generateNoise(pfBuffer, m_wavetableLength, 1);
             break;
         }
-
+        setFreq(freq);
         m_phaseInc = freq * (static_cast<float>(m_wavetableLength) / m_SampleRateInHz);
         
         return Error_t::kNoError;
