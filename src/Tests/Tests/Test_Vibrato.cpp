@@ -159,7 +159,25 @@ namespace vibrato_lfo_test {
         }
     }
 
+    TEST_F(VibratoTest, ZeroInputTest)
+    {
+        float** tmpOutput = new float* [iNumChannels];
+        for (int channel = 0; channel < iNumChannels; channel++)
+        {
+            tmpOutput[channel] = new float[iBufferLength];
+            for (int i = 0; i < iBufferLength; i++)
+            {
+                tmpOutput[channel][i] = 0;
+            }
 
+        }
+
+        EXPECT_EQ(vibrato->process(ppfInputBuffer, tmpOutput, 1024), Error_t::kNoError);
+
+        for (int i = 0; i < iNumChannels; i++)
+            delete[] tmpOutput[i];
+        delete[] tmpOutput;
+    }
 
     class LFOTest : public ::testing::Test{
     protected:
