@@ -24,7 +24,7 @@ namespace vibrato_lfo_test {
         VibratoTest() {
             // You can do set-up work for each test here
             fDelayInSec = 0.1f;
-            fDepthInSec = 0.05f;
+            fWidthInSec = 0.05f;
             fSampleRateInHz = 44100.f;
             fFrequencyInHz = 1.5f;
             iNumChannels = 1;
@@ -41,7 +41,7 @@ namespace vibrato_lfo_test {
         void SetUp() override {
             // Code here will be called immediately after the constructor (right
             // before each test).
-            CVibrato::create(vibrato, fDelayInSec, fDepthInSec, fSampleRateInHz, fFrequencyInHz, iNumChannels);
+            CVibrato::create(vibrato, fDelayInSec, fWidthInSec, fSampleRateInHz, fFrequencyInHz, iNumChannels);
             ppfInputBuffer = new float*[iNumChannels];
             ppfOutputBuffer = new float*[iNumChannels];
             for (int channel = 0; channel < iNumChannels; channel++)
@@ -69,7 +69,7 @@ namespace vibrato_lfo_test {
         // Class members declared here can be used by all tests in the test suite
         CVibrato *vibrato;
         float fDelayInSec;
-        float fDepthInSec;
+        float fWidthInSec;
         float fSampleRateInHz;
         float fFrequencyInHz;
         int iNumChannels;
@@ -121,6 +121,46 @@ namespace vibrato_lfo_test {
             delete[] tmpOutput[i];
         delete[] tmpOutput;
     }
+
+    TEST_F(VibratoTest, OutputEqualsDelayedInput)
+    {
+        for (int channel = 0; channel < iNumChannels; channel++)
+        {
+            CSynthesis::generateSine(ppfInputBuffer[channel],fFrequencyInHz, fSampleRateInHz, iBufferLength, 1);
+        }
+        vibrato->setParam(CVibrato::CVibratoParam::kWidth, 0);
+        vibrato->process(ppfInputBuffer, ppfOutputBuffer, iBufferLength);
+        int total_delay_samples = static_cast<int>(2 + (fWidthInSec * 2 * fSampleRateInHz));//+ (fDelayInSec * fSampleRate);
+
+
+        for (int channel = 0; channel < iNumChannels; channel++)
+        {
+            CHECK_ARRAY_CLOSE(ppfInputBuffer[channel] + total_delay_samples, ppfOutputBuffer[channel],
+                              iBufferLength - total_delay_samples, 1e-3);
+        }
+    }
+
+    TEST_F(VibratoTest, DCStaysDC)
+    {
+        for (int channel = 0; channel < iNumChannels; channel++)
+        {
+            CSynthesis::generateDc(ppfInputBuffer[channel], iBufferLength, 1);
+        }
+        vibrato->process(ppfInputBuffer, ppfOutputBuffer, iBufferLength);
+        // Since the output file will be delayed, we need to calculate how many samples it is delayed by and offset that when checking the buffers
+        // L=2+DELAY+WIDTH*2; - delay accounted for elsewhere? Trial and error showed the below value is right
+        int total_delay_samples = static_cast<int>(2 + (fWidthInSec * 2 * fSampleRateInHz));//+ (fDelayInSec * fSampleRate);
+
+
+        for (int channel = 0; channel < iNumChannels; channel++)
+        {
+            CHECK_ARRAY_CLOSE(ppfInputBuffer[channel] + total_delay_samples, ppfOutputBuffer[channel],
+                              iBufferLength - total_delay_samples, 1e-3);
+        }
+    }
+
+
+
     class LFOTest : public ::testing::Test{
     protected:
         // You can remove any or all of the following functions if their bodies would

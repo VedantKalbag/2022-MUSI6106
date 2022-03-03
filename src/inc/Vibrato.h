@@ -4,9 +4,10 @@
 #include "ErrorDef.h"
 #include "lfo.h"
 
-/***
+/*
  * TODO: ADD DESIGN CHOICES
  */
+
 /*
  * use this as an interface for the user, call lfo and ringbuffer here directly
  * */
