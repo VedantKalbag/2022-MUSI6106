@@ -11,7 +11,7 @@ file(GLOB ${APP}_HEADERS RELATIVE ${CMAKE_SOURCE_DIR}/src/${APP} *.h;../inc/*.h)
 add_inc_directories ()
 
 ## create the target
-add_executable(${APP} ${${APP}_SOURCES} ${${APP}_HEADERS})
+add_executable(${APP} ${${APP}_SOURCES} ${${APP}_HEADERS} ../inc/lfo.h)
 
 # link the libraries
 target_link_libraries(${APP} ${LIB} ${VibratoLIB} ${AudioLIB} ${SndLIB} ${OS_LIBS})

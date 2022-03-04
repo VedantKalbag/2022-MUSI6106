@@ -19,7 +19,6 @@ public:
         m_ptBuff(0)
     {
         assert(iBufferLengthInSamples > 0);
-
         m_ptBuff = new T[m_iBuffLength];
         reset();
     }
@@ -58,17 +57,31 @@ public:
         incIdx(m_iReadIdx);
         return tValue;
     }
-
+//    T getPostInc(float fOffset = 0.f) const
+//    {
+//        T tValue = get(fOffset);
+//        incIdx(m_iReadIdx);
+//        return tValue;
+//    }
     /*! return the value at the current read index
     \param fOffset: read at offset from read index
     \return float the value from the read index
     */
-    T get(float fOffset = 0) const
+    T get(float fOffset = 0.f) const
     {
-        assert(0); // TODO: implement offset
-        return m_ptBuff[m_iReadIdx];
-    }
+        int readIdx = (m_iReadIdx + floor(fOffset));
+        float offset = fmod(fOffset,1.f);
+        T returnValue = (m_ptBuff[wrapAround(readIdx+1)] * offset) + (m_ptBuff[wrapAround(readIdx)] * (1-offset));
+        return returnValue;
 
+    }
+    int wrapAround(int iIdx) const
+    {
+        while (iIdx < 0)
+            iIdx += m_iBuffLength;
+        iIdx %= m_iBuffLength;
+        return iIdx;
+    }
     /*! set buffer content and indices to 0
     \return void
     */
