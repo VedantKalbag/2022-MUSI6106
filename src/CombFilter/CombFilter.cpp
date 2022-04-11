@@ -64,25 +64,30 @@ Error_t CCombFilterBase::setParam( CCombFilterIf::FilterParam_t eParam, float fP
     // special actions for special parameters
     if (eParam == CCombFilterIf::kParamDelay)
     {
-        int iNumAdditionalTaps  = CUtil::float2int<int>(fParamValue - m_afParam[CCombFilterIf::kParamDelay]);
-        if (iNumAdditionalTaps < 0)
+        for (auto c = 0; c < m_iNumChannels; c++)
         {
-            for (int c = 0; c < m_iNumChannels; c++)
-            {
-                m_ppCRingBuffer[c]->setWriteIdx(CUtil::float2int<int>(fParamValue) + m_ppCRingBuffer[c]->getReadIdx());
-            }
+            m_ppCRingBuffer[c]->setReadIdx(m_ppCRingBuffer[c]->getWriteIdx() - CUtil::float2int<int>(fParamValue));
         }
-        else
-        {
-            
-            for (int c = 0; c < m_iNumChannels; c++)
-            {
-                for (int i = 0; i < iNumAdditionalTaps; i++)
-                {
-                    m_ppCRingBuffer[c]->putPostInc(0.F);
-                }
-            }
-        }
+
+        //int iNumAdditionalTaps  = CUtil::float2int<int>(fParamValue - m_afParam[CCombFilterIf::kParamDelay]);
+        //if (iNumAdditionalTaps < 0)
+        //{
+        //    for (int c = 0; c < m_iNumChannels; c++)
+        //    {
+        //        m_ppCRingBuffer[c]->setWriteIdx(CUtil::float2int<int>(fParamValue) + m_ppCRingBuffer[c]->getReadIdx());
+        //    }
+        //}
+        //else
+        //{
+        //    
+        //    for (int c = 0; c < m_iNumChannels; c++)
+        //    {
+        //        for (int i = 0; i < iNumAdditionalTaps; i++)
+        //        {
+        //            m_ppCRingBuffer[c]->putPostInc(0.F);
+        //        }
+        //    }
+        //}
     }
 
     m_afParam[eParam]   = fParamValue;
@@ -107,7 +112,7 @@ bool CCombFilterBase::isInParamRange( CCombFilterIf::FilterParam_t eParam, float
     }
 }
 
-Error_t CCombFilterFir::process( float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames )
+Error_t CCombFilterFir::process(float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames )
 {
     for(int c = 0; c < m_iNumChannels; c++)
     {
@@ -128,7 +133,7 @@ CCombFilterIir::CCombFilterIir (int iMaxDelayInFrames, int iNumChannels) : CComb
     m_aafParamRange[CCombFilterIf::kParamGain][1] = 1.F;
 }
 
-Error_t CCombFilterIir::process( float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames )
+Error_t CCombFilterIir::process(float **ppfInputBuffer, float **ppfOutputBuffer, int iNumberOfFrames )
 {
     for(int c = 0; c < m_iNumChannels; c++)
     {
