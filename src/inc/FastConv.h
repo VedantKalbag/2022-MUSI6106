@@ -50,6 +50,7 @@ public:
     Error_t flushBuffer(float* pfOutputBuffer);
 
 private:
+    bool isInitialized = false;
 
 };
 
