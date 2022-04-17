@@ -5,6 +5,7 @@
 #pragma once
 
 #include "ErrorDef.h"
+#include <iostream>
 
 /*! \brief interface for fast convolution
 */
@@ -50,7 +51,7 @@ public:
     Error_t flushBuffer(float* pfOutputBuffer);
 
 private:
-    bool isInitialized = false;
+    bool m_bIsInitialized;
 
 };
 

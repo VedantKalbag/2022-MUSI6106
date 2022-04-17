@@ -1,8 +1,11 @@
 
 #include "FastConv.h"
 
-CFastConv::CFastConv( void )
+CFastConv::CFastConv( void ) :
+    m_bIsInitialized(false)
 {
+    m_bIsInitialized = false;
+    
 }
 
 CFastConv::~CFastConv( void )
@@ -12,7 +15,8 @@ CFastConv::~CFastConv( void )
 
 Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLength /*= 8192*/, ConvCompMode_t eCompMode /*= kFreqDomain*/)
 {
-    
+    //slice the IR
+    //if kFreqDomain, transform the IR to frequency domain
     if (kTimeDomain)
     {
         //do something
@@ -23,30 +27,30 @@ Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLen
     }
     else
     {
-        cout<< "ConvCompMode_t has to be either kTimeDomain or kFreqDomain";
-        assert("ConvCompMode_t has to be either kTimeDomain or kFreqDomain");
+        std::cout<< "ConvCompMode_t has to be either kTimeDomain or kFreqDomain";
         return Error_t::kFunctionInvalidArgsError;
     }
+
     
-    
-    isInitialized = true;
+    m_bIsInitialized = true;
 
     return Error_t::kNoError;
 }
 
 Error_t CFastConv::reset()
 {
-    isInitialized = false;
+    m_bIsInitialized = false;
+    
+    //clear the memory
     
     return Error_t::kNoError;
 }
 
 Error_t CFastConv::process (float* pfOutputBuffer, const float *pfInputBuffer, int iLengthOfBuffers )
 {
-    if (not isInitialized)
+    if (!m_bIsInitialized)
     {
-        cout<< "not initialized";
-        assert("not initialized");
+        std::cout<< "not initialized";
         return Error_t::kNotInitializedError;
     }
         
