@@ -52,6 +52,17 @@ public:
 
 private:
     bool m_bIsInitialized;
+    int m_iBlockLength;
+    int m_iBlockNum;
+    int m_iCirIdx;
+    float** m_pfIRMatrix;
+    float* m_pfInputBlock;
+    float* m_pfOutputBlock;
+    float* m_pfBlockConvOuput;
+    float* m_pfConvOuput;
+    float** m_pfConvMatrix;
+    Error_t timeConv(float* pfBuffer1, float* pfBuffer2, float* m_pfBlockConvOuput);
+    Error_t conv(float* pfBuffer1, float** m_pfIRMatrix, float** m_pfConvMatrix);
 
 };
 

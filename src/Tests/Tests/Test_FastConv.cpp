@@ -42,8 +42,9 @@ namespace fastconv_test {
         // generate a random IR of length 51 samples
         const int iIRLength = 51;
         float randIR[iIRLength];
+        srand (static_cast <unsigned> (42));
         for(int i=0; i<iIRLength; i++)
-           randIR[i] = rand();
+           randIR[i] = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
         
         // an impulse as input signal at sample index 3
         // make the input signal 10 samples long
@@ -57,7 +58,7 @@ namespace fastconv_test {
             delayedOutput[i] = randIR[i-3]; // fill the delayedOutput with randIR
         
         //do the convolution
-        m_pCFastConv->init(randIR, iIRLength, 2, CFastConv::kTimeDomain);
+        m_pCFastConv->init(randIR, iIRLength, 4, CFastConv::kTimeDomain);
         float convOutput[iOutputlength];
         m_pCFastConv->process(convOutput, input, iInputLength);
         m_pCFastConv->flushBuffer(convOutput);
