@@ -4,8 +4,6 @@
 
 CFastConv::CFastConv( void )
 {
-    m_bIsInitialized = false;
-    
 }
 
 CFastConv::~CFastConv( void )
@@ -13,27 +11,34 @@ CFastConv::~CFastConv( void )
     reset();
 }
 
-Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLength /*= 8192*/, ConvCompMode_t eCompMode /*= kFreqDomain*/)
+Error_t CFastConv::init(float* pfImpulseResponse, int iLengthOfIr, int iBlockLength /*= 8192*/, ConvCompMode_t eCompMode /*= kFreqDomain*/)
 {
     m_iCirIdx = 0;
     
     m_iBlockLength = iBlockLength;
     m_pfInputBlock = new float [m_iBlockLength*2];
+    for (int i=0; i<m_iBlockLength*2; i++)
+        m_pfInputBlock[i] = 0.f;
+    
     m_pfOutputBlock = new float [m_iBlockLength];
+    for (int i=0; i<m_iBlockLength; i++)
+        m_pfOutputBlock[i] = 0.f;
     
     m_pfBlockConvOuput = new float [m_iBlockLength*2];
+    for (int i=0; i<m_iBlockLength*2; i++)
+        m_pfBlockConvOuput[i] = 0.f;
     
     
     //slice pfImpulseResponse into m_pfIRMatrix (iBlockNum, iBlockLength)
     int iReminder = iLengthOfIr % iBlockLength;
     m_iBlockNum = (int) (1 + (iLengthOfIr - iReminder) / iBlockLength);
     
-    
-    
     m_pfIRMatrix = new float * [m_iBlockNum];
     for (int c=0; c<m_iBlockNum; c++)
     {
         m_pfIRMatrix[c] = new float [iBlockLength*2];
+        for (int i=0; i<m_iBlockLength*2; i++)
+            m_pfIRMatrix[c][i] = 0.f;
     }
     
     int c = -1;
@@ -45,17 +50,22 @@ Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLen
             c += 1;
             reset += iBlockLength;
         }
+
         m_pfIRMatrix[c][i-reset] = pfImpulseResponse[i];
     }
-    
+
+        
     m_pfConvMatrix = new float * [m_iBlockNum+1];
     for (int c=0; c<m_iBlockNum+1; c++)
     {
         m_pfConvMatrix[c] = new float [iBlockLength*(m_iBlockNum+1)];
+        for (int i=0; i<iBlockLength*(m_iBlockNum+1); i++)
+            m_pfConvMatrix[c][i] = 0.f;
     }
     
     m_pfConvOuput = new float [(m_iBlockNum+1)*m_iBlockLength];
-    
+    for (int i=0; i<(m_iBlockNum+1)*m_iBlockLength; i++)
+        m_pfConvOuput[i] = 0.f;
     
     
     
@@ -85,13 +95,24 @@ Error_t CFastConv::init(float *pfImpulseResponse, int iLengthOfIr, int iBlockLen
 
 Error_t CFastConv::reset()
 {
+    if(m_bIsInitialized)
+    {
+        for (int c=0; c<m_iBlockNum; c++)
+            delete[] m_pfIRMatrix[c];
+        delete m_pfIRMatrix;
+        
+        for (int c=0; c<m_iBlockNum+1; c++)
+            delete[] m_pfConvMatrix[c];
+        delete m_pfConvMatrix;
+        
+        delete[] m_pfInputBlock;
+        delete[] m_pfOutputBlock;
+        delete[] m_pfBlockConvOuput;
+    }
+    
     m_bIsInitialized = false;
     
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //clear the memory
-    //clear m_pfIRMatrix
-    //clear m_pfConvMatrix
-    //clear more...
+    
     
     
     return Error_t::kNoError;
@@ -103,6 +124,7 @@ Error_t CFastConv::conv(float* pfInputBlock, float** m_pfIRMatrix, float** pfCon
     
     for (int i = 0; i<m_iBlockNum; i++)
     {
+        //switch to freqConv() after implemented
         timeConv(pfInputBlock, m_pfIRMatrix[i], m_pfBlockConvOuput);
 
         for (int n = 0; n < m_iBlockLength*2; n++)
@@ -171,10 +193,7 @@ Error_t CFastConv::process (float* pfOutputBuffer, const float *pfInputBuffer, i
             reset += m_iBlockLength;
             
             //output in pfBlockConvOuput
-            //timeConv(m_pfInputBlock, m_pfIRMatrix[0], pfBlockConvOuput);
-            
             conv(m_pfInputBlock, m_pfIRMatrix, m_pfConvMatrix);
-            
             
             for (int n=0; n<m_iBlockLength; n++)
                 pfOutputBuffer[n+reset+m_iBlockLength] = m_pfOutputBlock[n];
@@ -185,9 +204,6 @@ Error_t CFastConv::process (float* pfOutputBuffer, const float *pfInputBuffer, i
                 m_iCirIdx = 0;
 
         }
-        
-        
-        
         
     }
     
