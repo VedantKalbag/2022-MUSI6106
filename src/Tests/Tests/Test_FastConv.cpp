@@ -23,10 +23,12 @@ namespace fastconv_test {
     protected:
         void SetUp() override
         {
+
         }
 
         virtual void TearDown()
         {
+
         }
 
         CFastConv *m_pCFastConv = 0;

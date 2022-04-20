@@ -78,8 +78,6 @@ private:
     int m_iFftLength;
 
     CFft* m_pCFftInstance;
-    Error_t timeConv(float* pfBuffer1, float* pfBuffer2, float* m_pfBlockConvOuput);
-    Error_t freqConv(float* pfBuffer1, float** m_pfIRMatrix, float** m_pfConvMatrix);
 
 };
 
