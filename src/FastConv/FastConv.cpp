@@ -172,13 +172,32 @@ Error_t CFastConv::timeConv(int idx)
 //            std::cout << "pfBuffer1[m]" << pfBuffer1[m] << std::endl;
 //            std::cout << "pfBuffer2[i - m]" << pfBuffer2[i - m] << std::endl;
         }
-            
-        
         m_pfBlockConvOuput[i] = sum;
     }
     
     return Error_t::kNoError;
     
+}
+
+Error_t CFastConv::freqConv(int idx)
+{
+    m_pfTimeIr = m_pfIRMatrix[idx];
+    // Take FFT of x and h, store in m_pfFreqInput, m_pfFreqIr
+    m_pCFftInstance->doFft(m_pfFreqInput, m_pfTimeInput);
+    m_pCFftInstance->doFft(m_pfFreqIr, m_pfIRMatrix[idx]);
+    // Split the real and imaginary parts for multiplication
+    m_pCFftInstance->splitRealImag(m_pfRealInput, m_pfImagInput, m_pfFreqInput);
+    m_pCFftInstance->splitRealImag(m_pfRealIr, m_pfImagIr, m_pfFreqIr);
+
+    // frequency domain multiplication == time domain convolution
+    for (int i = 0; i < (2 * m_iBlockLength); i++)
+    {
+        m_pfRealConv[i] = m_pfRealInput[i] * m_pfRealIr[i];
+        m_pfImagConv[i] = m_pfImagInput[i] * m_pfImagIr[i];
+    }
+    m_pCFftInstance->mergeRealImag(m_pfFreqConv, m_pfRealConv, m_pfImagConv);
+    // Convert back to time domain
+    m_pCFftInstance->doInvFft(m_pfConvOuput, m_pfFreqConv);
 }
 
 Error_t CFastConv::process (float* pfOutputBuffer, const float *pfInputBuffer, int iLengthOfBuffers)
