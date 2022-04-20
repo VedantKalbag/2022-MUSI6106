@@ -14,8 +14,8 @@ namespace fastconv_test {
     {
         for (int i = 0; i < iLength; i++)
         {
-            float a = buffer1[i];
-            float b = buffer2[i];
+//            std::cout << "buffer1[i]  " << buffer1[i] << std::endl;
+//            std::cout << "buffer2[i]  " << buffer2[i] << std::endl;
             EXPECT_NEAR(buffer1[i], buffer2[i], fTolerance);
         }
     }
@@ -42,7 +42,7 @@ namespace fastconv_test {
     TEST_F(FastConv, identity)
     {
         // generate a random IR of length 51 samples
-        const int iIRLength = 51;
+        const int iIRLength = 51; //!!!!!!!! change it back
         float randIR[iIRLength] = {0.f};
         srand (static_cast <unsigned> (42));
         for(int i=0; i<iIRLength; i++)
@@ -51,7 +51,7 @@ namespace fastconv_test {
         
         // an impulse as input signal at sample index 3
         // make the input signal 10 samples long
-        const int iInputLength = 10;
+        const int iInputLength = 10; //!!!!!!!! change it back
         float input[iInputLength] = {0.f};
         input[3] = 1.f;
         
@@ -61,7 +61,7 @@ namespace fastconv_test {
             delayedOutput[i] = randIR[i-3]; // fill the delayedOutput with randIR
         
         //do the convolution
-        m_pCFastConv->init(randIR, iIRLength, 4, CFastConv::kTimeDomain);
+        m_pCFastConv->init(randIR, iIRLength, 2, CFastConv::kTimeDomain);
         float convOutput[iOutputlength] = {0.f};
         m_pCFastConv->process(convOutput, input, iInputLength);
         m_pCFastConv->flushBuffer(convOutput);

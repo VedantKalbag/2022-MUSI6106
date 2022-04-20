@@ -13,6 +13,15 @@ CFastConv::~CFastConv( void )
 
 Error_t CFastConv::init(float* pfImpulseResponse, int iLengthOfIr, int iBlockLength /*= 8192*/, ConvCompMode_t eCompMode /*= kFreqDomain*/)
 {
+    //set processing mode
+    if (eCompMode!= kTimeDomain and eCompMode!= kFreqDomain)
+    {
+        std::cout<< "ConvCompMode_t has to be either kTimeDomain or kFreqDomain";
+        return Error_t::kFunctionInvalidArgsError;
+    }
+    m_eCompMode = eCompMode;
+
+    
     m_iCirIdx = 0;
     
     m_iBlockLength = iBlockLength;
@@ -41,17 +50,17 @@ Error_t CFastConv::init(float* pfImpulseResponse, int iLengthOfIr, int iBlockLen
             m_pfIRMatrix[c][i] = 0.f;
     }
     
-    int c = -1;
-    int reset = -iBlockLength;
+    int c = 0;
+    int reset = 0;
     for (int i=0; i<iLengthOfIr; i++)
     {
-        if (i % iBlockLength == 0)
+        m_pfIRMatrix[c][i-reset] = pfImpulseResponse[i];
+        
+        if ((i+1) % iBlockLength == 0)
         {
             c += 1;
             reset += iBlockLength;
         }
-
-        m_pfIRMatrix[c][i-reset] = pfImpulseResponse[i];
     }
 
         
@@ -67,26 +76,6 @@ Error_t CFastConv::init(float* pfImpulseResponse, int iLengthOfIr, int iBlockLen
     for (int i=0; i<(m_iBlockNum+1)*m_iBlockLength; i++)
         m_pfConvOuput[i] = 0.f;
     
-    
-    
-    
-    
-    
-    //if kFreqDomain, transform the IR to frequency domain
-    if (eCompMode == kTimeDomain)
-    {
-        //do something
-    }
-    else if (eCompMode == kFreqDomain)
-    {
-        //do something
-    }
-    else
-    {
-        std::cout<< "ConvCompMode_t has to be either kTimeDomain or kFreqDomain";
-        return Error_t::kFunctionInvalidArgsError;
-    }
-
     
     m_bIsInitialized = true;
 
@@ -108,38 +97,47 @@ Error_t CFastConv::reset()
         delete[] m_pfInputBlock;
         delete[] m_pfOutputBlock;
         delete[] m_pfBlockConvOuput;
+        delete[] m_pfConvOuput;
+        
+        m_iBlockNum = 0;
+        m_iCirIdx = 0;
+        m_iBlockLength = 0;
     }
     
     m_bIsInitialized = false;
-    
-    
-    
     
     return Error_t::kNoError;
 }
 
 
-Error_t CFastConv::conv(float* pfInputBlock, float** m_pfIRMatrix, float** pfConvMatrix)
+Error_t CFastConv::conv(float* m_pfInputBlock, float** m_pfIRMatrix, float** pfConvMatrix)
 {
     
     for (int i = 0; i<m_iBlockNum; i++)
     {
         //switch to freqConv() after implemented
-        timeConv(pfInputBlock, m_pfIRMatrix[i], m_pfBlockConvOuput);
-
+        timeConv(m_pfInputBlock, m_pfIRMatrix[i], m_pfBlockConvOuput);
+        
+        //std::cout << "i  " << i << std::endl;
+        
         for (int n = 0; n < m_iBlockLength*2; n++)
         {
-            pfConvMatrix[0][n+i*m_iBlockLength] += m_pfBlockConvOuput[n];
+            pfConvMatrix[m_iCirIdx][n+i*m_iBlockLength] += m_pfBlockConvOuput[n];
+            
+//            std::cout << "m_pfInputBlock[n]  " << m_pfInputBlock[n] << std::endl;
+//            std::cout << "m_pfIRMatrix[i][n]  " << m_pfIRMatrix[i][n] << std::endl;
+//            std::cout << "m_pfBlockConvOuput[n]  " << m_pfBlockConvOuput[n] << std::endl;
+            
         }
         
         for (int m = 0; m < m_iBlockNum+1; m++)
         {
+            int iMatrixIdx = (m_iCirIdx+m)%(m_iBlockNum+1);
             for (int j = 0; j < m_iBlockLength; j++)
-                m_pfOutputBlock[j] = m_pfOutputBlock[j] + pfConvMatrix[m][m*m_iBlockLength+j];
+                m_pfOutputBlock[j] = m_pfOutputBlock[j] + pfConvMatrix[iMatrixIdx][m*m_iBlockLength+j];
         }
-        
-        
     }
+    
         
         
         
@@ -156,12 +154,10 @@ Error_t CFastConv::timeConv(float* pfBuffer1, float* pfBuffer2, float* pfBlockCo
     for (int i=0; i<2*m_iBlockLength; i++)
     {
         float sum = 0.f;
-        for (int m = 0; m < 2*m_iBlockLength-1; m++)
-        {
-            sum += pfBuffer1[m] * pfBuffer2[m_iBlockLength - m];
-        }
+        for (int m = 0; m < 2*m_iBlockLength; m++)
+            sum += pfBuffer1[m] * pfBuffer2[i - m];
         
-        pfBlockConvOuput[i-m_iBlockLength] = sum;
+        pfBlockConvOuput[i] = sum;
             
         if (i>=m_iBlockLength){
             reset += m_iBlockLength;
@@ -172,7 +168,7 @@ Error_t CFastConv::timeConv(float* pfBuffer1, float* pfBuffer2, float* pfBlockCo
     
 }
 
-Error_t CFastConv::process (float* pfOutputBuffer, const float *pfInputBuffer, int iLengthOfBuffers )
+Error_t CFastConv::process (float* pfOutputBuffer, const float *pfInputBuffer, int iLengthOfBuffers)
 {
     if (!m_bIsInitialized)
     {
@@ -181,24 +177,39 @@ Error_t CFastConv::process (float* pfOutputBuffer, const float *pfInputBuffer, i
     }
     
 
-    int reset = -m_iBlockLength;
+    int reset = 0;
     
     for (int i=0; i<iLengthOfBuffers; i++)
     {
         
         m_pfInputBlock[i-reset] = pfInputBuffer[i];
         
-        if (i % m_iBlockLength == 0 and i != 0) //what is the best way counting numbers?
+        //std::cout << "i  " << i << std::endl;
+        //std::cout << "m_pfInputBlock[i-reset]  " << m_pfInputBlock[i-reset] << std::endl;
+        
+        //std::cout << "process  " << std::endl;
+        
+//        for (int m=0; m<m_iBlockLength; m++)
+//        {
+//            std::cout << "m_pfInputBlock[m]  " << m_pfInputBlock[m] << std::endl;
+//        }
+        
+        
+        if ((i+1) % m_iBlockLength == 0) //what is the best way counting numbers?
         {
             reset += m_iBlockLength;
             
             //output in pfBlockConvOuput
             conv(m_pfInputBlock, m_pfIRMatrix, m_pfConvMatrix);
             
+//            for (int m=0; m<m_iBlockLength; m++)
+//            {
+//                std::cout << "m_pfInputBlock[m]  " << m_pfInputBlock[m] << std::endl;
+//            }
+            
             for (int n=0; n<m_iBlockLength; n++)
                 pfOutputBuffer[n+reset+m_iBlockLength] = m_pfOutputBlock[n];
         
-            //clear out m_pfOutputBlock
             
             if (++m_iCirIdx >= m_iBlockNum+1)
                 m_iCirIdx = 0;
