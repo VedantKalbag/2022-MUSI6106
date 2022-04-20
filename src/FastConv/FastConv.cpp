@@ -192,8 +192,12 @@ Error_t CFastConv::freqConv(int idx)
     // frequency domain multiplication == time domain convolution
     for (int i = 0; i < (2 * m_iBlockLength); i++)
     {
-        m_pfRealConv[i] = m_pfRealInput[i] * m_pfRealIr[i];
-        m_pfImagConv[i] = m_pfImagInput[i] * m_pfImagIr[i];
+        float ac =  m_pfRealInput[i] * m_pfRealIr[i];
+        float bc = m_pfImagInput[i] * m_pfRealIr[i];
+        float ad = m_pfRealInput[i] * m_pfRealIr[i];
+        float bd = m_pfImagInput[i] * m_pfImagIr[i];
+        m_pfRealConv[i] = ac - bd;
+        m_pfImagConv[i] = ad + bc;
     }
     m_pCFftInstance->mergeRealImag(m_pfFreqConv, m_pfRealConv, m_pfImagConv);
     // Convert back to time domain
