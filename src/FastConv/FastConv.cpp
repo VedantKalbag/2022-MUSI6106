@@ -114,11 +114,14 @@ Error_t CFastConv::reset()
 }
 
 
-Error_t CFastConv::conv(float* m_pfInputBlock, float** m_pfIRMatrix, float** pfConvMatrix)
+Error_t CFastConv::conv()
 {
     //clear previous values in m_pfConvMatrix
     for (int i=0; i<m_iBlockLength*(m_iBlockNum+1); i++)
+    {
+        std::cout << "clear m_pfConvMatrix[m_iCirIdx][i]  " << m_pfConvMatrix[m_iCirIdx][i] << std::endl;
         m_pfConvMatrix[m_iCirIdx][i] = 0.f;
+    }
     
     for (int i=0; i<m_iBlockLength; i++)
         m_pfOutputBlock[i] = 0.f;
@@ -134,6 +137,7 @@ Error_t CFastConv::conv(float* m_pfInputBlock, float** m_pfIRMatrix, float** pfC
             m_pfConvMatrix[m_iCirIdx][n+i*m_iBlockLength] += m_pfBlockConvOuput[n];
     }
     
+    
     for (int i = 0; i < m_iBlockNum+1; i++)
     {
         
@@ -143,10 +147,12 @@ Error_t CFastConv::conv(float* m_pfInputBlock, float** m_pfIRMatrix, float** pfC
         for (int j = 0; j < m_iBlockLength; j++)
         {
             m_pfOutputBlock[j] += m_pfConvMatrix[iMatrixIdx][i*m_iBlockLength+j];
-            std::cout << "iMatrixIdx " << iMatrixIdx << std::endl;
-            std::cout << "i*m_iBlockLength+j " << i*m_iBlockLength+j << std::endl;
-            std::cout << "m_pfConvMatrix[iMatrixIdx][i*m_iBlockLength+j] " << m_pfConvMatrix[iMatrixIdx][i*m_iBlockLength+j] << std::endl;
+//            std::cout << "iMatrixIdx " << iMatrixIdx << std::endl;
+//            std::cout << "i*m_iBlockLength+j " << i*m_iBlockLength+j << std::endl;
+//            std::cout << "m_pfConvMatrix[iMatrixIdx][i*m_iBlockLength+j] " << m_pfConvMatrix[iMatrixIdx][i*m_iBlockLength+j] << std::endl;
         }
+        
+        
         
     }
 
@@ -161,7 +167,12 @@ Error_t CFastConv::timeConv(float* pfBuffer1, float* pfBuffer2, float* m_pfBlock
     {
         float sum = 0.f;
         for (int m = 0; m < 2*m_iBlockLength; m++)
+        {
             sum += pfBuffer1[m] * pfBuffer2[i - m];
+//            std::cout << "pfBuffer1[m]" << pfBuffer1[m] << std::endl;
+//            std::cout << "pfBuffer2[i - m]" << pfBuffer2[i - m] << std::endl;
+        }
+            
         
         m_pfBlockConvOuput[i] = sum;
     }
@@ -191,7 +202,7 @@ Error_t CFastConv::process (float* pfOutputBuffer, const float *pfInputBuffer, i
         if ((i+1) % m_iBlockLength == 0)
         {
             //output in pfBlockConvOuput
-            conv(m_pfInputBlock, m_pfIRMatrix, m_pfConvMatrix);
+            conv();
             
             for (int n=0; n<m_iBlockLength; n++)
                 pfOutputBuffer[n+reset] = m_pfOutputBlock[n];
