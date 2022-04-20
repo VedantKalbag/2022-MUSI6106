@@ -63,7 +63,7 @@ private:
     float* m_pfConvOuput;
     float** m_pfConvMatrix;
     ConvCompMode_t m_eCompMode;
-    Error_t timeConv(float* pfBuffer1, float* pfBuffer2, float* m_pfBlockConvOuput);
+    Error_t timeConv(int i);
     Error_t conv();
 
 };

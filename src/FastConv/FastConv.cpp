@@ -129,7 +129,7 @@ Error_t CFastConv::conv()
     for (int i = 0; i<m_iBlockNum; i++)
     {
         //switch to freqConv() after implemented
-        timeConv(m_pfInputBlock, m_pfIRMatrix[i], m_pfBlockConvOuput);
+        timeConv(i);
         
         std::cout << "i  " << i << std::endl;
         
@@ -161,14 +161,14 @@ Error_t CFastConv::conv()
 }
 
 
-Error_t CFastConv::timeConv(float* pfBuffer1, float* pfBuffer2, float* m_pfBlockConvOuput)
+Error_t CFastConv::timeConv(int idx)
 {
     for (int i=0; i<2*m_iBlockLength-1; i++)
     {
         float sum = 0.f;
         for (int m = 0; m < 2*m_iBlockLength; m++)
         {
-            sum += pfBuffer1[m] * pfBuffer2[i - m];
+            sum += m_pfInputBlock[m] * m_pfIRMatrix[idx][i - m];
 //            std::cout << "pfBuffer1[m]" << pfBuffer1[m] << std::endl;
 //            std::cout << "pfBuffer2[i - m]" << pfBuffer2[i - m] << std::endl;
         }
