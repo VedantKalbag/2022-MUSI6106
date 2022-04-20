@@ -20,9 +20,12 @@ Error_t CFastConv::init(float* pfImpulseResponse, int iLengthOfIr, int iBlockLen
         return Error_t::kFunctionInvalidArgsError;
     }
     m_eCompMode = eCompMode;
+    
+    this->reset();
 
     
     m_iCirIdx = 0;
+    m_iLengthOfIr = iLengthOfIr;
     
     m_iBlockLength = iBlockLength;
     m_pfInputBlock = new float [m_iBlockLength*2];
@@ -40,7 +43,7 @@ Error_t CFastConv::init(float* pfImpulseResponse, int iLengthOfIr, int iBlockLen
     
     //slice pfImpulseResponse into m_pfIRMatrix (iBlockNum, iBlockLength)
     int iReminder = iLengthOfIr % iBlockLength;
-    m_iBlockNum = (int) (1 + (iLengthOfIr - iReminder) / iBlockLength);
+    m_iBlockNum = (int) (iLengthOfIr - iReminder) / iBlockLength;
     
     m_pfIRMatrix = new float * [m_iBlockNum];
     for (int c=0; c<m_iBlockNum; c++)
@@ -72,8 +75,8 @@ Error_t CFastConv::init(float* pfImpulseResponse, int iLengthOfIr, int iBlockLen
             m_pfConvMatrix[c][i] = 0.f;
     }
     
-    m_pfConvOuput = new float [(m_iBlockNum+1)*m_iBlockLength];
-    for (int i=0; i<(m_iBlockNum+1)*m_iBlockLength; i++)
+    m_pfConvOuput = new float [m_iBlockNum*m_iBlockLength];
+    for (int i=0; i<m_iBlockNum*m_iBlockLength; i++)
         m_pfConvOuput[i] = 0.f;
     
     
@@ -102,6 +105,7 @@ Error_t CFastConv::reset()
         m_iBlockNum = 0;
         m_iCirIdx = 0;
         m_iBlockLength = 0;
+        m_iLengthOfIr = 0;
     }
     
     m_bIsInitialized = false;
@@ -112,56 +116,54 @@ Error_t CFastConv::reset()
 
 Error_t CFastConv::conv(float* m_pfInputBlock, float** m_pfIRMatrix, float** pfConvMatrix)
 {
+    //clear previous values in m_pfConvMatrix
+    for (int i=0; i<m_iBlockLength*(m_iBlockNum+1); i++)
+        m_pfConvMatrix[m_iCirIdx][i] = 0.f;
+    
+    for (int i=0; i<m_iBlockLength; i++)
+        m_pfOutputBlock[i] = 0.f;
     
     for (int i = 0; i<m_iBlockNum; i++)
     {
         //switch to freqConv() after implemented
         timeConv(m_pfInputBlock, m_pfIRMatrix[i], m_pfBlockConvOuput);
         
-        //std::cout << "i  " << i << std::endl;
+        std::cout << "i  " << i << std::endl;
         
-        for (int n = 0; n < m_iBlockLength*2; n++)
-        {
-            pfConvMatrix[m_iCirIdx][n+i*m_iBlockLength] += m_pfBlockConvOuput[n];
-            
-//            std::cout << "m_pfInputBlock[n]  " << m_pfInputBlock[n] << std::endl;
-//            std::cout << "m_pfIRMatrix[i][n]  " << m_pfIRMatrix[i][n] << std::endl;
-//            std::cout << "m_pfBlockConvOuput[n]  " << m_pfBlockConvOuput[n] << std::endl;
-            
-        }
-        
-        for (int m = 0; m < m_iBlockNum+1; m++)
-        {
-            int iMatrixIdx = (m_iCirIdx+m)%(m_iBlockNum+1);
-            for (int j = 0; j < m_iBlockLength; j++)
-                m_pfOutputBlock[j] = m_pfOutputBlock[j] + pfConvMatrix[iMatrixIdx][m*m_iBlockLength+j];
-        }
+        for (int n = 0; n < m_iBlockLength*2 - 1; n++)
+            m_pfConvMatrix[m_iCirIdx][n+i*m_iBlockLength] += m_pfBlockConvOuput[n];
     }
     
+    for (int i = 0; i < m_iBlockNum+1; i++)
+    {
         
+        std::cout << "output i " << i << std::endl;
         
+        int iMatrixIdx = (m_iCirIdx+m_iBlockNum+1-i) % (m_iBlockNum+1);
+        for (int j = 0; j < m_iBlockLength; j++)
+        {
+            m_pfOutputBlock[j] += m_pfConvMatrix[iMatrixIdx][i*m_iBlockLength+j];
+            std::cout << "iMatrixIdx " << iMatrixIdx << std::endl;
+            std::cout << "i*m_iBlockLength+j " << i*m_iBlockLength+j << std::endl;
+            std::cout << "m_pfConvMatrix[iMatrixIdx][i*m_iBlockLength+j] " << m_pfConvMatrix[iMatrixIdx][i*m_iBlockLength+j] << std::endl;
+        }
         
+    }
+
     
     return Error_t::kNoError;
 }
 
 
-Error_t CFastConv::timeConv(float* pfBuffer1, float* pfBuffer2, float* pfBlockConvOuput)
+Error_t CFastConv::timeConv(float* pfBuffer1, float* pfBuffer2, float* m_pfBlockConvOuput)
 {
-    
-    int c = 0;
-    int reset = -m_iBlockLength;
-    for (int i=0; i<2*m_iBlockLength; i++)
+    for (int i=0; i<2*m_iBlockLength-1; i++)
     {
         float sum = 0.f;
         for (int m = 0; m < 2*m_iBlockLength; m++)
             sum += pfBuffer1[m] * pfBuffer2[i - m];
         
-        pfBlockConvOuput[i] = sum;
-            
-        if (i>=m_iBlockLength){
-            reset += m_iBlockLength;
-        }
+        m_pfBlockConvOuput[i] = sum;
     }
     
     return Error_t::kNoError;
@@ -176,50 +178,32 @@ Error_t CFastConv::process (float* pfOutputBuffer, const float *pfInputBuffer, i
         return Error_t::kNotInitializedError;
     }
     
+    
+    int iTotalBlockNum = (int) ((iLengthOfBuffers + m_iBlockLength + m_iLengthOfIr) / m_iBlockLength)+1;
 
     int reset = 0;
     
-    for (int i=0; i<iLengthOfBuffers; i++)
+    for (int i=0; i<iTotalBlockNum; i++)
     {
         
         m_pfInputBlock[i-reset] = pfInputBuffer[i];
         
-        //std::cout << "i  " << i << std::endl;
-        //std::cout << "m_pfInputBlock[i-reset]  " << m_pfInputBlock[i-reset] << std::endl;
-        
-        //std::cout << "process  " << std::endl;
-        
-//        for (int m=0; m<m_iBlockLength; m++)
-//        {
-//            std::cout << "m_pfInputBlock[m]  " << m_pfInputBlock[m] << std::endl;
-//        }
-        
-        
-        if ((i+1) % m_iBlockLength == 0) //what is the best way counting numbers?
+        if ((i+1) % m_iBlockLength == 0)
         {
-            reset += m_iBlockLength;
-            
             //output in pfBlockConvOuput
             conv(m_pfInputBlock, m_pfIRMatrix, m_pfConvMatrix);
             
-//            for (int m=0; m<m_iBlockLength; m++)
-//            {
-//                std::cout << "m_pfInputBlock[m]  " << m_pfInputBlock[m] << std::endl;
-//            }
-            
             for (int n=0; n<m_iBlockLength; n++)
-                pfOutputBuffer[n+reset+m_iBlockLength] = m_pfOutputBlock[n];
-        
+                pfOutputBuffer[n+reset] = m_pfOutputBlock[n];
+            
+            
+            reset += m_iBlockLength;
             
             if (++m_iCirIdx >= m_iBlockNum+1)
                 m_iCirIdx = 0;
-
         }
-        
     }
     
-    
-        
     
     return Error_t::kNoError;
 }

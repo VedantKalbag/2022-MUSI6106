@@ -55,6 +55,7 @@ private:
     int m_iBlockLength;
     int m_iBlockNum;
     int m_iCirIdx;
+    int m_iLengthOfIr;
     float** m_pfIRMatrix;
     float* m_pfInputBlock;
     float* m_pfOutputBlock;
