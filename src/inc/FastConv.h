@@ -5,6 +5,7 @@
 #pragma once
 
 #include "ErrorDef.h"
+#include "Fft.h"
 
 /*! \brief interface for fast convolution
 */
@@ -50,6 +51,35 @@ public:
     Error_t flushBuffer(float* pfOutputBuffer);
 
 private:
+    ConvCompMode_t m_ConvType;
+    int m_iIRLength;
+    float *m_pfImpulseResponse;
+    float *m_pfTail;
+
+    float* m_pfBlockBuffer;
+    int m_iblockSize;
+
+
+    float *m_pfTimeInput;
+    float *m_pfTimeIr;
+    float *m_pfTmpConv;
+    CFft::complex_t *m_pfFreqInput;
+    CFft::complex_t *m_pfFreqIr;
+    CFft::complex_t *m_pfFreqConv;
+    float *m_pfRealInput;
+    float *m_pfImagInput;
+    float *m_pfRealIr;
+    float *m_pfImagIr;
+    float *m_pfRealConv;
+    float *m_pfImagConv;
+
+    float *m_pfTimeConv;
+
+    int m_iFftLength;
+
+    CFft* m_pCFftInstance;
+    Error_t timeConv(float* pfBuffer1, float* pfBuffer2, float* m_pfBlockConvOuput);
+    Error_t freqConv(float* pfBuffer1, float** m_pfIRMatrix, float** m_pfConvMatrix);
 
 };
 
