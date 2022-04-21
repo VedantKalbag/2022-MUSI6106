@@ -14,8 +14,8 @@ namespace fastconv_test {
     {
         for (int i = 0; i < iLength; i++)
         {
-            std::cout << "buffer1[i]  " << buffer1[i] << std::endl;
-            std::cout << "buffer2[i]  " << buffer2[i] << std::endl;
+//            std::cout << "buffer1[i]  " << buffer1[i] << std::endl;
+//            std::cout << "buffer2[i]  " << buffer2[i] << std::endl;
             EXPECT_NEAR(buffer1[i], buffer2[i], fTolerance);
         }
     }
@@ -42,28 +42,24 @@ namespace fastconv_test {
     TEST_F(FastConv, identity)
     {
         const int iBlockLength = 2;
-        const int iDelayLength = 1;
+        const int iDelayLength = 3;
         // generate a random IR of length 51 samples
-        //!!!!!!!! change it back
-        const int iIRLength = 6; //!!!!!!!! change it back
-        float randIR[iIRLength] = {1., 2., 3., 4., 5., 6.};
+        const int iIRLength = 51; //!!!!!!!! change it back
+        float randIR[iIRLength];
         srand (static_cast <unsigned> (42));
-        //for(int i=0; i<iIRLength; i++)
+        for(int i=0; i<iIRLength; i++)
            //randIR[i] = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-            //randIR[i] = 0.5f; //change it back later
+            randIR[i] = 0.5f; //change it back later
         
-        // an impulse as input signal at sample index 3
-        // make the input signal 10 samples long
-        //!!!!!!!! change it back
-        const int iInputLength = 4;
+        const int iInputLength = 10;
         float input[iInputLength] = {0.f};
         input[iDelayLength] = 1.f;
         
         const int iOutputlength = iIRLength + iInputLength + iBlockLength;
         float delayedOutput[iOutputlength] = {0.f};
+        
         //!!!!!!!! change it back
-        for(int i=iDelayLength; i<iOutputlength; i++)
-            //compensate the latency of the blocked convolution
+        for(int i=iDelayLength; i<iOutputlength-iInputLength; i++)
             delayedOutput[i] = randIR[i-iDelayLength]; // fill the delayedOutput with randIR
         
         //do the convolution
