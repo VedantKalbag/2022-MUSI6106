@@ -52,7 +52,7 @@ public:
     Error_t flushBuffer(float* pfOutputBuffer);
 
 private:
-    bool m_bIsInitialized;
+    bool m_bIsInitialized = false;
     int m_iBlockLength;
     int m_iBlockNum;
     int m_iCirIdx;

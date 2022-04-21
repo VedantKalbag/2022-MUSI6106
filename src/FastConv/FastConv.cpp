@@ -249,7 +249,7 @@ Error_t CFastConv::flushBuffer(float* pfOutputBuffer)
     
     for (int i=0; i<m_iLengthOfIr; i++)
     {
-        //m_pfInputBlock[i-m_iReset] = 0.f;
+
         if ((i+1) % m_iBlockLength == 0)
         {
             //output in pfBlockConvOuput
