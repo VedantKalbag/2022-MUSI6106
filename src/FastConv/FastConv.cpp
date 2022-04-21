@@ -129,6 +129,30 @@ Error_t CFastConv::timeConv(int idx)
 }
 
 
+Error_t CFastConv::freqConv(int idx)
+{
+    m_pfTimeIr = m_pfIRMatrix[idx];
+    // Take FFT of x and h, store in m_pfFreqInput, m_pfFreqIr
+    m_pCFftInstance->doFft(m_pfFreqInput, m_pfTimeInput);
+    m_pCFftInstance->doFft(m_pfFreqIr, m_pfIRMatrix[idx]);
+    // Split the real and imaginary parts for multiplication
+    m_pCFftInstance->splitRealImag(m_pfRealInput, m_pfImagInput, m_pfFreqInput);
+    m_pCFftInstance->splitRealImag(m_pfRealIr, m_pfImagIr, m_pfFreqIr);
+
+    // frequency domain multiplication == time domain convolution
+    for (int i = 0; i < (2 * m_iBlockLength); i++)
+    {
+        float ac =  m_pfRealInput[i] * m_pfRealIr[i];
+        float bc = m_pfImagInput[i] * m_pfRealIr[i];
+        float ad = m_pfRealInput[i] * m_pfRealIr[i];
+        float bd = m_pfImagInput[i] * m_pfImagIr[i];
+        m_pfRealConv[i] = ac - bd;
+        m_pfImagConv[i] = ad + bc;
+    }
+    m_pCFftInstance->mergeRealImag(m_pfFreqConv, m_pfRealConv, m_pfImagConv);
+    // Convert back to time domain
+    m_pCFftInstance->doInvFft(m_pfConvOuput, m_pfFreqConv);
+}
 
 
 
@@ -149,7 +173,17 @@ Error_t CFastConv::conv()
     for (int i = 0; i<m_iBlockNum; i++)
     {
         //switch to freqConv() after implemented
-        timeConv(i);
+        switch (m_eCompMode) {
+            case kTimeDomain:
+                timeConv(i);
+                break;
+            case kFreqDomain:
+                freqConv(i);
+                break;
+            case kNumConvCompModes:
+                break;
+        }
+        
         
         for (int n = 0; n < m_iBlockLength*2 - 1; n++)
             m_pfConvMatrix[m_iCirIdx][n+i*m_iBlockLength] += m_pfBlockConvOuput[n];
@@ -164,10 +198,7 @@ Error_t CFastConv::conv()
     
     return Error_t::kNoError;
 }
-
-
-
-
+ 
 
 Error_t CFastConv::process (float* pfOutputBuffer, const float *pfInputBuffer, int iLengthOfBuffers)
 {
@@ -183,9 +214,7 @@ Error_t CFastConv::process (float* pfOutputBuffer, const float *pfInputBuffer, i
     for (int i=0; i<iLengthOfBuffers; i++)
     {
         m_pfInputBlock[i-m_iReset] = pfInputBuffer[i];
-        
-        //std::cout << "pfInputBuffer[i]" << pfInputBuffer[i] << std::endl;
-        
+
         if ((i+1) % m_iBlockLength == 0)
         {
             //output in pfBlockConvOuput
