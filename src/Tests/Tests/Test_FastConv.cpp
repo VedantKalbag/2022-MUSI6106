@@ -57,7 +57,7 @@ namespace fastconv_test {
         const int iOutputlength = iIRLength + iInputLength + iBlockLength;
         float delayedOutput[iOutputlength] = {0.f};
         
-        //!!!!!!!! change it back
+        
         for(int i=iDelayLength; i<iOutputlength-iInputLength; i++)
             delayedOutput[i] = randIR[i-iDelayLength]; // fill the delayedOutput with randIR
         
@@ -92,7 +92,7 @@ namespace fastconv_test {
         const int iBlockLength = 2;
         const int iDelayLength = 3;
         // generate a random IR of length 51 samples
-        const int iIRLength = 51; //!!!!!!!! change it back
+        const int iIRLength = 51;
         float randIR[iIRLength];
         srand (static_cast <unsigned> (42));
         for(int i=0; i<iIRLength; i++)

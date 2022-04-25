@@ -14,7 +14,7 @@ CFastConv::~CFastConv( void )
 Error_t CFastConv::init(float* pfImpulseResponse, int iLengthOfIr, int iBlockLength /*= 8192*/, ConvCompMode_t eCompMode /*= kFreqDomain*/)
 {
     //set processing mode
-    if (eCompMode!= kTimeDomain and eCompMode!= kFreqDomain)
+    if (eCompMode!= kTimeDomain && eCompMode!= kFreqDomain)
     {
         std::cout<< "ConvCompMode_t has to be either kTimeDomain or kFreqDomain";
         return Error_t::kFunctionInvalidArgsError;
@@ -172,7 +172,6 @@ Error_t CFastConv::conv()
     
     for (int i = 0; i<m_iBlockNum; i++)
     {
-        //switch to freqConv() after implemented
         switch (m_eCompMode) {
             case kTimeDomain:
                 timeConv(i);
@@ -215,7 +214,7 @@ Error_t CFastConv::process (float* pfOutputBuffer, const float *pfInputBuffer, i
     {
         m_pfInputBlock[i-m_iReset] = pfInputBuffer[i];
 
-        if ((i+1) % m_iBlockLength == 0)
+        if ((i+1) % m_iBlockLength == 0 || i == iLengthOfBuffers - 1)
         {
             //output in pfBlockConvOuput
             conv();
